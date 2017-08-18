@@ -91,5 +91,5 @@ pages:
     - ¿Qué es Git?: 'git/index.md'
     - Instalación de Git: 'git/instalacion.md'
     - Configuración inicial: 'git/configuracionInicial.md'
-    - Inicializando repositorio: 'git/inicializandoRepositorio.md'
+    - Trabajando con repositorios: 'git/comenzandoConRepositorios.md'
     - GitHub: 'git/github.md'

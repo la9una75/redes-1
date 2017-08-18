@@ -5,7 +5,7 @@
 Desde su nacimiento en el 2005, Git ha evolucionado y madurado para ser fácil de usar y conservar sus características iniciales. Es tremendamente rápido, muy eficiente con grandes proyectos, y tiene un increíble sistema de ramificación (branching) para desarrollo no lineal.
 
 !!!done "Libro de referencia"
-​	El contenido de la presente guía fue adaptado del libro oficial de Git disponible en web en: [Pro Git](https://git-scm.com/book/es/v2)
+		El contenido de la presente guía fue adaptado del libro oficial de Git disponible en web en: [Pro Git](https://git-scm.com/book/es/v2)
 
 ## Git vs otros sistemas de control de versiones
 
