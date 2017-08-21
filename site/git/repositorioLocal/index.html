@@ -9,7 +9,7 @@
         <meta name="description" content="Redes de datos con software libre">
       
       
-        <link rel="canonical" href="http://www.redes.rauljesus.com/git/comenzandoConRepositorios/">
+        <link rel="canonical" href="http://www.redes.rauljesus.com/git/repositorioLocal/">
       
       
         <meta name="author" content="Raul Jesus Lopez">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Trabajando con repositorios - Redes con software libre</title>
+        <title>Inicializando repositorio local - Redes con software libre</title>
       
     
     
@@ -38,13 +38,27 @@
         
         
         
-        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">-->
+
+        <!--
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        -->
+        <link rel="stylesheet" href="../../assets/fonts/material/material.css">
+
+         <link rel="stylesheet" href="../../assets/fonts/roboto/roboto.css">
+
+          <link rel="stylesheet" href="../../assets/fonts/robotomono/robotomono.css">
+        
+
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
-      <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+     
+      <!--
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+      -->
     
+    
+
     
     
   </head>
@@ -88,7 +102,7 @@
                 </span>
               
             
-            Trabajando con repositorios
+            Inicializando repositorio local
           
         </span>
       </div>
@@ -636,6 +650,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../flujoEntornosDistribuidos/" title="Entornos distribuidos" class="md-nav__link">
+      Entornos distribuidos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../instalacion/" title="Instalación de Git" class="md-nav__link">
       Instalación de Git
     </a>
@@ -658,6 +684,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../losTresEstados/" title="Los tres estados" class="md-nav__link">
+      Los tres estados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -667,11 +705,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Trabajando con repositorios
+        Inicializando repositorio local
       </label>
     
-    <a href="./" title="Trabajando con repositorios" class="md-nav__link md-nav__link--active">
-      Trabajando con repositorios
+    <a href="./" title="Inicializando repositorio local" class="md-nav__link md-nav__link--active">
+      Inicializando repositorio local
     </a>
     
       
@@ -683,132 +721,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creando-un-repositorio-git" title="Creando un repositorio git" class="md-nav__link">
-    Creando un repositorio git
+  <a href="#repositorio-local-desde-una-carpeta-existente" title="Repositorio local desde una carpeta existente" class="md-nav__link">
+    Repositorio local desde una carpeta existente
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#en-el-servidor-remoto" title="En el servidor [remoto]" class="md-nav__link">
-    En el servidor [remoto]
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-nos-dirigimos-a-nuestro-directorio-home" title="1. Nos dirigimos a nuestro directorio home" class="md-nav__link">
-    1. Nos dirigimos a nuestro directorio home
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-creamos-la-carpeta-que-alojara-el-repositorio" title="2. Creamos la carpeta que alojará el repositorio" class="md-nav__link">
-    2. Creamos la carpeta que alojará el repositorio
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-inicializamos-un-repositorio-vacio" title="3. Inicializamos un repositorio vacío" class="md-nav__link">
-    3. Inicializamos un repositorio vacío
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-permitimos-que-el-repositorio-sea-compartido" title="4. Permitimos que el repositorio sea compartido" class="md-nav__link">
-    4. Permitimos que el repositorio sea compartido
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#en-el-cliente-local" title="En el cliente [local]" class="md-nav__link">
-    En el cliente [local]
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-nos-dirigimos-a-nuestro-directorio-home_1" title="1. Nos dirigimos a nuestro directorio home" class="md-nav__link">
-    1. Nos dirigimos a nuestro directorio home
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-creamos-la-carpeta-donde-alojaremos-nuestro-proyecto" title="2. Creamos la carpeta donde alojaremos nuestro proyecto" class="md-nav__link">
-    2. Creamos la carpeta donde alojaremos nuestro proyecto
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-inicializamos-un-repositorio-git" title="3. Inicializamos un repositorio git" class="md-nav__link">
-    3. Inicializamos un repositorio git
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-agregamos-archivos-a-nuestro-directorio" title="4. Agregamos archivos a nuestro directorio" class="md-nav__link">
-    4. Agregamos archivos a nuestro directorio
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-preparamos-los-cambios" title="5. Preparamos los cambios" class="md-nav__link">
-    5. Preparamos los cambios
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-enviamos-los-cambios-al-head" title="5. Enviamos los cambios al HEAD" class="md-nav__link">
-    5. Enviamos los cambios al HEAD
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-vinculamos-el-repositorio-local-con-el-repositorio-remoto" title="6. Vinculamos el repositorio local con el repositorio remoto" class="md-nav__link">
-    6. Vinculamos el repositorio local con el repositorio remoto
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-sincronizamos-nuestros-archivos" title="7. Sincronizamos nuestros archivos" class="md-nav__link">
-    7. Sincronizamos nuestros archivos
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clonando-un-repositorio-git-existente" title="Clonando un repositorio git existente" class="md-nav__link">
-    Clonando un repositorio git existente
+  <a href="#repositorio-local-clonando-un-repositorio-remoto-existente" title="Repositorio local clonando un repositorio remoto existente" class="md-nav__link">
+    Repositorio local clonando un repositorio remoto existente
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clonando-un-repositorio-remoto-existente-ssh" title="Clonando un repositorio remoto existente [SSH]" class="md-nav__link">
+    Clonando un repositorio remoto existente [SSH]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clonando-un-repositorio-remoto-existente-https" title="Clonando un repositorio remoto existente [HTTPS]" class="md-nav__link">
+    Clonando un repositorio remoto existente [HTTPS]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-podemos-hacer-en-un-repositorio-clonado" title="¿Que podemos hacer en un repositorio clonado?" class="md-nav__link">
+    ¿Que podemos hacer en un repositorio clonado?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -824,6 +773,54 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../servidorGit/" title="Git en el servidor" class="md-nav__link">
+      Git en el servidor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../repositorioRemoto/" title="Trabajando con remotos" class="md-nav__link">
+      Trabajando con remotos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sincronizandoRepositorios/" title="Sincronizando repositorios" class="md-nav__link">
+      Sincronizando repositorios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ramas/" title="Ramas" class="md-nav__link">
+      Ramas
+    </a>
   </li>
 
         
@@ -863,132 +860,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creando-un-repositorio-git" title="Creando un repositorio git" class="md-nav__link">
-    Creando un repositorio git
+  <a href="#repositorio-local-desde-una-carpeta-existente" title="Repositorio local desde una carpeta existente" class="md-nav__link">
+    Repositorio local desde una carpeta existente
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#en-el-servidor-remoto" title="En el servidor [remoto]" class="md-nav__link">
-    En el servidor [remoto]
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-nos-dirigimos-a-nuestro-directorio-home" title="1. Nos dirigimos a nuestro directorio home" class="md-nav__link">
-    1. Nos dirigimos a nuestro directorio home
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-creamos-la-carpeta-que-alojara-el-repositorio" title="2. Creamos la carpeta que alojará el repositorio" class="md-nav__link">
-    2. Creamos la carpeta que alojará el repositorio
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-inicializamos-un-repositorio-vacio" title="3. Inicializamos un repositorio vacío" class="md-nav__link">
-    3. Inicializamos un repositorio vacío
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-permitimos-que-el-repositorio-sea-compartido" title="4. Permitimos que el repositorio sea compartido" class="md-nav__link">
-    4. Permitimos que el repositorio sea compartido
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#en-el-cliente-local" title="En el cliente [local]" class="md-nav__link">
-    En el cliente [local]
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-nos-dirigimos-a-nuestro-directorio-home_1" title="1. Nos dirigimos a nuestro directorio home" class="md-nav__link">
-    1. Nos dirigimos a nuestro directorio home
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-creamos-la-carpeta-donde-alojaremos-nuestro-proyecto" title="2. Creamos la carpeta donde alojaremos nuestro proyecto" class="md-nav__link">
-    2. Creamos la carpeta donde alojaremos nuestro proyecto
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-inicializamos-un-repositorio-git" title="3. Inicializamos un repositorio git" class="md-nav__link">
-    3. Inicializamos un repositorio git
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-agregamos-archivos-a-nuestro-directorio" title="4. Agregamos archivos a nuestro directorio" class="md-nav__link">
-    4. Agregamos archivos a nuestro directorio
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-preparamos-los-cambios" title="5. Preparamos los cambios" class="md-nav__link">
-    5. Preparamos los cambios
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-enviamos-los-cambios-al-head" title="5. Enviamos los cambios al HEAD" class="md-nav__link">
-    5. Enviamos los cambios al HEAD
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-vinculamos-el-repositorio-local-con-el-repositorio-remoto" title="6. Vinculamos el repositorio local con el repositorio remoto" class="md-nav__link">
-    6. Vinculamos el repositorio local con el repositorio remoto
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-sincronizamos-nuestros-archivos" title="7. Sincronizamos nuestros archivos" class="md-nav__link">
-    7. Sincronizamos nuestros archivos
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clonando-un-repositorio-git-existente" title="Clonando un repositorio git existente" class="md-nav__link">
-    Clonando un repositorio git existente
+  <a href="#repositorio-local-clonando-un-repositorio-remoto-existente" title="Repositorio local clonando un repositorio remoto existente" class="md-nav__link">
+    Repositorio local clonando un repositorio remoto existente
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clonando-un-repositorio-remoto-existente-ssh" title="Clonando un repositorio remoto existente [SSH]" class="md-nav__link">
+    Clonando un repositorio remoto existente [SSH]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clonando-un-repositorio-remoto-existente-https" title="Clonando un repositorio remoto existente [HTTPS]" class="md-nav__link">
+    Clonando un repositorio remoto existente [HTTPS]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-podemos-hacer-en-un-repositorio-clonado" title="¿Que podemos hacer en un repositorio clonado?" class="md-nav__link">
+    ¿Que podemos hacer en un repositorio clonado?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1013,117 +921,95 @@
               
                 
                 
-                  <h1>Trabajando con repositorios</h1>
+                  <h1>Inicializando repositorio local</h1>
                 
-                <h2 id="creando-un-repositorio-git">Creando un repositorio git<a class="headerlink" href="#creando-un-repositorio-git" title="Permanent link">&para;</a></h2>
-<p>En este apartado, crearemos un repositorio compartido en la red local. Listamos los pasos del procedimiento: </p>
-<h3 id="en-el-servidor-remoto">En el servidor [remoto]<a class="headerlink" href="#en-el-servidor-remoto" title="Permanent link">&para;</a></h3>
-<p>Para comenzar un repositorio vacío tendremos que seguir los siguientes pasos: </p>
-<h4 id="1-nos-dirigimos-a-nuestro-directorio-home">1. Nos dirigimos a nuestro directorio home<a class="headerlink" href="#1-nos-dirigimos-a-nuestro-directorio-home" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span class="nb">cd</span>
-</pre></div>
-
-
-<h4 id="2-creamos-la-carpeta-que-alojara-el-repositorio">2. Creamos la carpeta que alojará el repositorio<a class="headerlink" href="#2-creamos-la-carpeta-que-alojara-el-repositorio" title="Permanent link">&para;</a></h4>
-<p>Creamos el directorio: </p>
-<div class="codehilite"><pre>mkdir miRepositorio.git
-</pre></div>
-
-
-<p>E ingresamos en él:</p>
-<div class="codehilite"><pre><span class="nb">cd</span> miRepositorio.git
-</pre></div>
-
-
-<h4 id="3-inicializamos-un-repositorio-vacio">3. Inicializamos un repositorio vacío<a class="headerlink" href="#3-inicializamos-un-repositorio-vacio" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre>git init --bare
-</pre></div>
-
-
-<h4 id="4-permitimos-que-el-repositorio-sea-compartido">4. Permitimos que el repositorio sea compartido<a class="headerlink" href="#4-permitimos-que-el-repositorio-sea-compartido" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre>git config core.sharedRepository <span class="nb">true</span>
-</pre></div>
-
-
-<h3 id="en-el-cliente-local">En el cliente [local]<a class="headerlink" href="#en-el-cliente-local" title="Permanent link">&para;</a></h3>
-<p>Tendremos que crear una carpeta con nuestros archivos y luego, permitir que git administre los cambios realizados en los mismos</p>
-<h4 id="1-nos-dirigimos-a-nuestro-directorio-home_1">1. Nos dirigimos a nuestro directorio home<a class="headerlink" href="#1-nos-dirigimos-a-nuestro-directorio-home_1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span class="nb">cd</span>
-</pre></div>
-
-
-<h4 id="2-creamos-la-carpeta-donde-alojaremos-nuestro-proyecto">2. Creamos la carpeta donde alojaremos nuestro proyecto<a class="headerlink" href="#2-creamos-la-carpeta-donde-alojaremos-nuestro-proyecto" title="Permanent link">&para;</a></h4>
+                <p>Prácticamente todas las acciones que realiza Git se ejecutan de forma local, es decir, en la máquina del cliente. </p>
+<p>Para comenzar a trabajar en un <strong>repositorio local de Git</strong> tenemos, básicamente, dos caminos: </p>
+<ol>
+<li>Inicializando un repositorio local a partir de una carpeta existente en nuestra computadora</li>
+<li>Clonar un repositorio remoto existente </li>
+</ol>
+<h2 id="repositorio-local-desde-una-carpeta-existente">Repositorio local desde una carpeta existente<a class="headerlink" href="#repositorio-local-desde-una-carpeta-existente" title="Permanent link">&para;</a></h2>
+<p>Este caso es válido sea que ya poseemos un proyecto de desarrollo en nuestra computadora contenido en una carpeta o deseamos crear una carpeta e incluir los archivos de nuestro proyecto para luego inicializar un proyecto Git. </p>
+<p>Creamos la carpeta donde alojaremos nuestro proyecto:</p>
 <div class="codehilite"><pre>mkdir miProyectoDeSoftware
 </pre></div>
 
 
-<p>Y luego nos introducimos en ella: </p>
+<p>Luego nos introducimos en ella: </p>
 <div class="codehilite"><pre><span class="nb">cd</span> miProyectoDeSoftware
 </pre></div>
 
 
-<h4 id="3-inicializamos-un-repositorio-git">3. Inicializamos un repositorio git<a class="headerlink" href="#3-inicializamos-un-repositorio-git" title="Permanent link">&para;</a></h4>
+<p>E inicializamos un repositorio git:</p>
 <div class="codehilite"><pre>git init
 </pre></div>
 
 
-<h4 id="4-agregamos-archivos-a-nuestro-directorio">4. Agregamos archivos a nuestro directorio<a class="headerlink" href="#4-agregamos-archivos-a-nuestro-directorio" title="Permanent link">&para;</a></h4>
-<p>Simplemente eso. Introducimos en la carpeta local todos los archivos que forman parte de nuestro proyecto: páginas webs, imágenes, bloques de código, etc. </p>
-<h4 id="5-preparamos-los-cambios">5. Preparamos los cambios<a class="headerlink" href="#5-preparamos-los-cambios" title="Permanent link">&para;</a></h4>
-<p>Enviándolos al <em>Index</em> o <em>Stage area</em>:</p>
+<div class="admonition done">
+<p class="admonition-title">Directorio oculto .git<p>Al inicializar un repositorio se incluye un directorio oculto llamado <code>.git</code> el cual contiene todos los archivos necesarios para el correcto funcionamiento de Git. </p>
+</p>
+</div>
+<p>Acto seguido <strong>agregamos los archivos de nuestro proyecto</strong> (sitio web, aplicación, etc.) al directorio.</p>
+<p>Para comprobar que Git ha detectado los archivos nuevos que hemos incluido ejecutamos: </p>
+<div class="codehilite"><pre>git status
+</pre></div>
+
+
+<p>Preparamos los cambios realizados en los archivos (se ubicarán entonces en el <em>staging area</em>), ejecutando el comando:</p>
 <div class="codehilite"><pre>git add .
 </pre></div>
 
 
-<h4 id="5-enviamos-los-cambios-al-head">5. Enviamos los cambios al HEAD<a class="headerlink" href="#5-enviamos-los-cambios-al-head" title="Permanent link">&para;</a></h4>
-<p>Lo haremos con un <em>commit</em>:</p>
+<div class="admonition note">
+<p class="admonition-title">Agregando archivos al área de preparación<p>Podemos agregar nuestros archivos al área de preparación o <em>staging area</em> de varias maneras.  </p>
+<ul>
+<li>De a un archivo: <code>git add nombreDelArchivo</code></li>
+<li>O todos los archivos de nuestro proyecto: <code>git add .</code></li>
+</ul>
+</p>
+</div>
+<p>Por último, confirmamos las modificaciones realizadas en los archivos para que éstos pasen a formar parte del repositorio (directorio Git o <em>HEAD</em>):</p>
 <div class="codehilite"><pre>git commit -m <span class="s2">&quot;Mensaje que explica el cambio realizado&quot;</span>
 </pre></div>
 
 
-<h4 id="6-vinculamos-el-repositorio-local-con-el-repositorio-remoto">6. Vinculamos el repositorio local con el repositorio remoto<a class="headerlink" href="#6-vinculamos-el-repositorio-local-con-el-repositorio-remoto" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre>git remote add origin usuario@192.168.0.200:/home/usuario/miRepositorio.git
+<p>A partir de ahora, el repositorio contiene una serie de archivos y la información guardada en la base de datos de Git de forma segura. </p>
+<h2 id="repositorio-local-clonando-un-repositorio-remoto-existente">Repositorio local clonando un repositorio remoto existente<a class="headerlink" href="#repositorio-local-clonando-un-repositorio-remoto-existente" title="Permanent link">&para;</a></h2>
+<p>Si deseamos obtener una copia de un repositorio Git existente —por ejemplo, un proyecto en el que te gustaría contribuir— el comando que necesitas es <code>git clone</code>. Su sintaxis general es: </p>
+<div class="codehilite"><pre>git clone <span class="o">[</span>url<span class="o">]</span>
 </pre></div>
 
 
-<p>Donde tendremos que reemplazar <code>usuario</code> por nuestro nombre de usuario en el servidor y <code>192.168.0.200</code> por la dirección IP de nuestro servidor. Por último tendremos que cambiar <code>/home/usuario/miRepositorio.git</code> por la ruta de donde se ubica nuestro repositorio en el servidor.</p>
-<h4 id="7-sincronizamos-nuestros-archivos">7. Sincronizamos nuestros archivos<a class="headerlink" href="#7-sincronizamos-nuestros-archivos" title="Permanent link">&para;</a></h4>
-<p>Para que los cambios realizados en los archivos de manera local se sincronicen con el servidor remoto tendremos que ejecutar: </p>
-<div class="codehilite"><pre>git push origin master
-</pre></div>
-
-
-<div class="admonition done">
-<p class="admonition-title">Ramas<p>Las ramas son caminos que puede tomar el desarrollo de un software, algo que ocurre naturalmente para resolver problemas o crear nuevas funcionalidades. En la práctica permiten que nuestro proyecto pueda tener diversos estados y que los desarrolladores sean capaces de pasar de uno a otro de una manera ágil. Cuando inicializamos un proyecto con Git automáticamente nos encontramos en una rama a la que se denomina "master". </p>
+<div class="admonition note">
+<p class="admonition-title">Protocolos compatibles con Git<p>Git permite usar distintos protocolos de transferencia: https://, git:// o el protocolo de transferencia SSH.</p>
 </p>
 </div>
-<h2 id="clonando-un-repositorio-git-existente">Clonando un repositorio git existente<a class="headerlink" href="#clonando-un-repositorio-git-existente" title="Permanent link">&para;</a></h2>
-<p>Si deseas obtener una copia de un repositorio Git existente — por ejemplo, un proyecto en el que te gustaría contribuir — el comando que necesitas es <code>git clone</code>:</p>
+<h3 id="clonando-un-repositorio-remoto-existente-ssh">Clonando un repositorio remoto existente [SSH]<a class="headerlink" href="#clonando-un-repositorio-remoto-existente-ssh" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre>git clone git+ssh://usuario@192.168.0.200:/home/usuario/miRepositorio.git
 </pre></div>
 
 
-<p>Donde tendremos que reemplazar <code>usuario</code> por nuestro nombre de usuario en el servidor y <code>192.168.0.200</code> por la dirección IP de nuestro servidor. Por último tendremos que cambiar <code>/home/usuario/miRepositorio.git</code> por la ruta de donde se ubica nuestro repositorio en el servidor.</p>
-<div class="admonition done">
-<p class="admonition-title">Protocolos compatibles con Git<p>Git permite usar distintos protocolos de transferencia: https://, git:// o el protocolo de transferencia SSH.</p>
-</p>
-</div>
-<p>Si el proyecto está alojado en un dominio en particular, ejecutamos: </p>
+<p>Donde:</p>
+<ul>
+<li><code>usuario</code> es el nombre de usuario en el servidor remoto.</li>
+<li><code>192.168.0.200</code> el la dirección IP (o nombre de dominio) del servidor remoto. </li>
+<li><code>/home/usuario/miRepositorio.git</code> es la ruta donde se ubica el repositorio en el servidor remoto.</li>
+</ul>
+<h3 id="clonando-un-repositorio-remoto-existente-https">Clonando un repositorio remoto existente [HTTPS]<a class="headerlink" href="#clonando-un-repositorio-remoto-existente-https" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre>git clone https://dominio.com/proyecto
 </pre></div>
 
 
 <p>Esto crea un directorio llamado <code>proyecto</code>, inicializa un directorio <code>git</code> en su interior, descarga toda la información de ese repositorio y saca una copia de trabajo de la última versión.</p>
-<p>Si deseamos clonar un repositorio en una carpeta que contenga un nombre distinto al del repositorio original: </p>
-<div class="codehilite"><pre>git clone https://dominio.com/proyecto miProyecto
-</pre></div>
-
-
+<div class="admonition tip">
+<p class="admonition-title">Clonando repositorios en otros directorios<p>Si deseamos clonar un repositorio en una carpeta que contenga un nombre distinto al del repositorio original: </p>
+<p><code>git clone https://dominio.com/proyecto miProyecto</code></p>
 <p>Ese comando creará el directorio de destino llamado <code>miProyecto</code>.</p>
-<div class="admonition done">
-<p class="admonition-title">Directorio oculto .git<p>En el repositorio existe un directorio oculto llamado <code>.git</code> el cual contiene todos los archivos necesarios para el correcto funcionamiento de Git. </p>
 </p>
 </div>
+<h3 id="que-podemos-hacer-en-un-repositorio-clonado">¿Que podemos hacer en un repositorio clonado?<a class="headerlink" href="#que-podemos-hacer-en-un-repositorio-clonado" title="Permanent link">&para;</a></h3>
+<p>Una vez clonado un repositorio remoto <strong>podremos realizar las mismas acciones que si hubiésemos inicializado nuestro propio repositorio local</strong>, a saber: modificar archivos, agregarlos al área de preparación (comando <code>git add</code>) y confirmar los cambios realizados (comando <code>git commit</code>) entre otras acciones posibles. </p>
                 
                   
                 
@@ -1134,9 +1020,9 @@
                   <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = "http://www.redes.rauljesus.com/git/comenzandoConRepositorios/";
+    this.page.url = "http://www.redes.rauljesus.com/git/repositorioLocal/";
     this.page.identifier =
-      "/git/comenzandoConRepositorios/";
+      "/git/repositorioLocal/";
   };
   (function() {
     var d = document, s = d.createElement("script");
@@ -1158,7 +1044,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../configuracionInicial/" title="Configuración inicial" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../losTresEstados/" title="Los tres estados" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1167,19 +1053,19 @@
                 <span class="md-footer-nav__direction">
                   Anterior
                 </span>
-                Configuración inicial
+                Los tres estados
               </span>
             </div>
           </a>
         
         
-          <a href="../github/" title="GitHub" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../servidorGit/" title="Git en el servidor" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                GitHub
+                Git en el servidor
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

@@ -1,30 +1,40 @@
-##Configurando Git por primera vez
+Antes de comenzar a usar Git es necesario realizar algunas configuraciones previas relacionadas con información del usuario que ejecutará el sistema de control de versiones. 
 
-Ahora que tienes Git en tu sistema, vas a querer hacer algunas cosas para personalizar tu entorno de Git. **Es necesario hacer estas cosas solamente una vez en tu computadora**, y se mantendrán entre actualizaciones. También puedes cambiarlas en cualquier momento volviendo a ejecutar los comandos correspondientes.
-
-Git trae una herramienta llamada `git config` que te permite obtener y establecer variables de configuración que controlan el aspecto y funcionamiento de Git. 
+!!!tip "Configuración del entorno"
+		Los pasos que se describen en esta sesión sólo deben realizarse una sola vez en tu computadora y se mantendrán siempre. También podés modificar la información volviendo a ejecutar los comandos correspondientes.
 
 ###Tu Identidad
-Lo primero que deberás hacer cuando instales Git es establecer tu nombre de usuario y dirección de correo electrónico. Esto es importante porque los "commits" de Git usan esta información, y es introducida de manera inmutable en los commits que envías:
+Lo primero que deberás hacer cuando instales Git es establecer tu nombre de usuario y dirección de correo electrónico. Esto es importante porque los "commits" de Git usan esta información, y es introducida de manera inmutable en los commits que envías. 
+
+Para _setear_ tu nombre: 
 
 ```bash
 git config --global user.name "Tu nombre"
+```
+Y hacer lo propio con tu dirección de correo electrónico: 
+
+```bash
 git config --global user.email tuemail@ejemplo.com
 ```
 
-!!!done "Configuración inicial"
-        Solo necesitas hacer esto una vez si especificas la opción `--global`, ya que Git siempre usará esta información para todo lo que hagas en ese sistema. Si quieres sobrescribir esta información con otro nombre o dirección de correo para proyectos específicos, puedes ejecutar el comando sin la opción `--global` cuando estés en ese proyecto.
+###Comprobando tu configuración
+Podés comprobar qué valor utilizará Git para una clave específica ejecutando `git config <key>`:
 
-###Comprobando tu Configuración
-Si quieres comprobar tu configuración, puedes usar el comando `git config --list` para mostrar todas las propiedades que Git ha configurado:
+```bash
+$ git config user.name
+```
+Donde `<key>` es el valor que de la configuración que deseas consultar. 
+
+
+Pero si querés comprobar toda tu configuración, podés usar el siguiente comando:
 
 ```bash
 git config --list
 ```
 
-También puedes comprobar qué valor que Git utilizará para una clave específica ejecutando `git config <key>`:
+!!!tip "Ayuda sobre Git"
+		Es posible consultar desde la terminal ayuda sobre los comandos empleados por git. Para ello, ejecutamos: 
 
-```bash
-$ git config user.name
-```
+		`git help <comando>`
+
 

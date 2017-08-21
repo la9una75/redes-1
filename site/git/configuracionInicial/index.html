@@ -38,13 +38,27 @@
         
         
         
-        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">-->
+
+        <!--
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        -->
+        <link rel="stylesheet" href="../../assets/fonts/material/material.css">
+
+         <link rel="stylesheet" href="../../assets/fonts/roboto/roboto.css">
+
+          <link rel="stylesheet" href="../../assets/fonts/robotomono/robotomono.css">
+        
+
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
-      <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+     
+      <!--
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+      -->
     
+    
+
     
     
   </head>
@@ -636,6 +650,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../flujoEntornosDistribuidos/" title="Entornos distribuidos" class="md-nav__link">
+      Entornos distribuidos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../instalacion/" title="Instalación de Git" class="md-nav__link">
       Instalación de Git
     </a>
@@ -671,29 +697,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configurando-git-por-primera-vez" title="Configurando Git por primera vez" class="md-nav__link">
-    Configurando Git por primera vez
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#tu-identidad" title="Tu Identidad" class="md-nav__link">
     Tu Identidad
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#comprobando-tu-configuracion" title="Comprobando tu Configuración" class="md-nav__link">
-    Comprobando tu Configuración
+      
+        <li class="md-nav__item">
+  <a href="#comprobando-tu-configuracion" title="Comprobando tu configuración" class="md-nav__link">
+    Comprobando tu configuración
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -718,8 +731,68 @@
 
 
   <li class="md-nav__item">
-    <a href="../comenzandoConRepositorios/" title="Trabajando con repositorios" class="md-nav__link">
-      Trabajando con repositorios
+    <a href="../losTresEstados/" title="Los tres estados" class="md-nav__link">
+      Los tres estados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../repositorioLocal/" title="Inicializando repositorio local" class="md-nav__link">
+      Inicializando repositorio local
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../servidorGit/" title="Git en el servidor" class="md-nav__link">
+      Git en el servidor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../repositorioRemoto/" title="Trabajando con remotos" class="md-nav__link">
+      Trabajando con remotos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sincronizandoRepositorios/" title="Sincronizando repositorios" class="md-nav__link">
+      Sincronizando repositorios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ramas/" title="Ramas" class="md-nav__link">
+      Ramas
     </a>
   </li>
 
@@ -760,29 +833,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configurando-git-por-primera-vez" title="Configurando Git por primera vez" class="md-nav__link">
-    Configurando Git por primera vez
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#tu-identidad" title="Tu Identidad" class="md-nav__link">
     Tu Identidad
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#comprobando-tu-configuracion" title="Comprobando tu Configuración" class="md-nav__link">
-    Comprobando tu Configuración
+      
+        <li class="md-nav__item">
+  <a href="#comprobando-tu-configuracion" title="Comprobando tu configuración" class="md-nav__link">
+    Comprobando tu configuración
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -809,29 +869,40 @@
                 
                   <h1>Configuración inicial</h1>
                 
-                <h2 id="configurando-git-por-primera-vez">Configurando Git por primera vez<a class="headerlink" href="#configurando-git-por-primera-vez" title="Permanent link">&para;</a></h2>
-<p>Ahora que tienes Git en tu sistema, vas a querer hacer algunas cosas para personalizar tu entorno de Git. <strong>Es necesario hacer estas cosas solamente una vez en tu computadora</strong>, y se mantendrán entre actualizaciones. También puedes cambiarlas en cualquier momento volviendo a ejecutar los comandos correspondientes.</p>
-<p>Git trae una herramienta llamada <code>git config</code> que te permite obtener y establecer variables de configuración que controlan el aspecto y funcionamiento de Git. </p>
+                <p>Antes de comenzar a usar Git es necesario realizar algunas configuraciones previas relacionadas con información del usuario que ejecutará el sistema de control de versiones. </p>
+<div class="admonition tip">
+<p class="admonition-title">Configuración del entorno<p>Los pasos que se describen en esta sesión sólo deben realizarse una sola vez en tu computadora y se mantendrán siempre. También podés modificar la información volviendo a ejecutar los comandos correspondientes.</p>
+</p>
+</div>
 <h3 id="tu-identidad">Tu Identidad<a class="headerlink" href="#tu-identidad" title="Permanent link">&para;</a></h3>
-<p>Lo primero que deberás hacer cuando instales Git es establecer tu nombre de usuario y dirección de correo electrónico. Esto es importante porque los "commits" de Git usan esta información, y es introducida de manera inmutable en los commits que envías:</p>
+<p>Lo primero que deberás hacer cuando instales Git es establecer tu nombre de usuario y dirección de correo electrónico. Esto es importante porque los "commits" de Git usan esta información, y es introducida de manera inmutable en los commits que envías. </p>
+<p>Para <em>setear</em> tu nombre: </p>
 <div class="codehilite"><pre>git config --global user.name <span class="s2">&quot;Tu nombre&quot;</span>
-git config --global user.email tuemail@ejemplo.com
 </pre></div>
 
 
-<div class="admonition done">
-<p class="admonition-title">Configuración inicial<p>Solo necesitas hacer esto una vez si especificas la opción <code>--global</code>, ya que Git siempre usará esta información para todo lo que hagas en ese sistema. Si quieres sobrescribir esta información con otro nombre o dirección de correo para proyectos específicos, puedes ejecutar el comando sin la opción <code>--global</code> cuando estés en ese proyecto.</p>
-</p>
-</div>
-<h3 id="comprobando-tu-configuracion">Comprobando tu Configuración<a class="headerlink" href="#comprobando-tu-configuracion" title="Permanent link">&para;</a></h3>
-<p>Si quieres comprobar tu configuración, puedes usar el comando <code>git config --list</code> para mostrar todas las propiedades que Git ha configurado:</p>
+<p>Y hacer lo propio con tu dirección de correo electrónico: </p>
+<div class="codehilite"><pre>git config --global user.email tuemail@ejemplo.com
+</pre></div>
+
+
+<h3 id="comprobando-tu-configuracion">Comprobando tu configuración<a class="headerlink" href="#comprobando-tu-configuracion" title="Permanent link">&para;</a></h3>
+<p>Podés comprobar qué valor utilizará Git para una clave específica ejecutando <code>git config &lt;key&gt;</code>:</p>
+<div class="codehilite"><pre>$ git config user.name
+</pre></div>
+
+
+<p>Donde <code>&lt;key&gt;</code> es el valor que de la configuración que deseas consultar. </p>
+<p>Pero si querés comprobar toda tu configuración, podés usar el siguiente comando:</p>
 <div class="codehilite"><pre>git config --list
 </pre></div>
 
 
-<p>También puedes comprobar qué valor que Git utilizará para una clave específica ejecutando <code>git config &lt;key&gt;</code>:</p>
-<div class="codehilite"><pre>$ git config user.name
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Ayuda sobre Git<p>Es posible consultar desde la terminal ayuda sobre los comandos empleados por git. Para ello, ejecutamos: </p>
+<p><code>git help &lt;comando&gt;</code></p>
+</p>
+</div>
                 
                   
                 
@@ -881,13 +952,13 @@ git config --global user.email tuemail@ejemplo.com
           </a>
         
         
-          <a href="../comenzandoConRepositorios/" title="Trabajando con repositorios" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../losTresEstados/" title="Los tres estados" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Trabajando con repositorios
+                Los tres estados
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
