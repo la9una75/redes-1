@@ -15,8 +15,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="gitFlujoTrabajo.svg"
-   inkscape:export-filename="/media/raul/Respaldo/cloudbackup/rauljesus.com/redes/docs/git/imgGit/gitFlujoTrabajo.png"
+   sodipodi:docname="gitFlujoTrabajoLocal.svg"
+   inkscape:export-filename="/media/raul/Respaldo/cloudbackup/rauljesus.com/redes/docs/git/imgGit/gitFlujoTrabajoLocal.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -181,9 +181,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1444066"
-     inkscape:cx="506.1319"
-     inkscape:cy="245.76377"
+     inkscape:zoom="1.1186424"
+     inkscape:cx="140.90212"
+     inkscape:cy="260.13676"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -417,14 +417,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:50px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="168.33392"
+       x="211.40784"
        y="126.53076"
        id="text20443"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan20445"
-         x="168.33392"
+         x="211.40784"
          y="126.53076"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:35px;font-family:'PT Sans Caption';-inkscape-font-specification:'PT Sans Caption Bold'">Flujo de trabajo en Git</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;font-family:'PT Sans Caption';-inkscape-font-specification:'PT Sans Caption'">Flujo de trabajo en Git</tspan></text>
   </g>
 </svg>

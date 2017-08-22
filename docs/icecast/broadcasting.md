@@ -1,6 +1,6 @@
 Icecast es solamente un servidor de streaming. Tendremos que proporcionar una fuente de audio y/o video para que el servidor lo retransmita entre los clientes de la red. 
 
-Existen [varias herramientas para este cometido](http://icecast.org/apps/). En el presente tutorial utilizaremos una de ellas llamada **Mixxx** la cual podremos descargar desde los siguientes enlaces: 
+Existen [varias herramientas para este cometido](http://icecast.org/apps/). En el presente tutorial utilizaremos una de ellas llamada [Mixxx](https://www.mixxx.org/) la cual podremos descargar desde los siguientes enlaces: 
 
   * [Mixxx (32 bits)](http://downloads.mixxx.org/mixxx-2.0.0/mixxx-2.0.0-win32.exe)
 
@@ -30,7 +30,7 @@ Donde:
 5. **Configuración de la emisión**: codificación y metadatos de la transmisión.
 
 ### Streaming en mp3
-Si deseamos transmitir en formato mp3 [tendremos que incluir algunas librerías](https://www.mixxx.org/wiki/doku.php/internet_broadcasting#mp3_streaming). 
+Si somos deseamos transmitir en formato mp3 tendremos que incluir algunas librerías extras, ya que el formato .mp3 posee licencia propietaria. Procedamos entonces.
 
 En sistemas **GNU/Linux**, bastará con ejecutar el siguiente comando: 
 

@@ -6,7 +6,7 @@ Para comenzar a trabajar en un **repositorio local de Git** tenemos, básicament
 2. Clonar un repositorio remoto existente 
 
 
-## Repositorio local desde una carpeta existente
+## 1. Repositorio local desde una carpeta existente
 Este caso es válido sea que ya poseemos un proyecto de desarrollo en nuestra computadora contenido en una carpeta o deseamos crear una carpeta e incluir los archivos de nuestro proyecto para luego inicializar un proyecto Git. 
 
 Creamos la carpeta donde alojaremos nuestro proyecto:
@@ -56,7 +56,7 @@ git commit -m "Mensaje que explica el cambio realizado"
 
 A partir de ahora, el repositorio contiene una serie de archivos y la información guardada en la base de datos de Git de forma segura. 
 
-## Repositorio local clonando un repositorio remoto existente
+## 2. Repositorio local clonando un repositorio remoto existente
 Si deseamos obtener una copia de un repositorio Git existente —por ejemplo, un proyecto en el que te gustaría contribuir— el comando que necesitas es `git clone`. Su sintaxis general es: 
 
 ```bash
@@ -66,7 +66,7 @@ git clone [url]
 !!!note "Protocolos compatibles con Git"
 		Git permite usar distintos protocolos de transferencia: https://, git:// o el protocolo de transferencia SSH.
 
-### Clonando un repositorio remoto existente [SSH]
+### 2.1. Clonando un repositorio remoto existente [SSH]
 
 
 ```bash
@@ -78,7 +78,7 @@ Donde:
 * `192.168.0.200` el la dirección IP (o nombre de dominio) del servidor remoto. 
 * `/home/usuario/miRepositorio.git` es la ruta donde se ubica el repositorio en el servidor remoto.
 
-### Clonando un repositorio remoto existente [HTTPS]
+### 2.2. Clonando un repositorio remoto existente [HTTPS]
 
 ```bash
 git clone https://dominio.com/proyecto
@@ -95,7 +95,7 @@ Esto crea un directorio llamado `proyecto`, inicializa un directorio `git` en su
 		Ese comando creará el directorio de destino llamado `miProyecto`.
 
 
-###¿Que podemos hacer en un repositorio clonado?
+### 2.3. ¿Que acciones podemos realizar en un repositorio clonado?
 Una vez clonado un repositorio remoto **podremos realizar las mismas acciones que si hubiésemos inicializado nuestro propio repositorio local**, a saber: modificar archivos, agregarlos al área de preparación (comando `git add`) y confirmar los cambios realizados (comando `git commit`) entre otras acciones posibles. 
 
 

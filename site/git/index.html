@@ -297,11 +297,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      LAMP
+      Servidor web
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        LAMP
+        Servidor web
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -312,8 +312,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../lamp/queEs/" title="¿Qué es?" class="md-nav__link">
-      ¿Qué es?
+    <a href="../lamp/queEs/" title="¿Qué es LAMP?" class="md-nav__link">
+      ¿Qué es LAMP?
     </a>
   </li>
 
@@ -372,8 +372,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../lamp/ejercicios/" title="Ejercicios prácticos" class="md-nav__link">
-      Ejercicios prácticos
+    <a href="../lamp/ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
     </a>
   </li>
 
@@ -393,11 +393,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
-      Samba
+      Servidor de compartición
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
-        Samba
+        Servidor de compartición
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -408,8 +408,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../samba/" title="¿Qué es?" class="md-nav__link">
-      ¿Qué es?
+    <a href="../samba/" title="¿Qué es SAMBA?" class="md-nav__link">
+      ¿Qué es SAMBA?
     </a>
   </li>
 
@@ -540,8 +540,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../icecast/" title="Icecast" class="md-nav__link">
-      Icecast
+    <a href="../icecast/" title="¿Qué es Icecast?" class="md-nav__link">
+      ¿Qué es Icecast?
     </a>
   </li>
 
@@ -687,13 +687,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#los-tres-estados" title="Los Tres Estados" class="md-nav__link">
-    Los Tres Estados
-  </a>
-  
-</li>
-      
       
       
         <li class="md-nav__item">
@@ -787,20 +780,8 @@
 
 
   <li class="md-nav__item">
-    <a href="repositorioRemoto/" title="Trabajando con remotos" class="md-nav__link">
+    <a href="trabajandoConRemotos/" title="Trabajando con remotos" class="md-nav__link">
       Trabajando con remotos
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="sincronizandoRepositorios/" title="Sincronizando repositorios" class="md-nav__link">
-      Sincronizando repositorios
     </a>
   </li>
 
@@ -813,18 +794,6 @@
   <li class="md-nav__item">
     <a href="ramas/" title="Ramas" class="md-nav__link">
       Ramas
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="github/" title="GitHub" class="md-nav__link">
-      GitHub
     </a>
   </li>
 
@@ -879,13 +848,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#los-tres-estados" title="Los Tres Estados" class="md-nav__link">
-    Los Tres Estados
-  </a>
-  
-</li>
-      
       
       
         <li class="md-nav__item">
@@ -937,21 +899,6 @@
 
 
 <p>Verás estos valores hash por todos lados en Git porque son usados con mucha frecuencia. De hecho, Git guarda todo no por nombre de archivo, sino por el valor hash de sus contenidos.</p>
-<h2 id="los-tres-estados">Los Tres Estados<a class="headerlink" href="#los-tres-estados" title="Permanent link">&para;</a></h2>
-<p>Git tiene tres estados principales en los que se pueden encontrar tus archivos: confirmado (<strong>committed</strong>), modificado (<strong>modified</strong>), y preparado (<strong>staged</strong>). Confirmado significa que los datos están almacenados de manera segura en tu base de datos local. Modificado significa que has modificado el archivo pero todavía no lo has confirmado a tu base de datos. Preparado significa que has marcado un archivo modificado en su versión actual para que vaya en tu próxima confirmación.</p>
-<p>Esto nos lleva a las tres secciones principales de un proyecto de Git: El directorio de Git (<strong>Git directory</strong>), el directorio de trabajo (<strong>working directory</strong>), y el área de preparación (<strong>staging area</strong>).</p>
-<p><img alt="Logo de Git" src="./imgGit/areas.png" />
-<em>Directorio de trabajo, área de almacenamiento, y el directorio Git.</em></p>
-<p>El <strong>directorio de Git</strong> es donde se almacenan los metadatos y la base de datos de objetos para tu proyecto. Es la parte más importante de Git, y es lo que se copia cuando clonas un repositorio desde otra computadora.</p>
-<p>El <strong>directorio de trabajo</strong> es una copia de una versión del proyecto. Estos archivos se sacan de la base de datos comprimida en el directorio de Git, y se colocan en disco para que los puedas usar o modificar.</p>
-<p>El <strong>área de preparación</strong> es un archivo, generalmente contenido en tu directorio de Git, que almacena información acerca de lo que va a ir en tu próxima confirmación. A veces se le denomina índice (“index”), pero se está convirtiendo en estándar el referirse a ella como el área de preparación.</p>
-<p>El <strong>flujo de trabajo</strong> básico en Git es algo así:</p>
-<ol>
-<li>Modificas una serie de archivos en tu directorio de trabajo.</li>
-<li>Preparas los archivos, añadiéndolos a tu área de preparación.</li>
-<li>Confirmas los cambios, lo que toma los archivos tal y como están en el área de preparación y almacena esa copia instantánea de manera permanente en tu directorio de Git.</li>
-</ol>
-<p>Si una versión concreta de un archivo está en el directorio de Git, se considera confirmada (<strong>committed</strong>). Si ha sufrido cambios desde que se obtuvo del repositorio, pero ha sido añadida al área de preparación, está preparada (<strong>staged</strong>). Y si ha sufrido cambios desde que se obtuvo del repositorio, pero no se ha preparado, está modificada (<strong>modified</strong>). </p>
                 
                   
                 

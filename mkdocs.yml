@@ -62,16 +62,16 @@ pages:
     - Autenticación de llave pública: 'ssh/authKey.md'
 - Resolución de nombres: 
     - El archivo hosts: 'dns/archivoHosts.md'
-- LAMP:
-    - ¿Qué es?: 'lamp/queEs.md'
+- Servidor web:
+    - ¿Qué es LAMP?: 'lamp/queEs.md'
     - Instalación: 'lamp/instalacion.md'
     - Gestión básica: 'lamp/gestionBasica.md'
     - Web de usuario: 'lamp/userdir.md'
     - Hosts virtuales: 'lamp/virtualHosts.md'
 #    - WebDav: 'lamp/webDav.md'
-    - Ejercicios prácticos: 'lamp/ejercicios.md'
-- Samba:
-    - ¿Qué es?: 'samba/index.md'
+    - Ejercicios: 'lamp/ejercicios.md'
+- Servidor de compartición:
+    - ¿Qué es SAMBA?: 'samba/index.md'
     - Instalación: 'samba/instalacion.md'
     - Configuración general: 'samba/configuracionGeneral.md'
     - Gestión de usuarios: 'samba/gestionUsuarios.md'
@@ -81,7 +81,7 @@ pages:
     - Clientes Windows: 'samba/clientesWindows.md'
     - Ejercicios: 'samba/ejercicios.md'
 - Servidor de streaming:
-    - Icecast: 'icecast/index.md'
+    - ¿Qué es Icecast?: 'icecast/index.md'
     - Instalación: 'icecast/instalacion.md'
     - Inicializando el servidor: 'icecast/inicializacion.md'
     - Configuración general: 'icecast/configuracionGeneral.md'
@@ -95,7 +95,6 @@ pages:
     - Los tres estados: 'git/losTresEstados.md'
     - Inicializando repositorio local: 'git/repositorioLocal.md'
     - Git en el servidor: 'git/servidorGit.md'
-    - Trabajando con remotos: 'git/repositorioRemoto.md'
-    - Sincronizando repositorios: 'git/sincronizandoRepositorios.md'
+    - Trabajando con remotos: 'git/trabajandoConRemotos.md'
     - Ramas: 'git/ramas.md'
-    - GitHub: 'git/github.md'
+
