@@ -740,9 +740,68 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Ramas
+      </label>
+    
     <a href="./" title="Ramas" class="md-nav__link md-nav__link--active">
       Ramas
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#crear-una-rama-nueva" title="Crear una rama nueva" class="md-nav__link">
+    Crear una rama nueva
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cambiar-de-rama" title="Cambiar de Rama" class="md-nav__link">
+    Cambiar de Rama
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eliminar-una-rama" title="Eliminar una rama" class="md-nav__link">
+    Eliminar una rama
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fusionar-ramas" title="Fusionar ramas" class="md-nav__link">
+    Fusionar ramas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estudio-de-caso-uso-de-ramas" title="Estudio de caso: uso de ramas" class="md-nav__link">
+    Estudio de caso: uso de ramas
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comentarios" class="md-nav__link md-nav__link--active">
+            Comentarios
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -753,8 +812,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ejemploGit/" title="Ejemplo de uso" class="md-nav__link">
-      Ejemplo de uso
+    <a href="../ejemploGit/" title="Ejemplo de uso de git" class="md-nav__link">
+      Ejemplo de uso de git
     </a>
   </li>
 
@@ -779,6 +838,54 @@
   
   
   
+    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#crear-una-rama-nueva" title="Crear una rama nueva" class="md-nav__link">
+    Crear una rama nueva
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cambiar-de-rama" title="Cambiar de Rama" class="md-nav__link">
+    Cambiar de Rama
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eliminar-una-rama" title="Eliminar una rama" class="md-nav__link">
+    Eliminar una rama
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fusionar-ramas" title="Fusionar ramas" class="md-nav__link">
+    Fusionar ramas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estudio-de-caso-uso-de-ramas" title="Estudio de caso: uso de ramas" class="md-nav__link">
+    Estudio de caso: uso de ramas
+  </a>
+  
+</li>
+      
+      
+      
+        <li class="md-nav__item">
+          <a href="#__comments" title="Comentarios" class="md-nav__link md-nav__link--active">
+            Comentarios
+          </a>
+        </li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -792,10 +899,88 @@
                 
                   <h1>Ramas</h1>
                 
-                <div class="admonition done">
-<p class="admonition-title">Ramas<p>Las ramas son caminos que puede tomar el desarrollo de un software, algo que ocurre naturalmente para resolver problemas o crear nuevas funcionalidades. En la práctica permiten que nuestro proyecto pueda tener diversos estados y que los desarrolladores sean capaces de pasar de uno a otro de una manera ágil. Cuando inicializamos un proyecto con Git automáticamente nos encontramos en una rama a la que se denomina "master". </p>
+                <p>Las ramas son caminos que puede tomar el desarrollo de un software, algo que ocurre naturalmente para resolver problemas o crear nuevas funcionalidades. En la práctica permiten que nuestro proyecto pueda tener diversos estados y que los desarrolladores sean capaces de pasar de uno a otro de una manera ágil. Cuando inicializamos un proyecto con Git automáticamente nos encontramos en una rama a la que se denomina "master". </p>
+<div class="admonition done">
+<p class="admonition-title">La rama master<p>La rama “master” en Git no es una rama especial. Es como cualquier otra rama. La única razón por la cual aparece en casi todos los repositorios es porque es la que crea por defecto el comando git init y la gente no se molesta en cambiarle el nombre.</p>
 </p>
 </div>
+<h2 id="crear-una-rama-nueva">Crear una rama nueva<a class="headerlink" href="#crear-una-rama-nueva" title="Permanent link">&para;</a></h2>
+<p>¿Qué sucede cuando creas una nueva rama? Simplemente se crea un nuevo apuntador para que lo podamos moverlo libremente. Por ejemplo, supongamos que queremos crear una rama nueva denominada "testing". Para ello, ejecutaremos el comando: </p>
+<div class="codehilite"><pre>git branch testing
+</pre></div>
+
+
+<p>Esto creará un nuevo apuntador apuntando a la misma confirmación donde estemos actualmente.</p>
+<p><img alt="Ramas en Git - 01" src="../imgGit/branch_01.png" /></p>
+<p>Y, ¿cómo sabe Git en qué rama estamos en este momento? Mediante un apuntador especial denominado HEAD. Este apuntador se ubica en la rama local en la que estemos en ese momento, en este caso la rama <code>master</code>; pues <strong>el comando <code>git branch</code> solamente crea una nueva rama, y no salta a dicha rama</strong>.</p>
+<p><img alt="Ramas en Git - 02" src="../imgGit/branch_02.png" /></p>
+<h2 id="cambiar-de-rama">Cambiar de Rama<a class="headerlink" href="#cambiar-de-rama" title="Permanent link">&para;</a></h2>
+<p>Para saltar de una rama a otra, tenemos que utilizar el comando <code>git checkout</code>. Hagamos una prueba, saltando a la rama <code>testing</code> recién creada:</p>
+<div class="codehilite"><pre>git checkout testing
+</pre></div>
+
+
+<p>Esto mueve el apuntador HEAD a la rama testing.</p>
+<p><img alt="Ramas en Git - 03" src="../imgGit/branch_03.png" /></p>
+<p>Observamos algo interesante: la rama testing avanza, mientras que la rama master permanece en la confirmación donde estaba cuando lanzaste el comando git checkout para saltar. </p>
+<p><img alt="Ramas en Git - 04" src="../imgGit/branch_04.png" /></p>
+<p>Volvamos ahora a la rama master:</p>
+<div class="codehilite"><pre>git checkout master
+</pre></div>
+
+
+<p><img alt="Ramas en Git - 05" src="../imgGit/branch_05.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Saltando entre ramas<p>Es importante destacar que cuando saltas a una rama en Git, los archivos de tu directorio de trabajo cambian. Si saltas a una rama antigua, tu directorio de trabajo retrocederá para verse como lo hacía la última vez que confirmaste un cambio en dicha rama. Si Git no puede hacer el cambio limpiamente, no te dejará saltar.</p>
+</p>
+</div>
+<p>Ahora el historial de nuestro proyecto diverge. Hemos creado una rama y saltado a ella, hemos trabajado sobre ella; hemos vuelto a la rama original, y hemos trabajado también sobre ella. Los cambios realizados en ambas sesiones de trabajo están aislados en ramas independientes: podemos saltar libremente de una a otra según estimemos oportuno.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip sobre la creación de ramas<p>Para crear una nueva rama y saltar a ella, en un solo paso, podemos utilizar el comando:</p>
+<p><code>git checkout -b nuevaRama</code></p>
+</p>
+</div>
+<h2 id="eliminar-una-rama">Eliminar una rama<a class="headerlink" href="#eliminar-una-rama" title="Permanent link">&para;</a></h2>
+<p>Para borrar una rama utilizamos el sencillo comando: </p>
+<div class="codehilite"><pre>git branch -d ramaABorrar
+</pre></div>
+
+
+<h2 id="fusionar-ramas">Fusionar ramas<a class="headerlink" href="#fusionar-ramas" title="Permanent link">&para;</a></h2>
+<p>Es probable que luego de un tiempo de trabajar sobre una rama que hallamos creado quisiéramos fusionarla con la rama principal. Para ello, debemos asegurarnos de estar posicionandos en la rama principal (comunmente llamada <em>master</em>) y ejecutar el comando: </p>
+<div class="codehilite"><pre>git branch -d ramaAFusionar
+</pre></div>
+
+
+<p>De esta manera, Git fusionará los cambios hechos en la rama alternativa con la rama principal. </p>
+<h2 id="estudio-de-caso-uso-de-ramas">Estudio de caso: uso de ramas<a class="headerlink" href="#estudio-de-caso-uso-de-ramas" title="Permanent link">&para;</a></h2>
+<p>Vamos a presentar un ejemplo simple de ramificar y de fusionar, con un flujo de trabajo que se podría presentar en la realidad. Imagina que sigues los siguientes pasos:</p>
+<ol>
+<li>
+<p>Trabajamos en un sitio web.</p>
+</li>
+<li>
+<p>Creamos una rama para un nuevo tema sobre el que queremos trabajar.</p>
+</li>
+<li>
+<p>Realizamo algo de trabajo en esa rama.</p>
+</li>
+</ol>
+<p>En este momento, recibimos una llamada avisándonos de un problema crítico que tenemos que resolver. Y seguimos los siguientes pasos:</p>
+<ol>
+<li>
+<p>Volvemos a la rama de producción original.</p>
+</li>
+<li>
+<p>Creamos una nueva rama para el problema crítico y lo resolvemos trabajando en ella.</p>
+</li>
+<li>
+<p>Tras las pertinentes pruebas, fusionamos (merge) esa rama y la enviamos (push) a la rama de producción.</p>
+</li>
+<li>
+<p>Volvemos a la rama del tema en que andabas antes de la llamada y continuamos tu trabajo.</p>
+</li>
+</ol>
                 
                   
                 
@@ -845,13 +1030,13 @@
           </a>
         
         
-          <a href="../ejemploGit/" title="Ejemplo de uso" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../ejemploGit/" title="Ejemplo de uso de git" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Siguiente
                 </span>
-                Ejemplo de uso
+                Ejemplo de uso de git
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

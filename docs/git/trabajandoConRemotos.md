@@ -157,6 +157,10 @@ git pull
 Al ejecutar git pull, por lo general se recupera la información del servidor remoto que clonamos, y automáticamente se intenta unir con el código con el que estamos trabajando actualmente.
 
 
+![Diferencia entre fetch-merge y pull](imgGit/fetchMergePull2.png)
+
+_Diferencia entre fetch-merge y pull_
+
 ## 5. Enviando hacia nuestros repositorios remotos
 
 Cuando tu proyecto se encuentra en un estado que deseamos compartir, tenemos que enviarlo a un repositorio remoto. El comando que nos permite hacer esto es sencillo: 
