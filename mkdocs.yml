@@ -97,4 +97,5 @@ pages:
     - Git en el servidor: 'git/servidorGit.md'
     - Trabajando con remotos: 'git/trabajandoConRemotos.md'
     - Ramas: 'git/ramas.md'
+    - Otros comandos: 'git/otrosComandosGit.md'
     - Ejemplo de uso de git: 'git/ejemploGit.md'
