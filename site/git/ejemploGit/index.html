@@ -9,7 +9,7 @@
         <meta name="description" content="Redes de datos con software libre">
       
       
-        <link rel="canonical" href="http://www.redes.rauljesus.com/git/configuracionInicial/">
+        <link rel="canonical" href="http://www.redes.rauljesus.com/git/ejemploGit/">
       
       
         <meta name="author" content="Raul Jesus Lopez">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Configuración inicial - Redes con software libre</title>
+        <title>Ejemplo de uso - Redes con software libre</title>
       
     
     
@@ -102,7 +102,7 @@
                 </span>
               
             
-            Configuración inicial
+            Ejemplo de uso
           
         </span>
       </div>
@@ -672,56 +672,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Configuración inicial
-      </label>
-    
-    <a href="./" title="Configuración inicial" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../configuracionInicial/" title="Configuración inicial" class="md-nav__link">
       Configuración inicial
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tu-identidad" title="Tu Identidad" class="md-nav__link">
-    Tu Identidad
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comprobando-tu-configuracion" title="Comprobando tu configuración" class="md-nav__link">
-    Comprobando tu configuración
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comentarios" class="md-nav__link md-nav__link--active">
-            Comentarios
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -789,11 +744,18 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../ejemploGit/" title="Ejemplo de uso" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+    <a href="./" title="Ejemplo de uso" class="md-nav__link md-nav__link--active">
       Ejemplo de uso
     </a>
+    
   </li>
 
         
@@ -817,33 +779,6 @@
   
   
   
-    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tu-identidad" title="Tu Identidad" class="md-nav__link">
-    Tu Identidad
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comprobando-tu-configuracion" title="Comprobando tu configuración" class="md-nav__link">
-    Comprobando tu configuración
-  </a>
-  
-</li>
-      
-      
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comentarios" class="md-nav__link md-nav__link--active">
-            Comentarios
-          </a>
-        </li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -855,42 +790,19 @@
               
                 
                 
-                  <h1>Configuración inicial</h1>
+                  <h1>Ejemplo de uso</h1>
                 
-                <p>Antes de comenzar a usar Git es necesario realizar algunas configuraciones previas relacionadas con información del usuario que ejecutará el sistema de control de versiones. </p>
-<div class="admonition tip">
-<p class="admonition-title">Configuración del entorno<p>Los pasos que se describen en esta sesión sólo deben realizarse <strong>una sola vez</strong> en tu computadora y se mantendrán siempre, aunque es posible modificar la información en cualquier momento, volviendo a ejecutar los comandos correspondientes.</p>
-</p>
-</div>
-<h3 id="tu-identidad">Tu Identidad<a class="headerlink" href="#tu-identidad" title="Permanent link">&para;</a></h3>
-<p>Lo primero que deberás hacer cuando instales Git es establecer tu nombre de usuario y dirección de correo electrónico. Esto es importante porque los "commits" de Git usan esta información, y es introducida de manera inmutable en los commits que envías. </p>
-<p>Para <em>setear</em> tu nombre: </p>
-<div class="codehilite"><pre>git config --global user.name <span class="s2">&quot;Tu nombre&quot;</span>
-</pre></div>
-
-
-<p>Y hacer lo propio con tu dirección de correo electrónico: </p>
-<div class="codehilite"><pre>git config --global user.email tuemail@ejemplo.com
-</pre></div>
-
-
-<h3 id="comprobando-tu-configuracion">Comprobando tu configuración<a class="headerlink" href="#comprobando-tu-configuracion" title="Permanent link">&para;</a></h3>
-<p>Podés comprobar qué valor utilizará Git para una clave específica ejecutando <code>git config &lt;key&gt;</code>:</p>
-<div class="codehilite"><pre>$ git config user.name
-</pre></div>
-
-
-<p>Donde <code>&lt;key&gt;</code> es el valor que de la configuración que deseas consultar. </p>
-<p>Pero si querés comprobar toda tu configuración, podés usar el siguiente comando:</p>
-<div class="codehilite"><pre>git config --list
-</pre></div>
-
-
-<div class="admonition tip">
-<p class="admonition-title">Ayuda sobre Git<p>Es posible consultar desde la terminal ayuda sobre los comandos empleados por git. Para ello, ejecutamos: </p>
-<p><code>git help &lt;comando&gt;</code></p>
-</p>
-</div>
+                <p>Tomado de "Starting with Git &amp; GitHub", Nicolás Tourné. Diponible en <a href="https://es.slideshare.net/nicotourne/starting-with-git-git-hub-27464735">https://es.slideshare.net/nicotourne/starting-with-git-git-hub-27464735</a></p>
+<p><img alt="Git - Ejemplo de uso 01" src="../imgGit/gitExample_01.png" />
+<img alt="Git - Ejemplo de uso 02" src="../imgGit/gitExample_02.png" />
+<img alt="Git - Ejemplo de uso 03" src="../imgGit/gitExample_03.png" />
+<img alt="Git - Ejemplo de uso 04" src="../imgGit/gitExample_04.png" />
+<img alt="Git - Ejemplo de uso 05" src="../imgGit/gitExample_05.png" />
+<img alt="Git - Ejemplo de uso 06" src="../imgGit/gitExample_06.png" />
+<img alt="Git - Ejemplo de uso 07" src="../imgGit/gitExample_07.png" />
+<img alt="Git - Ejemplo de uso 08" src="../imgGit/gitExample_08.png" />
+<img alt="Git - Ejemplo de uso 09" src="../imgGit/gitExample_09.png" />
+<img alt="Git - Ejemplo de uso 10" src="../imgGit/gitExample_10.png" /></p>
                 
                   
                 
@@ -901,9 +813,9 @@
                   <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = "http://www.redes.rauljesus.com/git/configuracionInicial/";
+    this.page.url = "http://www.redes.rauljesus.com/git/ejemploGit/";
     this.page.identifier =
-      "/git/configuracionInicial/";
+      "/git/ejemploGit/";
   };
   (function() {
     var d = document, s = d.createElement("script");
@@ -925,7 +837,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../instalacion/" title="Instalación de Git" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../ramas/" title="Ramas" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -934,25 +846,11 @@
                 <span class="md-footer-nav__direction">
                   Anterior
                 </span>
-                Instalación de Git
+                Ramas
               </span>
             </div>
           </a>
         
-        
-          <a href="../losTresEstados/" title="Los tres estados" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Siguiente
-                </span>
-                Los tres estados
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
         
       </nav>
     </div>

@@ -55,7 +55,7 @@ Si almacenas tus datos en un **servidor hospedado**, es fácil de configurar y m
 
 Existen varios sitios que ofrecen un servidor Git en la nube como [GitHub](https://github.com), [GitLab](https://about.gitlab.com), [Bitbucket](https://bitbucket.org) y [Coding](https://coding.net/), entre otros. 
 
-En líneas generales, estos sitios permiten de forma gratuita, la posibilidad de crear un número ilimitado de repositorios públicos y repositorios privados con cantidad ilimitada de colaboradores en su versión paga.
+En líneas generales, estos sitios permiten crear de manera gratuita un número ilimitado de repositorios públicos y repositorios privados con cantidad ilimitada de colaboradores en su versión paga.
 
 ### 2.1. Cómo crear un repositorio en GitHub
 Procederemos a crear un repositorio público en GitHub (gratuito). Accedemos a [https://github.com/](https://github.com/) y hacemos clic sobre la leyenda **Sign up**:
@@ -74,7 +74,7 @@ Sólo restará completar los datos solicitados para la creación del repositorio
 
 ![GitHub 3](imgGit/gitHub_3.png)
 
-Finalmente, se nos sugerirá realizar algunas acciones para sincronizar nuestro repositorio local con el repositorio remoto, tema que discuteremos en profundidad [en otra sección](trabajandoConRemotos.md): 
+Finalmente, se nos sugerirá realizar algunas acciones para sincronizar nuestro repositorio local con el repositorio remoto, tema que discuteremos en profundidad [en otra sección](trabajandoConRemotos/#5-enviando-hacia-nuestros-repositorios-remotos): 
 
 ![GitHub 4](imgGit/gitHub_4.png)
 
@@ -83,4 +83,4 @@ Finalmente, se nos sugerirá realizar algunas acciones para sincronizar nuestro 
 		Existen muchos tutoriales en línea que explican el funcinamiento de Git y GitHub. Uno particularmente útil y sencillo podés encontrarlo en: [https://try.github.io](https://try.github.io)
 
 ## 3. Sincronizando repositorios
-Para poder sincronizar nuestro repositorio local con un repositorio remoto tendremos que realizar algunas acciones extra que serán explicadas en detalle en la sección [Trabajando con remotos](trabajandoConRemotos.md)
+Para poder sincronizar nuestro repositorio local con un repositorio remoto tendremos que realizar algunas acciones extra que serán explicadas en detalle en la sección [Trabajando con remotos](trabajandoConRemotos/#5-enviando-hacia-nuestros-repositorios-remotos)

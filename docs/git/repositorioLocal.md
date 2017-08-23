@@ -81,7 +81,7 @@ Donde:
 ### 2.2. Clonando un repositorio remoto existente [HTTPS]
 
 ```bash
-git clone https://dominio.com/proyecto
+git clone https://dominio.com/proyecto.git
 ```
 Esto crea un directorio llamado `proyecto`, inicializa un directorio `git` en su interior, descarga toda la información de ese repositorio y saca una copia de trabajo de la última versión.
 
@@ -90,7 +90,7 @@ Esto crea un directorio llamado `proyecto`, inicializa un directorio `git` en su
 !!!tip "Clonando repositorios en otros directorios"
 		Si deseamos clonar un repositorio en una carpeta que contenga un nombre distinto al del repositorio original: 
 
-		`git clone https://dominio.com/proyecto miProyecto`
+		`git clone https://dominio.com/proyecto.git miProyecto`
 
 		Ese comando creará el directorio de destino llamado `miProyecto`.
 
