@@ -72,7 +72,7 @@ git branch -d ramaABorrar
 Es probable que luego de un tiempo de trabajar sobre una rama que hallamos creado quisiéramos fusionarla con la rama principal. Para ello, debemos asegurarnos de estar posicionandos en la rama principal (comunmente llamada _master_) y ejecutar el comando: 
 
 ```bash
-git branch -d ramaAFusionar
+git branch merge ramaAFusionar
 ```
 De esta manera, Git fusionará los cambios hechos en la rama alternativa con la rama principal. 
 
