@@ -3,14 +3,46 @@ Existen varias opciones para obtener un repositorio Git remoto y ponerlo a funci
 
 En cualquier caso, es preciso determinar que solución o combinación de soluciones es apropiada para nosotros y la empresa.
 
+## 1. Configurando de usuarios y claves
 
-## 1. Git en un servidor propio
+Vamos a avanzar en los ajustes de los accesos SSH en el lado del servidor. En este ejemplo, usarás el método de las authorized_keys (claves autorizadas) para autentificar a tus usuarios. Se asume que tienes un servidor en marcha, con una distribución estándar de Linux, tal como Ubuntu. Comienzas creando un usuario git y una carpeta .ssh para él.
+
+```bash
+$ sudo adduser git
+$ su git
+$ cd
+$ mkdir .ssh && chmod 700 .ssh
+$ touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys
+```
+
+
+Y a continuación añades las claves públicas de los desarrolladores al archivo authorized_keys del usuario git que has creado. Suponiendo que hayas recibido las claves por correo electrónico y que las has guardado en archivos temporales. Y recordando que las claves públicas son algo así como:
+
+```bash
+$ cat /tmp/id_rsa.john.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCB007n/ww+ouN4gSLKssMxXnBOvf9LGt4L
+ojG6rs6hPB09j9R/T17/x4lhJA0F3FR1rP6kYBRsWj2aThGw6HXLm9/5zytK6Ztg3RPKK+4k
+Yjh6541NYsnEAZuXz0jTTyAUfrtU3Z5E003C4oxOj6H0rfIF1kKI9MAQLMdpGW1GYEIgS9Ez
+Sdfd8AcCIicTDWbqLAcU4UpkaX8KyGlLwsNuuGztobF8m72ALC/nLF6JLtPofwFBlgc+myiv
+O7TCUSBdLQlgMVOFq1I2uPWQOkOWQAHukEOmfjy2jctxSDBQ220ymjaNsHT4kgtZg2AYYgPq
+dAv8JggJICUvax2T9va5 gsg-keypair
+```
+
+No tienes más que añadirlas al archivo authorized_keys dentro del directorio .ssh:
+
+```bash
+$ cat /tmp/id_rsa.john.pub >> ~/.ssh/authorized_keys
+$ cat /tmp/id_rsa.josie.pub >> ~/.ssh/authorized_keys
+$ cat /tmp/id_rsa.jessica.pub >> ~/.ssh/authorized_key
+```
+
+## 2. Git en un servidor propio
 Mantener **tu propio servidor** te da control y te permite correr tu servidor dentro de tu propio cortafuegos, pero tal servidor generalmente requiere una importante cantidad de tu tiempo para configurar y mantener. 
 
 En líneas generales tendremos que crear un repositorio Git desnudo (_bare_) o también llamado vacío. Por convención, los directorios de repositorios desnudos o vacíos finalizan con la extensión `.git`.
 
 
-### 1.1. Partiendo de un repositorio Git existente
+### 2.1. Partiendo de un repositorio Git existente
 Para configurar por primera vez un servidor de Git, hay que exportar un repositorio existente en un nuevo repositorio vacío, es decir, un repositorio que no contiene un directorio de trabajo. Esto es generalmente fácil de hacer.
 
 En primer lugar clonamos un repositorio Git existente: 
@@ -29,7 +61,7 @@ Sin embargo, ambas órdenes se pueden ejecutar en una sola:
 git clone --bare --shared miRepositorioGitExistente miNuevoRepositorio.git
 ```
 
-### 1.2. Partiendo desde de una carpeta vacía
+### 2.2. Partiendo desde de una carpeta vacía
 Otra de las maneras de crear un repositorio vacío es partiendo de una carpeta vacía sobre la cual inicializaremos un repositorio Git. 
 
 Para ello, creamos el directorio que contendrá el repositorio: 
@@ -48,7 +80,7 @@ E inicializamos un repositorio vacío y compartido:
 git init --bare --shared
 ```
 
-## 2. Git en un servidor hospedado
+## 3. Git en un servidor hospedado
 Si almacenas tus datos en un **servidor hospedado**, es fácil de configurar y mantener; sin embargo, tienes que ser capaz de mantener tu código en los servidores de alguien más, y algunas organizaciones no te lo permitirán.
 
 ![Logo de hosting Git](imgGit/gitSharedHosting.jpg)
@@ -57,7 +89,7 @@ Existen varios sitios que ofrecen un servidor Git en la nube como [GitHub](https
 
 En líneas generales, estos sitios permiten crear de manera gratuita un número ilimitado de repositorios públicos y repositorios privados con cantidad ilimitada de colaboradores en su versión paga.
 
-### 2.1. Cómo crear un repositorio en GitHub
+### 3.1. Cómo crear un repositorio en GitHub
 Procederemos a crear un repositorio público en GitHub (gratuito). Accedemos a [https://github.com/](https://github.com/) y hacemos clic sobre la leyenda **Sign up**:
 
 ![GitHub 0](imgGit/gitHub_0.png)
@@ -82,5 +114,5 @@ Finalmente, se nos sugerirá realizar algunas acciones para sincronizar nuestro 
 !!!done "Practicá con Git y GitHub"
 		Existen muchos tutoriales en línea que explican el funcinamiento de Git y GitHub. Uno particularmente útil y sencillo podés encontrarlo en: [https://try.github.io](https://try.github.io)
 
-## 3. Sincronizando repositorios
+## 4. Sincronizando repositorios
 Para poder sincronizar nuestro repositorio local con un repositorio remoto tendremos que realizar algunas acciones extra que serán explicadas en detalle en la sección [Trabajando con remotos](trabajandoConRemotos/#5-enviando-hacia-nuestros-repositorios-remotos)

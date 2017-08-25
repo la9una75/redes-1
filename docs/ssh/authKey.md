@@ -9,6 +9,8 @@ A continuacipon se describen una serie de pasos que nos permitirán iniciar sesi
 
 ## Generando llaves
 
+[Creando claves SSH en Windows](https://www.pedroventura.com/software/como-generar-claves-rsa-para-conectar-por-ssh-en-windows/)
+
 _Logueados_ con nuestro usuario normal en la **máquina local**, ejecutamos: 
 
 ```apache

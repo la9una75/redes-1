@@ -84,7 +84,7 @@ Vamos a presentar un ejemplo simple de ramificar y de fusionar, con un flujo de 
 
 2. Creamos una rama para un nuevo tema sobre el que queremos trabajar.
 
-3. Realizamo algo de trabajo en esa rama.
+3. Realizamos algo de trabajo en esa rama.
 
 En este momento, recibimos una llamada avisándonos de un problema crítico que tenemos que resolver. Y seguimos los siguientes pasos:
 
