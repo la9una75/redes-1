@@ -269,6 +269,26 @@
     Generando llaves
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-microsoft-windows" title="En Microsoft Windows" class="md-nav__link">
+    En Microsoft Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-gnulinux" title="En GNU/Linux" class="md-nav__link">
+    En GNU/Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -276,11 +296,31 @@
     Copiando la llave pública
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodo-manual" title="Método manual" class="md-nav__link">
+    Método manual
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-por-comandos" title="Método por comandos" class="md-nav__link">
+    Método por comandos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#deshabilitando-el-inicio-de-sesion-por-contrasena" title="Deshabilitando el inicio de sesión por contraseña" class="md-nav__link">
-    Deshabilitando el inicio de sesión por contraseña
+  <a href="#deshabilitando-el-inicio-de-sesion-por-contrasena-en-el-servidor" title="Deshabilitando el inicio de sesión por contraseña en el servidor" class="md-nav__link">
+    Deshabilitando el inicio de sesión por contraseña en el servidor
   </a>
   
 </li>
@@ -844,6 +884,26 @@
     Generando llaves
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-microsoft-windows" title="En Microsoft Windows" class="md-nav__link">
+    En Microsoft Windows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-gnulinux" title="En GNU/Linux" class="md-nav__link">
+    En GNU/Linux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -851,11 +911,31 @@
     Copiando la llave pública
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodo-manual" title="Método manual" class="md-nav__link">
+    Método manual
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodo-por-comandos" title="Método por comandos" class="md-nav__link">
+    Método por comandos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#deshabilitando-el-inicio-de-sesion-por-contrasena" title="Deshabilitando el inicio de sesión por contraseña" class="md-nav__link">
-    Deshabilitando el inicio de sesión por contraseña
+  <a href="#deshabilitando-el-inicio-de-sesion-por-contrasena-en-el-servidor" title="Deshabilitando el inicio de sesión por contraseña en el servidor" class="md-nav__link">
+    Deshabilitando el inicio de sesión por contraseña en el servidor
   </a>
   
 </li>
@@ -890,7 +970,20 @@
 <p>En el presente tutorial, <strong>máquina local</strong> hace referencia a nuestra computadora y <strong>servidor</strong> al servidor remoto. </p>
 </div>
 <h2 id="generando-llaves">Generando llaves<a class="headerlink" href="#generando-llaves" title="Permanent link">&para;</a></h2>
-<p><a href="https://www.pedroventura.com/software/como-generar-claves-rsa-para-conectar-por-ssh-en-windows/">Creando claves SSH en Windows</a></p>
+<p>A continuación se describe el procedimiento para generar un par de claves (pública y privada) para conectarse a un servidor GNU/Linux sin necesidad de ingresar usuario y contraseña. </p>
+<h3 id="en-microsoft-windows">En Microsoft Windows<a class="headerlink" href="#en-microsoft-windows" title="Permanent link">&para;</a></h3>
+<p>En primer lugar, tendremos que descargar el programa PuttyGen: </p>
+<ul>
+<li><a href="https://the.earth.li/~sgtatham/putty/latest/w32/puttygen.exe">Puttygen - 32 bits</a></li>
+<li><a href="https://the.earth.li/~sgtatham/putty/latest/w64/puttygen.exe">Puttygen - 64 bits</a></li>
+</ul>
+<p>Abrimos el programa y veremos una interfaz similar a la siguiente: </p>
+<p><img alt="Puttygen 01" src="../imgSSH/puttygen_01.png" /></p>
+<p>Hacemos clic en el botón <strong>Generate</strong> y acto seguido agitamos el cursor en el área blanca de la ventana del programa: </p>
+<p><img alt="Puttygen 02" src="../imgSSH/puttygen_02.png" /></p>
+<p>Por último, debermos guardar la <strong>clave pública</strong> haciendo clic sobre el botón <strong>Save public key</strong> y la <strong>clave privada</strong> haciendo clic sobre el botón <strong>Save private key</strong></p>
+<p><img alt="Puttygen 03" src="../imgSSH/puttygen_03.png" /></p>
+<h3 id="en-gnulinux">En GNU/Linux<a class="headerlink" href="#en-gnulinux" title="Permanent link">&para;</a></h3>
 <p><em>Logueados</em> con nuestro usuario normal en la <strong>máquina local</strong>, ejecutamos: </p>
 <div class="codehilite"><pre><span class="err">ssh-</span><span class="nb">keygen</span>
 </pre></div>
@@ -929,13 +1022,34 @@
 <p>Si dejamos la contraseña en blanco podremos usar la llave sin introducir contraseña. Si ingresamos una contraseña necesitaremos ambas (la llave privada y la contraseña) para iniciar sesión. Asegurar las llaves con contraseña es más seguro, pero ambos métodos tienen sus usos y son más seguros que la autenticación de contraseña básica.</p>
 </div>
 <h2 id="copiando-la-llave-publica">Copiando la llave pública<a class="headerlink" href="#copiando-la-llave-publica" title="Permanent link">&para;</a></h2>
+<p>Tendremos que copiar la clave pública en el servidor agregándola al archivo <code>/home/usuario/.ssh/authorized_keys</code> del usuario remoto. (donde deberá reemplazar <code>usuario</code> por el usuario remoto). </p>
+<h3 id="metodo-manual">Método manual<a class="headerlink" href="#metodo-manual" title="Permanent link">&para;</a></h3>
+<p>Tendremos que iniciar sesión en el servidor con el usuario al que queremos permitir acceso mediante el uso de clave asimétrica. Ejecutamos los siguintes comandos (uno por vez):</p>
+<div class="codehilite"><pre><span class="nb">cd</span>
+cd .ssh
+<span class="nb">vim</span> authorized_keys
+</pre></div>
+
+
+<p>Una vez abierto el archivo <code>authorized_keys</code> tendremos que copiar dentro de él, el contenido de la clave pública generada en el punto anterior, vereficando que el formato de la misma sea el similar al siguiente:</p>
+<div class="codehilite"><pre>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCB007n/ww+ouN4gSLKssMxXnBOvf9LGt4L
+ojG6rs6hPB09j9R/T17/x4lhJA0F3FR1rP6kYBRsWj2aThGw6HXLm9/5zytK6Ztg3RPKK+4k
+Yjh6541NYsnEAZuXz0jTTyAUfrtU3Z5E003C4oxOj6H0rfIF1kKI9MAQLMdpGW1GYEIgS9Ez
+Sdfd8AcCIicTDWbqLAcU4UpkaX8KyGlLwsNuuGztobF8m72ALC/nLF6JLtPofwFBlgc+myiv
+O7TCUSBdLQlgMVOFq1I2uPWQOkOWQAHukEOmfjy2jctxSDBQ220ymjaNsHT4kgtZg2AYYgPq
+dAv8JggJICUvax2T9va5 usuario@dominio_o_direccion_ip_servidor
+</pre></div>
+
+
+<h3 id="metodo-por-comandos">Método por comandos<a class="headerlink" href="#metodo-por-comandos" title="Permanent link">&para;</a></h3>
 <p>Para que podamos iniciar sesión en el servidor remoto, ejecutamos en la <strong>máquina local</strong>: </p>
 <div class="codehilite"><pre><span class="err">ssh-copy-</span><span class="nb">id</span> usuario_remoto@ip_del_servidor_remoto
 </pre></div>
 
 
-<p>Se nos pedirá la contraseña del usuario remoto. Seguidamente, la llave pública se agregará al archivo <code>/home/usuario/.ssh/authorized_keys</code> del usuario remoto. Ahora se puede usar la llave privada correspondiente para iniciar sesión en el servidor.</p>
-<h2 id="deshabilitando-el-inicio-de-sesion-por-contrasena">Deshabilitando el inicio de sesión por contraseña<a class="headerlink" href="#deshabilitando-el-inicio-de-sesion-por-contrasena" title="Permanent link">&para;</a></h2>
+<p>Se nos pedirá la contraseña del usuario remoto. </p>
+<p>Ahora se puede usar la llave privada correspondiente para iniciar sesión en el servidor.</p>
+<h2 id="deshabilitando-el-inicio-de-sesion-por-contrasena-en-el-servidor">Deshabilitando el inicio de sesión por contraseña en el servidor<a class="headerlink" href="#deshabilitando-el-inicio-de-sesion-por-contrasena-en-el-servidor" title="Permanent link">&para;</a></h2>
 <p>Ahora que nuestro usuario puede usar las llaves SSH para iniciar sesión en el servidor remoto, podemos aumentar la seguridad del mismo desactivando la autenticación por contraseña.</p>
 <div class="admonition warning">
 <p class="admonition-title">Importante</p>

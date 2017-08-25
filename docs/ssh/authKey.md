@@ -8,8 +8,30 @@ A continuacipon se describen una serie de pasos que nos permitirán iniciar sesi
 
 
 ## Generando llaves
+A continuación se describe el procedimiento para generar un par de claves (pública y privada) para conectarse a un servidor GNU/Linux sin necesidad de ingresar usuario y contraseña. 
 
-[Creando claves SSH en Windows](https://www.pedroventura.com/software/como-generar-claves-rsa-para-conectar-por-ssh-en-windows/)
+
+
+### En Microsoft Windows
+En primer lugar, tendremos que descargar el programa PuttyGen: 
+
+* [Puttygen - 32 bits](https://the.earth.li/~sgtatham/putty/latest/w32/puttygen.exe)
+* [Puttygen - 64 bits](https://the.earth.li/~sgtatham/putty/latest/w64/puttygen.exe)
+
+Abrimos el programa y veremos una interfaz similar a la siguiente: 
+
+![Puttygen 01](imgSSH/puttygen_01.png)
+
+Hacemos clic en el botón **Generate** y acto seguido agitamos el cursor en el área blanca de la ventana del programa: 
+
+![Puttygen 02](imgSSH/puttygen_02.png)
+
+Por último, debermos guardar la **clave pública** haciendo clic sobre el botón **Save public key** y la **clave privada** haciendo clic sobre el botón **Save private key**
+
+![Puttygen 03](imgSSH/puttygen_03.png)
+
+
+### En GNU/Linux
 
 _Logueados_ con nuestro usuario normal en la **máquina local**, ejecutamos: 
 
@@ -32,14 +54,40 @@ A continuación, se nos pedirá el **ingreso de una frase de contraseña o _pass
 	Si dejamos la contraseña en blanco podremos usar la llave sin introducir contraseña. Si ingresamos una contraseña necesitaremos ambas (la llave privada y la contraseña) para iniciar sesión. Asegurar las llaves con contraseña es más seguro, pero ambos métodos tienen sus usos y son más seguros que la autenticación de contraseña básica.
 
 ## Copiando la llave pública
+Tendremos que copiar la clave pública en el servidor agregándola al archivo `/home/usuario/.ssh/authorized_keys` del usuario remoto. (donde deberá reemplazar `usuario` por el usuario remoto). 
+
+### Método manual
+Tendremos que iniciar sesión en el servidor con el usuario al que queremos permitir acceso mediante el uso de clave asimétrica. Ejecutamos los siguintes comandos (uno por vez):
+
+```apache
+cd
+cd .ssh
+vim authorized_keys
+```
+Una vez abierto el archivo `authorized_keys` tendremos que copiar dentro de él, el contenido de la clave pública generada en el punto anterior, vereficando que el formato de la misma sea el similar al siguiente:
+
+
+```bash
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCB007n/ww+ouN4gSLKssMxXnBOvf9LGt4L
+ojG6rs6hPB09j9R/T17/x4lhJA0F3FR1rP6kYBRsWj2aThGw6HXLm9/5zytK6Ztg3RPKK+4k
+Yjh6541NYsnEAZuXz0jTTyAUfrtU3Z5E003C4oxOj6H0rfIF1kKI9MAQLMdpGW1GYEIgS9Ez
+Sdfd8AcCIicTDWbqLAcU4UpkaX8KyGlLwsNuuGztobF8m72ALC/nLF6JLtPofwFBlgc+myiv
+O7TCUSBdLQlgMVOFq1I2uPWQOkOWQAHukEOmfjy2jctxSDBQ220ymjaNsHT4kgtZg2AYYgPq
+dAv8JggJICUvax2T9va5 usuario@dominio_o_direccion_ip_servidor
+```
+
+### Método por comandos
 Para que podamos iniciar sesión en el servidor remoto, ejecutamos en la **máquina local**: 
 
 ```apache
 ssh-copy-id usuario_remoto@ip_del_servidor_remoto
 ```
-Se nos pedirá la contraseña del usuario remoto. Seguidamente, la llave pública se agregará al archivo `/home/usuario/.ssh/authorized_keys` del usuario remoto. Ahora se puede usar la llave privada correspondiente para iniciar sesión en el servidor.
+Se nos pedirá la contraseña del usuario remoto. 
 
-## Deshabilitando el inicio de sesión por contraseña 
+
+Ahora se puede usar la llave privada correspondiente para iniciar sesión en el servidor.
+
+## Deshabilitando el inicio de sesión por contraseña en el servidor
 Ahora que nuestro usuario puede usar las llaves SSH para iniciar sesión en el servidor remoto, podemos aumentar la seguridad del mismo desactivando la autenticación por contraseña.
 
 !!! warning "Importante"

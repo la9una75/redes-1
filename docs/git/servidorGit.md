@@ -19,7 +19,7 @@ $ touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys
 Y a continuación añades las claves públicas de los desarrolladores al archivo authorized_keys del usuario git que has creado. Suponiendo que hayas recibido las claves por correo electrónico y que las has guardado en archivos temporales. Y recordando que las claves públicas son algo así como:
 
 ```bash
-$ cat /tmp/id_rsa.john.pub
+$ cat /tmp/id_rsa.juan.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCB007n/ww+ouN4gSLKssMxXnBOvf9LGt4L
 ojG6rs6hPB09j9R/T17/x4lhJA0F3FR1rP6kYBRsWj2aThGw6HXLm9/5zytK6Ztg3RPKK+4k
 Yjh6541NYsnEAZuXz0jTTyAUfrtU3Z5E003C4oxOj6H0rfIF1kKI9MAQLMdpGW1GYEIgS9Ez
@@ -31,8 +31,8 @@ dAv8JggJICUvax2T9va5 gsg-keypair
 No tienes más que añadirlas al archivo authorized_keys dentro del directorio .ssh:
 
 ```bash
-$ cat /tmp/id_rsa.john.pub >> ~/.ssh/authorized_keys
-$ cat /tmp/id_rsa.josie.pub >> ~/.ssh/authorized_keys
+$ cat /tmp/id_rsa.juan.pub >> ~/.ssh/authorized_keys
+$ cat /tmp/id_rsa.pedro.pub >> ~/.ssh/authorized_keys
 $ cat /tmp/id_rsa.jessica.pub >> ~/.ssh/authorized_key
 ```
 
