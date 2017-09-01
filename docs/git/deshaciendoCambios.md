@@ -27,4 +27,14 @@ Así que podemos seguir trabajando, corregir el bug o completar las modificacion
 
 Fuente [http://aprendegit.com/como-deshacer-el-ultimo-commit-en-git](http://aprendegit.com/como-deshacer-el-ultimo-commit-en-git)
 
-See https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
+See:  
+* https://pajarokillo.wordpress.com/2015/02/23/deshaciendo-cambios-con-git/
+* http://www.7sabores.com/blog/como-revertir-un-push-git
+* https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
+* https://styde.net/deshaciendo-cosas-en-git/
+* https://es.stackoverflow.com/questions/3575/quitar-archivos-a%C3%B1adidos-antes-de-un-commit
+* http://rogerdudler.github.io/git-guide/index.es.html
+* https://gist.github.com/jelcaf/1404619
+* https://es.stackoverflow.com/questions/1458/regresar-un-repositorio-a-un-commit-especifico
+* https://loquemeinteresadelared.wordpress.com/2016/03/28/git-cookbook-que-es-el-estado-o-modo-detached-head/#more-877
+
