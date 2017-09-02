@@ -38,3 +38,5 @@ See:
 * https://es.stackoverflow.com/questions/1458/regresar-un-repositorio-a-un-commit-especifico
 * https://loquemeinteresadelared.wordpress.com/2016/03/28/git-cookbook-que-es-el-estado-o-modo-detached-head/#more-877
 
+
+
