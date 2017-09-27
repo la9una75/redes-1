@@ -44,7 +44,7 @@ Para finalizar, guardaremos los cambios y cerraremos el editor.
 Cada vez que realicemos cambios en los archivos de configuración del servidor tendremos que verificar que dichar configuración sea la correcta. Para ellos ejecutaremos el siguiente comando:
 
 ```bash
-sudo nagios3 -v /usr/local/nagios/etc/nagios.cfg
+sudo service nagios configtest
 ```
 
 
@@ -55,7 +55,7 @@ sudo nagios3 -v /usr/local/nagios/etc/nagios.cfg
 Si la configuración está libre de errores entonces podremos reiniciar el servidor: 
 
 ```bash
-sudo service nagios3 restart
+sudo service nagios restart
 ```
 
 Si todo salió bien, podremos ingresar al panel web de administración desde un navegador y ver plasmados los cambios realizados. 
