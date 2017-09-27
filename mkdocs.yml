@@ -62,7 +62,7 @@ pages:
     - Autenticación de llave pública: 'ssh/authKey.md'
 - Resolución de nombres: 
     - El archivo hosts: 'dns/archivoHosts.md'
-- Servidor web:
+- LAMP:
     - ¿Qué es LAMP?: 'lamp/queEs.md'
     - Instalación: 'lamp/instalacion.md'
     - Gestión básica: 'lamp/gestionBasica.md'
@@ -70,7 +70,7 @@ pages:
     - Hosts virtuales: 'lamp/virtualHosts.md'
 #    - WebDav: 'lamp/webDav.md'
     - Ejercicios: 'lamp/ejercicios.md'
-- Servidor de compartición:
+- Samba:
     - ¿Qué es SAMBA?: 'samba/index.md'
     - Instalación: 'samba/instalacion.md'
     - Configuración general: 'samba/configuracionGeneral.md'
@@ -80,14 +80,14 @@ pages:
     - Carpeta de invitados: 'samba/comparticionInvitados.md'
     - Clientes Windows: 'samba/clientesWindows.md'
     - Ejercicios: 'samba/ejercicios.md'
-- Servidor de streaming:
+- Icecast:
     - ¿Qué es Icecast?: 'icecast/index.md'
     - Instalación: 'icecast/instalacion.md'
     - Inicializando el servidor: 'icecast/inicializacion.md'
     - Configuración general: 'icecast/configuracionGeneral.md'
     - Broadcasting: 'icecast/broadcasting.md'
     - Administración: 'icecast/administracion.md'
-- Control de versiones:
+- Git:
     - ¿Qué es Git?: 'git/index.md'
     - Entornos distribuidos: 'git/flujoEntornosDistribuidos.md'
     - Instalación de Git: 'git/instalacion.md'
@@ -100,3 +100,13 @@ pages:
     - Deshaciendo cambios: 'git/deshaciendoCambios.md'
     - Otros comandos: 'git/otrosComandosGit.md'
     - Ejemplo de uso de git: 'git/ejemploGit.md'
+- Nagios:
+    - ¿Qué es Nagios?: 'nagios/index.md'
+    - Instalación: 'nagios/instalacion.md'
+    - Configuración inicial: 'nagios/configuracion.md'
+    - Definiendo equipos: 'nagios/equipos.md'
+    - Definiendo grupos: 'nagios/grupos.md'
+    - Definiendo servicios: 'nagios/servicios.md'
+    - Cliente Windows: 'nagios/nsclient.md'
+    - Íconos: 'nagios/iconos.md'
+    - Saber más: 'nagios/recursos.md'
