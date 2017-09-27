@@ -12,7 +12,7 @@ Para salir de la vista, presionar la letra **q** (quit).
 Abriremos el archivo **iconos.cfg** creado con anterioridad:
 
 ```bash
-sudo vim /etc/nagios3/objetos/iconos.cfg
+sudo vim /usr/local/nagios/etc/objects/iconos.cfg
 ```
 
 Dentro del archivo incluiremos código similar al que sigue. Obviamente, deberemos adaptarlo a nuestras necesidades:
@@ -20,20 +20,20 @@ Dentro del archivo incluiremos código similar al que sigue. Obviamente, deberem
 ```apache
 # Definiendo íconos para un equpo (individualmente)
 define hostextinfo {
-host_name	router1
-icon_image	routerNuevo.png
+host_name		router1
+icon_image		routerNuevo.png
 icon_image_alt	Router de la sala principal
 statusmap_image	routerNuevo.gd2
-vrml_image	routerNuevo.png
+vrml_image		routerNuevo.png
 }
 
 # Definiendo íconos para todos los miembros de un grupo
 define hostextinfo {
 hostgroup_name	sala1
-icon_image	computer.png
+icon_image		computer.png
 icon_image_alt	Equipos de la Sala 1
 statusmap_image	computer.gd2
-vrml_image	computer.png
+vrml_image		computer.png
 }
 ```
 

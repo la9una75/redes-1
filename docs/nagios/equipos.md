@@ -1,7 +1,7 @@
 Abrimos el archivo que nombramos como `equipos.cfg`:
 
 ```bash
-sudo nano /etc/nagios3/objetos/equipos.cfg
+sudo nano /usr/local/nagios/etc/objects/equipos.cfg
 ```
 
 A continuación, tendremos que incluir en dicho archivo la configuración los equipos que forman parte de nuestra red, uno debajo del otro. Por ejemplo:   

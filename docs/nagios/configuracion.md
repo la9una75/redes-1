@@ -1,18 +1,16 @@
-Una vez que hayamos instalado Nagios, se creará automáticamente una la carpeta `/etc/nagios3` que contiene los archivos de configuración del programa.
-
-A fin de mantener el orden, **crearemos una carpeta en la que alojaremos nuestros archivos de configuración personalizados**. Tanto el nombre de la carpeta que crearemos, como su ubicaiión son arbitratarios, pudiéndose cambiar estos valores por necesidad: 
+Una vez que hayamos instalado Nagios, ingresaremos a la carpeta en donde se alojarán los objetos de nuestra red: 
 
 ```bash
-sudo mkdir /etc/nagios3/objetos
+cd /usr/local/nagios/etc/objects
 ```
 
 ## Creando nuestros archivos de configuración
 
 
-Dentro de la carpeta que creamos en el paso anterior, **colocaremos nuestros archivos de configuración** los cuáles tendremos que crear, asignándoles un nombre arbitrario, pero con la extensión **.cfg**. Los archivos que crearemos serán: `equipos.cfg`, `grupos.cfg` y `servicios.cfg`.
+Dentro de la carpeta que creamos del paso anterior, **colocaremos nuestros archivos de configuración** los cuáles tendremos que crear, asignándoles un nombre arbitrario, pero con la extensión **.cfg**. Los archivos que crearemos serán: `equipos.cfg`, `grupos.cfg` y `servicios.cfg`.
 
 ```bash
-cd /etc/nagios3/objetos/ && sudo touch equipos.cfg grupos.cfg servicios.cfg iconos.cfg
+sudo touch equipos.cfg grupos.cfg servicios.cfg iconos.cfg
 ```
 
 ## Agregando nuestra configuración a Nagios
@@ -21,23 +19,23 @@ cd /etc/nagios3/objetos/ && sudo touch equipos.cfg grupos.cfg servicios.cfg icon
 Tendremos que "notificar" a Nagios de los cambios que hemos introducido. Para ello, abriremos el archivo de configuración principal de Nagios: 
 
 ```bash
-sudo vim /etc/nagios3/nagios.cfg
+sudo vim /usr/local/nagios/etc/nagios.cfg
 ```
 
 Una vez abierto el archivo, en algún lugar del mismo, agregaremos la siguiente línea que indica la ubicación de nuestro archivo de configuración: 
 
 ```apache
 # Equipos que forman parte de la red
-cfg_file=/etc/nagios3/objetos/equipos.cfg
+cfg_file=/usr/local/nagios/etc/objects/equipos.cfg
   
 # Grupos de equipos
-cfg_file=/etc/nagios3/objetos/grupos.cfg
+cfg_file=/usr/local/nagios/etc/objects/grupos.cfg
 
 # Servicios que Nagios monitoreará
-cfg_file=/etc/nagios3/objetos/servicios.cfg
+cfg_file=/usr/local/nagios/etc/objects/servicios.cfg
 
 # Iconos personalizados
-cfg_file=/etc/nagios3/objetos/iconos.cfg
+cfg_file=/usr/local/nagios/etc/objects/iconos.cfg
 ```
 
 Para finalizar, guardaremos los cambios y cerraremos el editor.
@@ -46,7 +44,7 @@ Para finalizar, guardaremos los cambios y cerraremos el editor.
 Cada vez que realicemos cambios en los archivos de configuración del servidor tendremos que verificar que dichar configuración sea la correcta. Para ellos ejecutaremos el siguiente comando:
 
 ```bash
-sudo nagios3 -v /etc/nagios3/nagios.cfg
+sudo nagios3 -v /usr/local/nagios/etc/nagios.cfg
 ```
 
 
@@ -77,5 +75,3 @@ Donde:
 |4|Services|Detalle de los servicios monitoreados (por equipo)|
 |5|Host Groups|Grupos de equipos|
 
-
-sudo apt-get install -y typora
