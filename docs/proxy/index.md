@@ -21,4 +21,4 @@ chmod a+x script
 sh sript 
 ```
 
-Una vez finaliza
+Una vez finalizada la ejecucción del script, debería las máquinas virtuales deberían quedar configuradas con el proxy escolar. 
