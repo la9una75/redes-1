@@ -18,8 +18,8 @@ theme_dir: 'themes/material'
 # Opciones
 extra:
   palette:
-    primary: 'deep orange'
-    accent: 'deep orange'
+    primary: 'indigo'
+    accent: 'blue'
 #  font:
 #    text: 'Roboto'
 #    code: 'Roboto Mono'
