@@ -3,7 +3,7 @@ Una vez que **hayamos definido los equipos** que forman parte de nuestra red, **
 Para ello abrimos el arhivos llamado `grupos.cfg` creado con anterioridad: 
 
 ```bash
-sudo vim /usr/local/nagios/etc/objects/grupos.cfg
+sudo vim /etc/nagios3/objetos/grupos.cfg
 ```
 
 Y agregamos dentro del archivo, la información sobre los grupos que deseamos crear:

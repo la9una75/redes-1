@@ -12,7 +12,7 @@ Para salir de la vista, presionar la letra **q** (quit).
 Abriremos el archivo **iconos.cfg** creado con anterioridad:
 
 ```bash
-sudo vim /usr/local/nagios/etc/objects/iconos.cfg
+sudo vim /etc/nagios3/objetos/iconos.cfg
 ```
 
 Dentro del archivo incluiremos código similar al que sigue. Obviamente, deberemos adaptarlo a nuestras necesidades:

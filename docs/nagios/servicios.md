@@ -1,7 +1,7 @@
 En este paso definiremos qué parámetros vamos a monitorear. Para ello, abriremos el archivo `servicios.cfg` creado con anterioridad: 
 
 ```bash
-sudo vim /usr/local/nagios/etc/objects/servicios.cfg
+sudo vim /etc/nagios3/objetos/servicios.cfg
 ```
 
 En el archivo, **tendremos que agregar los servicios que deseemos monitorear** en los equipos. 
