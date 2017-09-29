@@ -110,3 +110,5 @@ pages:
     - Cliente Windows: 'nagios/nsclient.md'
     - Íconos: 'nagios/iconos.md'
     - Saber más: 'nagios/recursos.md'
+- Proxy: 
+    - Instrucciones: 'proxy/index.md'
