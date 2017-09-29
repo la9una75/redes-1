@@ -30,11 +30,11 @@ Por último, continuar hasta finalizar la instalación.
 
 
 ## Verificando el estado del servicio NSClient++ 
-Para verificar que el **servicio NSClient++ esté corriendo en el sistema Microsoft Windows**, tendremos que seguir los siguientes pasos: 
+Para verificar que el servicio NSClient++ esté corriendo en el sistema Microsoft Windows, tendremos que seguir los siguientes pasos: 
 
 * Presionamos Tecla `Windows` + `R` y luego escribimos services.msc para abrir el panel de servicios en Windows.
-* Verificamos en el listado que se muestra, que el **servicio NSClient** este iniciado y seteado como automático.
-* Hacemos clic derecho sobre el servicio NSClient, seleccionamos la opción **Propiedades** del menú contextual y luego elegimos la pestaña **Iniciar sesión**. Allí tildaremos la opción **Permitir que el servicio interactúe con el escritorio**
+* Verificamos en el listado que se muestra, que el servicio _NSClient_ este iniciado y seteado como automático.
+* Hacemos clic derecho sobre el servicio _NSClient_, seleccionamos la opción _Propiedades_ del menú contextual y luego elegimos la pestaña _Iniciar sesión_. Allí tildaremos la opción _Permitir que el servicio interactúe con el escritorio_. 
 
 ## Configurando el servicio NSClient++
 
