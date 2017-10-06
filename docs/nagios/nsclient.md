@@ -86,7 +86,8 @@ nscp settings --generate --add-defaults --load-all
 !!!note "Salida del comando"
 		El comando, en caso de ser correcto, no produce ninguna salida. Tampoco debemos preocuparnos si leemos el mensaje “Failed to register plugin”. 
 
-Acto seguido, con un editor serio (_notepaders_, abstenerse), abriremos el archivo `nsclient.ini` ubicado en la carpeta de instalación del programa:  
+### Habilitando módulos
+Acto seguido, abrimos en **modo administrador** un editor serio (_notepaders_, abstenerse) como **Notepad++** ó **Sublime Text**, por ejemplo, abrimos el archivo `nsclient.ini` ubicado en la carpeta de instalación del programa:  
 
 ![NSClient](imgNagios/nsclient_08.png)
 
@@ -124,6 +125,8 @@ NRPEServer = enabled
 
 ```
 
+### Verificando que los módulos estén habilitados
+
 Adicionalmente, podremos entrar a la interfaz web de NSClient++ y verificar que dichos módulos se encuentren habilitados, a la vez que verificaremos el correcto funcionamiento del agente. 
 
 Para ello, en Windows accederemos a la siguiente dirección: `https://127.0.0.1:8443`
@@ -143,7 +146,7 @@ Por último, guardaremos los cambios:
 ![NSClient](imgNagios/nsclient_12.png)
 
 
-## Configurando NSClient++  en el servidor Nagios
+## Configurando NSClient++ en el servidor Nagios
 
 Antes de continuar, es conveniente crear una copia de seguridad del archivo que modificaremos: 
 
