@@ -7,46 +7,74 @@ Podemos descargar el agente de Nagios para Windows desde [http://www.nsclient.or
 ## Instalación de NSClient++ 
 Una vez que hayamos descargado el programa, al hacer clic sobre el ejecutable veremos una pantalla similar a la se muestra a continuación. Hacemos clic en Siguiente para continuar:
 
-![NSClient](imgNagios/nsclient_1.jpg)
+![NSClient](imgNagios/nsclient_01.png)
 
-Luego, seleccionaremos la opción de instalación genérica: 
+Luego elegimos la herramienta de monitoreo:
 
-![NSClient](imgNagios/nsclient_2.jpg)
+![NSClient](imgNagios/nsclient_02.png)
 
-A continuación, elegiremos la instalación típica: 
+A continuación, seleccionamos el tipo de instalación: 
 
-![NSClient](imgNagios/nsclient_3.jpg)
+![NSClient](imgNagios/nsclient_03.png)
 
-En el siguiente paso, tendremos que ingresar la **IP del servidor de Nagios** y abajo, una **contraseña a elección** (¡no olvidar!). Luego, tendremos que marcar todas las casillas de verificación, exceptuando NSCA.
+Llegados a este punto, ingresar: 
 
-![NSClient](imgNagios/nsclient_4.jpg)
+* La dirección IP del servidor Nagios
+* La dirección IP local (127.0.0.1)
+* Una contraseña a elección que recuerdes
 
-Por último, continuar hasta finalizar la instalación. 
+Luego presionaremos en botón de "Next"
 
-![NSClient](imgNagios/nsclient_5.jpg)
+![NSClient](imgNagios/nsclient_04.png)
 
-![NSClient](imgNagios/nsclient_6.jpg)
+En este paso, presionamos "Install"
+
+![NSClient](imgNagios/nsclient_05.png)
+
+Y comenzará la Instalación...
+
+![NSClient](imgNagios/nsclient_06.png)
+
+Segundos más tarde, la misma habrá finalizado
+
+![NSClient](imgNagios/nsclient_07.png)
 
 
+## Iniciando el servicio NSClient++
+Para iniciar o parar el servicio de NSClient++ en Windows tendremos que abrir una terminal (como Administrador) y ejecutamos para iniciar el servicio: 
 
-## Verificando el estado del servicio NSClient++ 
+```bash
+net start nscp 
+```
+
+o bien, para deternerlo:
+
+```bash
+net stop nscp 
+```
+
 Para verificar que el servicio NSClient++ esté corriendo en el sistema Microsoft Windows, tendremos que seguir los siguientes pasos: 
 
-* Presionamos Tecla `Windows` + `R` y luego escribimos services.msc para abrir el panel de servicios en Windows.
+* En Windows abrimos una terminal en **modo administrador**. 
+* Ejecutamos `services.msc`
 * Verificamos en el listado que se muestra, que el servicio _NSClient_ este iniciado y seteado como automático.
 * Hacemos clic derecho sobre el servicio _NSClient_, seleccionamos la opción _Propiedades_ del menú contextual y luego elegimos la pestaña _Iniciar sesión_. Allí tildaremos la opción _Permitir que el servicio interactúe con el escritorio_. 
 
 ## Configurando el servicio NSClient++
 
-Presionamos `Tecla Windows + R` y luego escribimos `cmd` para abrir la terminal de Windows. Desde allí nos desplazamos a la carpeta de instalación del agente de monitoreo: 
+En este paso deberemos realizar varias acciones, fundamentalmente relacionados con la carga de módulos que serán los encargados de monitorear los distintos servicios en Windows
+
+### Carga de módulos 
+
+Abrimos la terminal de Windows en **modo administrador**. Desde allí nos desplazamos a la carpeta de instalación del agente de monitoreo: 
 
 ```bash
 cd c:\Program Files\NSClient++
 ```
 
-<WRAP center round tip 100%>
-Podemos hacer clic sobre la carpeta hacia la cual nos queremos desplazar y arrastrarta hacia la terminal de comandos de Windows (abierta). De esta manera, nos desplazaremos rápidamente hacia la carpeta en cuestión. 
-</WRAP>
+!!!tip "Acceder a la carpeta NSClient++ desde la terminal"
+		Podemos hacer clic sobre la carpeta hacia la cual nos queremos desplazar y arrastrarta hacia la terminal de comandos de Windows (abierta). De esta manera, nos desplazaremos rápidamente hacia la carpeta en cuestión. 
+
  
 
 Estando dentro de la carpeta en cuestión, ejecutamos en la consola de Windows: 
@@ -54,6 +82,66 @@ Estando dentro de la carpeta en cuestión, ejecutamos en la consola de Windows:
 ```bash
 nscp settings --generate --add-defaults --load-all
 ```
+
+!!!note "Salida del comando"
+		El comando, en caso de ser correcto, no produce ninguna salida. Tampoco debemos preocuparnos si leemos el mensaje “Failed to register plugin”. 
+
+Acto seguido, con un editor serio (_notepaders_, abstenerse), abriremos el archivo `nsclient.ini` ubicado en la carpeta de instalación del programa:  
+
+![NSClient](imgNagios/nsclient_08.png)
+
+Luego, habilitamos manualmente los módulos que figuran como deshabilitados (_disabled_) de modo que el bloque quete de la siguiente manera: 
+
+```bash
+[/modules]
+
+; Undocumented key
+CheckExternalScripts = enabled
+
+; Undocumented key
+CheckNSCP = enabled
+
+; Undocumented key
+CheckEventLog = enalbled
+
+; Undocumented key
+CheckDisk = enabled
+
+; Undocumented key
+CheckSystem = enabled
+
+; Undocumented key
+CheckHelpers = enabled
+
+; Undocumented key
+WEBServer = enabled
+
+; Undocumented key
+NSClientServer = enabled
+
+; Undocumented key
+NRPEServer = enabled
+
+```
+
+Adicionalmente, podremos entrar a la interfaz web de NSClient++ y verificar que dichos módulos se encuentren habilitados, a la vez que verificaremos el correcto funcionamiento del agente. 
+
+Para ello, en Windows accederemos a la siguiente dirección: `https://127.0.0.1:8443`
+
+![NSClient](imgNagios/nsclient_09.png)
+
+Una vez allí iniciaremos sesión con la contraseña que definimos al momento de la instalación del cliente
+
+![NSClient](imgNagios/nsclient_10.png)
+
+En el menú, seleccionaremos "Modules" y _chequearemos_ aquellos que no lo estén: 
+
+![NSClient](imgNagios/nsclient_11.png)
+
+Por último, guardaremos los cambios: 
+
+![NSClient](imgNagios/nsclient_12.png)
+
 
 ## Configurando NSClient++  en el servidor Nagios
 

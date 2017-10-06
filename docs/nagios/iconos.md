@@ -2,7 +2,7 @@
 Es posible **modificar las imágenes con que se mostrarán los equipos en el mapa** presentado por Nagios. Podemos visualizar el nombre de los íconos que se mostraran en el mapa en: 
 
 ```bash
-ls -l /usr/share/nagios3/htdocs/images/logos | less
+ls -l /usr/share/nagios/htdocs/images/logos | less
 ```
 
 Para salir de la vista, presionar la letra **q** (quit).
