@@ -47,5 +47,64 @@ De más está afirmar la conveniencia del uso de comentarios (#) para ganar clar
 
 Por último, tendremos que [verificar la configuración y reiniciar el servidor Nagios](configuracion/#verificando-la-configuracion-y-reiniciando-nagios) para guardar los cambios que hayamos introducido.
 
- 
+## Diseño de topología de red
+Nagios permite configurar los _hosts_ distinguiéndolos entre _padres_ e _hijos_ usando la directiva `parents`. Veámoslo con un ejemplo [extraído de la documentación de Nagios](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/networkreachability.html), donde la siguiente topología de red:
+
+![Parents](imgNagios/parents.png)
+
+Se corresponde con la siguiente configuración de _hosts_ (la configuración de cada _host_ aparece simplificada con fines didácticos )
+
+```apache
+# Localhost (el servidor Nagios) no posee padre
+define host{
+	host_name		Nagios   
+}
+
+# Y luego se definen el resto de los hosts
+define host{
+	host_name		Switch1
+	parents			Nagios
+}
+
+define host{
+	host_name		Web
+	parents			Switch1
+}
+
+define host{
+	host_name		FTP
+	parents			Switch1
+}
+
+define host{
+	host_name		Router1
+	parents			Switch1
+}
+
+define host{
+	host_name		Switch2
+	parents			Router1
+}
+
+define host{
+	host_name		Wkstn1
+	parents			Switch2
+}
+
+define host{
+	host_name		HPLJ2605
+	parents			Switch2
+}
+
+define host{
+	host_name		Router2
+	parents			Router1
+}
+
+define host{
+	host_name		somewebsite.com
+	parents			Router2
+}
+
+```
 

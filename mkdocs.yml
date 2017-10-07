@@ -107,8 +107,8 @@ pages:
     - Definiendo equipos: 'nagios/equipos.md'
     - Definiendo grupos: 'nagios/grupos.md'
     - Definiendo servicios: 'nagios/servicios.md'
-    - Cliente Windows: 'nagios/nsclient.md'
+    - Agente Windows: 'nagios/nsclient.md'
     - Íconos: 'nagios/iconos.md'
-    - Saber más: 'nagios/recursos.md'
+    - Recursos adicionales: 'nagios/recursos.md'
 - Proxy: 
     - Instrucciones: 'proxy/index.md'
