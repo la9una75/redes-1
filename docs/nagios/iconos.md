@@ -47,9 +47,11 @@ Haciendo clic derecho sobre la carpeta en cuestión podemos descargar los archiv
 
 ![Filezilla](imgNagios/filezilla_09.png)
 
-Dentro de la carpeta de íconos, encontramos distintos tipos:
+Dentro de la carpeta de íconos, encontramos distintos tipos, donde la carpeta _base_ contiene los íconos por defecto:
 
 ![Filezilla](imgNagios/filezilla_10.png)
+
+Por ejemplo, el contenido de la carpeta _logos_:
 
 ![Filezilla](imgNagios/filezilla_11.png)
 
