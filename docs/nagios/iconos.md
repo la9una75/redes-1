@@ -102,7 +102,7 @@ host_name       windowsServer
 icon_image      logos/windows_server.png
 icon_image_alt  Windows Server 2012
 statusmap_image logos/windows_server.gd2
-vrml_image      logos7windows_server.png
+vrml_image      logos/windows_server.png
 }
 
 ```

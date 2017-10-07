@@ -55,10 +55,22 @@ net stop nscp
 
 Para verificar que el servicio NSClient++ esté corriendo en el sistema Microsoft Windows, tendremos que seguir los siguientes pasos: 
 
-* En Windows abrimos una terminal en **modo administrador**. 
-* Ejecutamos `services.msc`
-* Verificamos en el listado que se muestra, que el servicio _NSClient_ este iniciado y seteado como automático.
-* Hacemos clic derecho sobre el servicio _NSClient_, seleccionamos la opción _Propiedades_ del menú contextual y luego elegimos la pestaña _Iniciar sesión_. Allí tildaremos la opción _Permitir que el servicio interactúe con el escritorio_. 
+En Windows abrimos el diálogo _Ejecutar_ pulsando las teclas `Windows` + `r` y ejecutamos `services.msc`
+
+![Servicios Windows](imgNagios/services_01.png)
+
+Hacemos clic derecho sobre el servicio _NSClient++ Monitoring Agent_ y seleccionamos la opción _Propiedades_ del menú contextual
+
+![Servicios Windows](imgNagios/services_02.png)
+
+Verificamos que el servicio _NSClient++_ este iniciado y seteado como automático.
+
+![Servicios Windows](imgNagios/services_03.png)
+
+Elegimos la pestaña _Iniciar sesión_. Allí tildaremos la opción _Permitir que el servicio interactúe con el escritorio_. 
+
+![Servicios Windows](imgNagios/services_04.png)
+
 
 ## Configurando el servicio NSClient++
 
@@ -76,7 +88,6 @@ cd c:\Program Files\NSClient++
 		Podemos hacer clic sobre la carpeta hacia la cual nos queremos desplazar y arrastrarta hacia la terminal de comandos de Windows (abierta). De esta manera, nos desplazaremos rápidamente hacia la carpeta en cuestión. 
 
  
-
 Estando dentro de la carpeta en cuestión, ejecutamos en la consola de Windows: 
 
 ```bash
