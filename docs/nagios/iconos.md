@@ -37,7 +37,7 @@ De esta manera, en la ventana izquierda del programa veremos nuestros archivos d
 
 ![Filezilla](imgNagios/filezilla_06.png)
 
-A continuación nos desplazamos hacia la carpeta `/usr/local/nagios/share/images` que contiene los íconos preinstalados de Nagios que se mostrarán en la vista de mapa:
+A continuación nos desplazamos hacia la carpeta `/usr/share/nagios/htdocs/images/` que contiene los íconos preinstalados de Nagios que se mostrarán en la vista de mapa:
 
 ![Filezilla](imgNagios/filezilla_07.png)
 
@@ -117,7 +117,7 @@ vrml_image      logos/windows_server.png
 Por último, tendremos que [verificar la configuración y reiniciar el servidor Nagios](configuracion/#verificando-la-configuracion-y-reiniciando-nagios) para guardar los cambios que hayamos introducido.
 
 ## Creando nuestro propios íconos
-Nagios aloja las imágenes (iconos) que se mostrarán en el mapa en `/usr/local/nagios/share/images/logos`. 
+Nagios aloja las imágenes (iconos) que se mostrarán en el mapa en `/usr/share/nagios/htdocs/images`. 
 
 Dentro de esta carpeta debemos copiar nuestros iconos personalizados. 
 
