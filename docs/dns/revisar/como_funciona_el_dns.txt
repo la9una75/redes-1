@@ -1,0 +1,19 @@
+===== Cómo funciona el DNS =====
+En la operación del sistema DNS participan tres componentes principales:
+
+  * **El cliente DNS:** Es un programa se ejecuta en la computadora del usuario y que genera peticiones DNS de resolución de nombres a un servidor DNS (Por ejemplo: ¿Qué dirección IP corresponde a itel.edu.ar?). El navegador web es un ejemplo común de cliente DNS.
+  * **Servidores DNS:** Computadoras que responden a las consultas de los clientes. Los servidores recursivos tienen la capacidad de reenviar la petición a otro servidor, si no conocen la respuesta para la consulta formulada.
+  * **Zonas de autoridad:** Son bases de datos, distribuidas en servidores DNS especiales, en las que se almacenan los registros actualizados de cada dominio en el mundo. Estas zonas son autoritativas, en el sentido de que contienen la información oficial, reconocida y verídica de cada dominio.
+{{ :redes:dnsesquema.jpg |Tomado de http://cibernat.com/articulos/dns-de-la-manera-simple}}
+
+//Fuente: [[http://cibernat.com/articulos/dns-de-la-manera-simple]]//
+
+<WRAP center round info 100%>
+=== Cómo funciona DNS ===
+
+  * [[http://192.168.0.200/recursos/redes/dns/comoFuncionaDNS.mkv|Descargar video (mkv)]]
+  * [[http://192.168.0.200/recursos/redes/dns/introduccion_dns.pdf|Descargar artículo (pdf)]]
+  * [[https://www.verisign.com/es_LA/domain-names/online/how-dns-works/index.xhtml|Leer artículo (online)]]
+</WRAP>
+
+
