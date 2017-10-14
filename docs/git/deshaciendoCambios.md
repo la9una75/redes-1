@@ -25,9 +25,8 @@ git reset HEAD~1
 ```
 Así que podemos seguir trabajando, corregir el bug o completar las modificaciones que habíamos dejado incompletas y hacer un nuevo commit con los cambios completos. ¡Así de fácil!
 
-Fuente [http://aprendegit.com/como-deshacer-el-ultimo-commit-en-git](http://aprendegit.com/como-deshacer-el-ultimo-commit-en-git)
-
-See:  
+## Base de conocimiento
+* [http://aprendegit.com/como-deshacer-el-ultimo-commit-en-git](http://aprendegit.com/como-deshacer-el-ultimo-commit-en-git)
 * https://pajarokillo.wordpress.com/2015/02/23/deshaciendo-cambios-con-git/
 * http://www.7sabores.com/blog/como-revertir-un-push-git
 * https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting

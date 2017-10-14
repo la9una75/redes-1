@@ -53,8 +53,10 @@ check_command			check_ssh
 
 !!!note "Sobre los servicios"
 	Los servicios que vamos a monitorear se pueden configurar para:
-	  * un equipo en particular, mediante la directiva **host_name** o
-	  * para un grupo de equipos empleando la directiva **hostgroup_name**.
+
+	* un equipo en particular, mediante la directiva **host_name** o
+	
+	* para un grupo de equipos empleando la directiva **hostgroup_name**.
 
 Para finalizar, tendremos que [verificar la configuración y reiniciar el servidor Nagios](configuracion/#verificando-la-configuracion-y-reiniciando-nagios) para guardar los cambios que hayamos introducido.
 
