@@ -9,12 +9,16 @@ El sistema DNS funciona principalmente en base al protocolo UDP. Los requerimien
 
 El sistema está estructurado en forma de “árbol“. Cada nodo del árbol está compuesto por un grupo de servidores que se encargan de resolver un conjunto de dominios (zona de autoridad). 
 
-Un servidor puede delegar en otro (u otros) la autoridad sobre alguna de sus sub-zonas (esto es, algún subdominio de la zona sobre la que él tiene autoridad). Un subdominio puede verse como una especialización de un dominio de nivel anterior. Por ejemplo, ´itel.edu.ar´ es un subdominio de ´edu.ar´, que a su vez lo es del TLD ´ar´.
+Un servidor puede delegar en otro (u otros) la autoridad sobre alguna de sus sub-zonas (esto es, algún subdominio de la zona sobre la que él tiene autoridad). Un subdominio puede verse como una especialización de un dominio de nivel anterior. Por ejemplo, `itel.edu.ar` es un subdominio de `edu.ar`, que a su vez lo es del TLD `ar`.
 
 !!!tip "Servidores raíz"
 		Los [_root servers_](http://www.root-servers.org/) o _servidores raíz_ tienen autoridad sobre el dominio raíz (“.”), devolviendo los servidores con autoridad para cada uno de los TLD. Son fijos, ya que rara vez cambian, siendo actualmente 13.
 
 ## Funcionamiento del DNS
+
+
+![Funcionamiento del DNS](imgDNS/funcionamientoDNS.png)
+
 
 1. Una aplicación (cliente) necesita resolver un FQHN y envía un requerimiento al servidor de nombres configurado en el sistema (normalmente, el provisto por el ISP). 
 
@@ -33,29 +37,18 @@ Un servidor puede delegar en otro (u otros) la autoridad sobre alguna de sus sub
 8. El servidor inicial informa al cliente el nombre resuelto.
 
 
-![Funcionamiento del DNS](imgDNS/funcionamientoDNS.png)
-
-
-1. Consulta recursiva para geekytheory.com
-2. Consulta iterativa para geekytheory.com a la raíz.
-3. Devuelve la referencia al .com.
-4. Consulta iterativa a geekytheory.com.
-5. Devuelve la referencia al servidor donde está la información de geekytheory.com.
-6. Consulta iterativa para saber los datos de geekytheory.com.
-7. Respuesta con la IP de geekytheory.com.
-8. Respuesta final que contiene la IP de geekytheory.com.
 
 
 ## Terminología
 Antes de proseguir, es necesario introducir algunos términos básicos para evitar confusiones y
 ambigüedades. Otros términos más complejos serán tratados más adelante.
 
-* **Host Name**: El nombre de un _host_ es una sola "palabra" (formada por letras, números y/o guiones). Ejemplos de nombres de host son ´www´, ´itel´ y ´blog´.
-* **Fully Qualified Host Name (FQHN)**: Es el "nombre completo" de un host. Está formado por el _hostname_, seguido de un punto y su correspondiente nombre de dominio. Por ejemplo: ´itel.edu.ar´
+* **Host Name**: El nombre de un _host_ es una sola "palabra" (formada por letras, números y/o guiones). Ejemplos de nombres de host son `www`, `itel` y `blog`.
+* **Fully Qualified Host Name (FQHN)**: Es el "nombre completo" de un host. Está formado por el _hostname_, seguido de un punto y su correspondiente nombre de dominio. Por ejemplo: `itel.edu.ar`
 * **Domain Name**: El nombre de dominio es una sucesión de nombres concatenados por puntos.
-  Algunos ejemplos son ´itel.edu.ar´, ´com.ar´ y ´ar´.
+  Algunos ejemplos son `itel.edu.ar`, `com.ar` y `ar`.
 * **Top Level Domains (TLD)**: Los dominios de nivel superior son aquellos que no pertenecen a otro
-  dominio. Ejemplos de este tipo son ´com´, ´org´ y ´ar´.
+  dominio. Ejemplos de este tipo son `com`, `org` y `ar`.
 
 
 
