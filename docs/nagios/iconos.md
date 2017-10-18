@@ -110,8 +110,10 @@ vrml_image      logos/windows_server.png
 
 !!!note "Sobre los íconos"
 	Los **íconos** se pueden configurar para:
-	  * un equipo en particular, mediante la directiva **host_name** o
-	  * para un grupo de equipos empleando la directiva **hostgroup_name**.
+
+	* un equipo en particular, mediante la directiva **host_name** o
+	
+	* para un grupo de equipos empleando la directiva **hostgroup_name**.
 
 
 Por último, tendremos que [verificar la configuración y reiniciar el servidor Nagios](configuracion/#verificando-la-configuracion-y-reiniciando-nagios) para guardar los cambios que hayamos introducido.
