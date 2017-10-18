@@ -1,0 +1,13 @@
+====== Cuestionario DNS ======
+  - Defini los siguientes conceptos: FQHN, Host Name, Domain Name. Da un ejemplo de cada uno. 
+  - ¿Qué es el TTL?
+  - ¿Que es TDL, SOA y RR?
+  - ¿Cuál puede ser la longitud máxima de un nombre de dominio?
+  - ¿Qué tipo de sistema es el sistema de nombres de dominios en Internet?
+    - Se trata de un sistema centralizado e independiente. El punto central se basa en un árbol que define la jerarquía entre los dominios y los sub-dominios.
+    - Se trata de un sistema centralizado, independiente y único. El punto central se basa en un árbol que define la jerarquía entre los dominios y los sub-dominios.
+    - Se trata de un sistema distribuido, jerárquico, replicado y tolerante a fallas. El punto central se basa en un árbol que define la jerarquía entre los dominios y los sub-dominios.
+  - Explicá brevemente cuáles son y el funcionamiento de los distintos tipos de servidores DNS
+  - Explicá y da un ejemplo de cada tipo de registro de un DNS
+  - ¿Cuál es la diferencia entre resolución de nombres y resolución inversa?
+  - Diferenciá los siguientes tipos de servidor DNS: caché, maestro y esclavo. 

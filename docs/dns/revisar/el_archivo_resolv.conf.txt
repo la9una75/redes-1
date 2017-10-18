@@ -1,0 +1,57 @@
+====== El archivo resolv.conf ======
+
+
+Una vez configurado nuestro servidor DNS, debemos indicar a nuestro servidor Linux que **el servidor DNS es él mismo**, lo cual se especifica en el archivo ''/etc/resolv.conf''. Este es el archivo de configuración del resolver. Se usa para que un cliente pueda acceder a DNS y, en él se proporcionan los servidores de DNS que se van a utilizar.
+
+Para poder escribir nuestra configuración en dicho archivo y conservar los cambios deberemos instalar el paquete **resolvconf** 
+
+===== Instalación de resolvconf =====
+
+<code apache>
+sudo apt-get install resolvconf
+</code>
+
+===== Modificando resolvconf =====
+
+
+Acto seguido, modificaremos la información del archivo de la siguiente manera: 
+
+<code apache>
+nano /etc/resolvconf/resolv.conf.d/head
+</code>
+
+Por último, ingresaremos los datos de nuestro servidor DNS:
+
+<code bash>
+// Indicamos que nosotros mismos somos servidores DNS
+// y por defecto buscamos en nuestro dominio
+// Editar /etc/resolvconf/resolv.conf.d/head del servidor DNS
+
+
+// nameserver ip_de_servidor_dns
+nameserver 127.0.0.1
+
+// search nombre_de_dominio_a_resolver
+search ieslapaloma.com
+</code>
+
+Actualizaremos los datos ingresados mediante el siguiente comando: 
+
+<code bash>
+sudo resolvconf -u
+</code>
+
+===== Reiniciando el servidor DNS =====
+
+
+Tan solo nos faltará poner en marcha nuestro servidor de nombres ejecutando en el servidor el script de inicio correspondiente:
+
+<code bash>
+sudo service bind9 restart
+</code>
+
+o bien
+
+<code bash>
+sudo service dnsmasq restart
+</code>

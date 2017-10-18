@@ -62,6 +62,7 @@ pages:
     - Autenticación de llave pública: 'ssh/authKey.md'
 - Resolución de nombres: 
     - El archivo hosts: 'dns/archivoHosts.md'
+    - DNS: 'dns/index.md'
 - LAMP:
     - ¿Qué es LAMP?: 'lamp/queEs.md'
     - Instalación: 'lamp/instalacion.md'

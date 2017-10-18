@@ -1,0 +1,396 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="distribution" content="global" />
+<meta name="language" content="es" />
+<meta name="author" content="Javier Smaldone" />
+<meta name="description" content="Introducción al DNS" />
+<meta name="keywords" content="Javier, Smaldone, Rio, Cuarto, Cordoba, blog, gnu, linux, software, libre,
+dns, dominio, sistema, nombres, bind, mx, cname, resolución, resolver, dirección, ip, direccion, resolucion, redes, udp, 57, tcp, ip, tcpip, paquetes, ethernet, tutorial, cliente, servidor" />
+<title>Introducción al DNS</title>
+</head>
+<body>
+
+<h1>Introducción al DNS</h1>
+<p><strong>Javier Smaldone</strong> (<a
+href="http://blog.smaldone.com.ar">http://blog.smaldone.com.ar</a>)<br />
+5 de diciembre de 2006</p>
+
+<h2>Introducción</h2>
+
+<p>Este artículo tiene como objetivo realizar una introducción al
+funcionamiento del "<a
+href="http://es.wikipedia.org/wiki/Domain_Name_System"><em>Sistema de
+Nombres de Dominio</em></a>" (<strong>DNS</strong>, por "<a
+href="http://en.wikipedia.org/wiki/Domain_name_system"><em>Domain Name
+System</em></a>").</p>
+
+<p>El <strong>DNS</strong> se utiliza principalmente para la <em>resolución
+de nombres</em>, esto es, decidir qué <em>dirección <strong>IP</strong></em>
+pertenece a determinado nombre completo de <em>host</em>.</p>
+
+<p>La versión original (online) de este artículo, además de los comentarios de
+los lectores, puede encontrarse en: <a
+href="http://blog.smaldone.com.ar/2006/12/05/como-funciona-el-dns/">http://blog.smaldone.com.ar/2006/12/05/como-funciona-el-dns/</a>.</p>
+
+
+<h2>Licencia</h2>
+
+<p><!--Creative Commons License-->
+Este tutorial se distribuye bajo una <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/2.5/ar/">Licencia
+Creative Commons Atribución-No Comercial-Compartir Obras Derivadas Igual 2.5
+Argentina</a>.<!--/Creative Commons License--></p>
+
+
+<h2>Usos del DNS</h2>
+
+<p>El <strong>DNS</strong> se utiliza para distintos propósitos. Los más
+comunes son:</p>
+
+<ul>
+
+<li><strong>Resolución de nombres</strong>: Dado el nombre completo de un
+<em>host</em> (por ejemplo <em>blog.smaldone.com.ar</em>), obtener su
+<em>dirección <strong>IP</strong></em> (en este caso,
+<em>208.97.175.41</em>).</li>
+
+<li><strong>Resolución inversa de direcciones</strong>: Es el mecanismo
+inverso al anterior. Consiste en, dada una <em>dirección
+<strong>IP</strong></em>, obtener el nombre asociado a la misma.</li>
+
+<li><strong>Resolución de servidores de correo</strong>: Dado un <em>nombre
+de dominio</em> (por ejemplo <em>gmail.com</em>) obtener el servidor a
+través del cual debe realizarse la entrega del correo electrónico (en este
+caso, <em>gmail-smtp-in.l.google.com</em>).</li>
+</ul>
+
+<p>Por tratarse de un sistema muy flexible, es utilizado también para muchas
+otras funciones, tales como la obtención de claves públicas de <a
+href="http://es.wikipedia.org/wiki/Clave_p%C3%BAblica">cifrado
+asimétrico</a> y la validación de envío de e-mails (a través de mecanismos
+como <a href="http://es.wikipedia.org/wiki/SPF">SPF</a>).</p>
+
+<h2>Terminología básica</h2>
+
+<p>Antes de proseguir, es necesario introducir algunos términos básicos para
+evitar confusiones y ambigüedades. Otros términos más complejos serán
+tratados más adelante.</p>
+
+<ul>
+<li><strong>Host Name</strong>: El nombre de un <em>host</em> es una sola
+"<em>palabra</em>" (formada por letras, números y guiones). Ejemplos de
+nombres de <em>host</em> son "<em>www</em>", "<em>blog</em>" y
+"<em>obelix</em>".</li>
+
+<li><strong>Fully Qualified Host Name</strong> (<strong>FQHN</strong>): Es
+el "<em>nombre completo</em>" de un <em>host</em>. Está formado por el
+<em>hostname</em>, seguido de un punto y su correspondiente <em>nombre de
+dominio</em>. Por ejemplo, "<em>blog.smaldone.com.ar</em>"</li>
+
+<li><strong>Domain Name</strong>: El <a
+href="http://es.wikipedia.org/wiki/Nombre_de_dominio"><em>nombre de
+dominio</em></a> es una sucesión de nombres concatenados por puntos. Algunos
+ejemplos son "<em>smaldone.com.ar</em>", "<em>com.ar</em>" y
+"<em>ar</em>".</li>
+
+<li><strong>Top Level Domains</strong> (<strong>TLD</strong>): Los <a
+href="http://es.wikipedia.org/wiki/Dominio_de_nivel_superior"><em>dominios
+de nivel superior</em></a> son aquellos que no pertenecen a otro dominio.
+Ejemplos de este tipo son "<em>com</em>", "<em>org</em>", "<em>ar</em>" y
+"<em>es</em>".</li>
+
+</ul>
+
+<h2>Arquitectura del DNS</h2>
+
+<p>El sistema DNS funciona principalmente en base al <a
+href="http://es.wikipedia.org/wiki/Udp">protocolo <strong>UDP</strong></a>.
+Los requerimientos se realizan a través del <em>puerto</em>
+<strong>53</strong>.</p>
+
+<p>El sistema está estructurado en forma de "<em>árbol</em>". Cada
+<em>nodo</em> del árbol está compuesto por un grupo de servidores que se
+encargan de resolver un conjunto de dominios (<em>zona de autoridad</em>).
+Un servidor puede delegar en otro (u otros) la autoridad sobre alguna de sus
+sub-zonas (esto es, algún <em>subdominio</em> de la zona sobre la que él
+tiene autoridad). Un subdominio puede verse como una
+<em>especialización</em> de un dominio de nivel anterior. Por ejemplo,
+"<em>smaldone.com.ar</em>" es un subdominio de "<em>com.ar</em>", que a su
+vez lo es del <strong>TLD</strong> "<em>ar</em>".</p>
+
+<p>El siguiente diagrama ilustra esto a través de un ejemplo:</p>
+
+<center><img
+src="zonas.png" alt="Zonas y
+delegación" /></center>
+
+<p>Los servidores con autoridad sobre los <strong>TLD</strong> son los
+llamados "<em>root servers</em>" (o "<em>servidores raíz</em>") del sistema.
+Estos son fijos, ya que rara vez cambian, <a
+href="http://en.wikipedia.org/wiki/Root_nameserver">siendo actualmente
+13</a>.</p>
+
+<p>Tomemos como ejemplo el dominio "<em>com.ar</em>". Este dominio pertenece
+al <strong>TLD</strong> "<em>ar</em>".</p>
+
+<p>Los servidores con autoridad sobre el dominio "<em>ar</em>" son:</p>
+
+<p><code>ns-ar.ripe.net<br />
+merapi.switch.ch<br />
+uucp-gw-1.pa.dec.com<br />
+uucp-gw-2.pa.dec.com<br />
+ns.uu.net<br />
+ns1.retina.ar<br />
+athea.ar<br />
+ctina.ar</code></p>
+
+<p>En tanto que los servidores con autoridad sobre "<em>com.ar</em>"
+son:</p>
+
+<p><code>merapi.switch.ch<br />
+relay1.mecon.gov.ar<br />
+ns.uu.net<br />
+ns1.retina.ar<br />
+athea.ar<br />
+ctina.ar</code></p>
+
+<p>Podemos ver que <em>ns.uu.net</em>, <em>ns1.retina.ar</em>,
+<em>athea.ar</em> y <em>ctina.ar</em> tienen autoridad tanto sobre
+"<em>com.ar</em>" como sobre "<em>ar</em>".</p>
+
+
+<h2>El proceso de resolución de nombres</h2>
+
+<p>Cuando una aplicación (cliente) necesita resolver un
+<strong>FQHN</strong> envía un requerimiento al <em>servidor de nombres</em>
+configurado en el sistema (normalmente, el provisto por el
+<strong>ISP</strong>). A partir de entonces se desencadena el proceso de
+resolución del nombre:</p>
+
+<ol>
+<li>El servidor de nombres inicial consulta a uno de los <em>servidores
+raíz</em> (cuya <em>dirección <strong>IP</strong></em> debe conocer
+previamente).</li>
+<li>Este devuelve el nombre del servidor a quien se le ha delegado la
+sub-zona.</li>
+<li>El servidor inicial interroga al nuevo servidor.</li>
+<li>El proceso se repite nuevamente a partir del punto 2 si es que se trata
+de una sub-zona delegada.</li>
+<li>Al obtener el nombre del servidor con autoridad sobre la zona en
+cuestión, el servidor inicial lo interroga.</li>
+<li>El servidor resuelve el nombre correspondiente, si este existe.</li>
+<li>El servidor inicial informa al cliente el nombre resuelto.</li>
+</ol>
+
+<p>Ilustremos esto con un ejemplo concreto. Supongamos que el navegador
+necesita resolver el nombre "<em>blog.smaldone.com.ar</em>".</p>
+
+<ol>
+<li>El sistema tiene configurado el servidor de nombres
+<em>200.49.156.3</em> (perteneciente al proveedor argentino
+<em>Fibertel</em>). Por lo tanto envía a éste el requerimiento de resolver
+"<em>blog.smaldone.com.ar</em>".</li>
+<li>El servidor de <em>200.49.156.3</em> envía la consulta <em>root
+server</em> <em>198.41.0.4</em>.</li>
+<li>198.41.0.4 le informa que el servidor con autoridad sobre "<em>ar</em>"
+es <em>athea.ar</em>, cuya <em>dirección <strong>IP</strong></em> es
+<em>200.16.98.2</em>. (En realidad, informa la lista de todos los servidores
+con tal autoridad, pero para simplificar el ejemplo tomaremos solamente
+uno.)</li>
+<li><em>200.49.156.3</em> envía nuevamente el requerimiento a
+<em>athea.ar</em> (el cual, recordemos, también tiene autoridad sobre
+"<em>com.ar</em>").</li>
+<li><em>athea.ar</em> responde que la autoridad sobre
+<em>smaldone.com.ar</em> la tiene <em>ns1.mydomain.com</em> cuya
+<em>dirección <strong>IP</strong></em> es <em>64.94.117.213</em>.</li>
+<li><em>200.49.156.3</em> envía ahora la consulta a
+<em>ns1.mydomain.com</em>.</li>
+<li><em>ns1.mydomain.com</em> informa que la <em>dirección
+<strong>IP</strong></em> de "<em>blog.smaldone.com.ar</em>" es
+<em>208.97.175.41</em>.</li>
+<li>Finalmente, <em>200.49.156.3</em> devuelve este resultado a la
+aplicación que originó la consulta.</li>
+</ol>
+
+
+<h2>Mecanismos de caché</h2>
+
+<p>Cada vez que un servidor de nombres envía una respuesta, lo hace
+adjuntando el tiempo de validez de la misma (<strong>TTL</strong> o
+"<em>tiempo de vida</em>"). Esto posibilita que el receptor, antes la
+necesidad de volver a resolver la misma consulta, pueda utilizar la
+información previamente obtenida en vez de realizar un nuevo
+requerimiento.</p>
+
+<p>Esta es la razón por la cual los cambios realizados en el
+<strong>DNS</strong> no se propagan instantáneamente a través del sistema.
+Dependiendo de la naturaleza de los mismos (y de la configuración de cada
+servidor), la propagación puede tardar desde algunos minutos hasta varios
+días.</p>
+
+
+
+<h2>Correo electrónico y resolución de nombres</h2>
+
+<p>Normalmente los usuarios de correo electrónico redactan su mensajes
+usando un cliente de correo y enviándolo a través de un servidor <a
+href="http://es.wikipedia.org/wiki/SMTP"><strong>SMTP</strong></a> provisto
+por su <strong>ISP</strong> o a través de un sistema de <em>correo vía
+web</em> (<em>webmail</em>). En cualquier caso, una vez que el mensaje es
+recibido por el servidor, debe ser entregado al destinatario.  Aquí
+interviene el sistema <strong>DNS</strong>:</p>
+
+<ol>
+<li>El servidor del emisor solicita al <strong>DNS</strong> (de acuerdo al
+mecanismo analizado anteriormente), la entrada <strong>MX</strong> del
+dominio del receptor del mensaje. <strong>MX</strong> significa "<em>mail
+exchanger</em>", esto es, el nombre del servidor (o los servidores)
+encargado de recibir los mensajes destinados a determinado dominio.</li>
+<li>El <strong>DNS</strong> devuelve el <strong>FQHN</strong> y la
+<em>dirección <strong>IP</strong></em> del <em>mail exchanger</em>.</li>
+<li>El servidor del emisor se conecta al puerto 25, mediante
+<strong>TCP</strong>, del servidor del destinatario y entrega el mensaje
+según el protocolo <strong>SMTP</strong>.</li>
+<li>El proceso podrá continuar si el servidor receptor del mensaje no es el
+último de la cadena. Existen servidores que actuan como "<em>puertas de
+enlace</em>" o "<em>gateways</em>" de correo electrónico, y que se encargan
+de recibir los mensajes de determinados dominios para luego enviarlos a
+otros servidores.</li>
+</ol>
+
+<h2>Tipos de registro en un servidor de nombres</h2>
+
+<p>Un servidor de nombres puede almacenar distinta información. Para ello,
+en cada zona de autoridad dispondrá de entradas de distinto tipo. Entre los
+más importantes se encuentran:</p>
+
+<ul>
+<li><strong>A (Address)</strong>: Este registro se utiliza para traducir
+nombres de <em>hosts</em> del dominio en cuestión a direcciones IP.</li>
+<li><strong>CNAME (Canonical Name)</strong>: El <em>nombre canónico</em> es
+un alias para un <em>host</em> determinado. (No define una <em>dirección
+<strong>IP</strong></em>, sino un nuevo nombre.)</li>
+<li><strong>NS (Name Server)</strong>: Especifica el servidor (o servidores)
+de nombres para un dominio.</li>
+<li><strong>MX (Mail Exchange)</strong>: Define el servidor encargado de
+recibir el correo electrónico para el dominio.</li>
+<li><strong>PTR (Pointer)</strong>: Especifica un "<em>registro
+inverso</em>", a la inversa del registro <strong>A</strong>, permitiendo la
+traducción de <em>direcciones <strong>IP</strong></em> a nombres.</li>
+<li><strong>TXT (Text)</strong>: Permite asociar información adicional a un
+dominio. Esto se utiliza para otros fines, como el almacenamiento de claves
+de cifrado, "<a
+href="http://en.wikipedia.org/wiki/DomainKeys"><em>DomainKeys</em></a>" o
+"<a href="http://es.wikipedia.org/wiki/SPF"><em>Sender Policy
+Framework</em></a>".</li>
+</ul>
+
+
+<h2>Bind, "el" servidor de nombres</h2>
+
+<p>Prácticamente el único software utilizado en los servidores de nombres de
+<em>Internet</em> es <a
+href="http://es.wikipedia.org/wiki/BIND"><strong>bind</strong></a>
+("<em>Berkeley Internet Name Domain</em>"), creado originalmente en la
+<em>Universidad de California</em>, y actualmente propiedad del <em>Internet
+Systems Consortium</em>.</p>
+
+<p>Este programa, distribuido bajo una licencia libre, es utilizado en
+practicamente todos los sistemas <em>Unix</em> del mundo. Esto ha sido
+considerado un problema de seguridad, al punto que se ha propuesto la
+migración de algunos <em>root servers</em> a otro sistema, ya que la
+aparición de algún problema de seguridad den <strong>bind</strong> podría
+implicar la caída de todo el <strong>DNS</strong> de <em>Internet</em>.</p>
+
+<h2>Uso del DNS en una red local</h2>
+
+<p>Ya en redes de tamaño medio (quizás más de 5 equipos) es conveniente la
+utlización de <strong>DNS</strong>. Esto nada tiene que ver con el
+<strong>DNS</strong> de <em>Internet</em> (aunque el servidor local puede
+estar vinculado a este sistema).</p>
+
+<p>Básicamente, es conveniente montar un servidor local de
+<strong>DNS</strong> por los siguientes motivos:</p>
+
+<ul>
+<li><strong>Agilizar el acceso a Internet</strong>: Al tener un <em>servidor
+de nombres</em> en nuestra propia red local (que acceda al
+<strong>DNS</strong> de nuestro proveedor o directamente a los <em>root
+servers</em>) se agiliza el mecanismo de resolución de nombres, manteniendo
+en <em>caché</em> los nombres recientemente usados en la red y disminuyendo
+el tráfico hacia/desde <em>Internet</em>.</li>
+<li><strong>Simplificar la administración de la red local</strong>: Al
+contar con un <strong>DNS</strong> propio (ya sea uno o varios servidores de
+nombres) es posible definir <em>zonas locales</em> (no válidas ni accesibles
+desde <em>Internet</em>) para asignar nombres a cada uno de los
+<em>hosts</em> de la <strong>LAN</strong>. De esta forma es posible, por
+ejemplo, referirnos a la impresora de red como
+"<em>hplaser.mired.local</em>" en vez de "<em>192.168.0.2</em>" y a nuestro
+servidor de correo interno como "<em>smtp.mired.local</em>" en vez de
+"<em>192.168.0.3</em>". (Pensemos, por ejemplo, que ocurriría con las
+configuraciones de las aplicaciones si un día decidimos cambiar el esquema
+de <em>direcciones <strong>IP</strong></em> de nuestra red.)</li>
+</ul>
+
+
+<h2>Problemas del DNS</h2>
+
+<p>El principal problema que presenta el <strong>DNS</strong> es que, al
+estar basado en <strong>UDP</strong> (protocolo de transporte que no
+garantiza la recepción de la información enviada), tanto las consultas como
+las respuestas pueden "<em>perderse</em>" (por ejemplo, a causa de
+congestionamiento en algún enlace de la red). Es común apreciar cómo, en el
+caso de servidores y redes no muy bien configuradas, la resolución de
+nombres se resiente sensiblemente ante cualquier anomalía (saturación de
+tráfico o del servidor de nombres local).</p>
+
+<p>Otro inconveniente, que ya hemos hecho notar, es la lentitud de la
+propagación de las modificaciones en el sistema, producto de la propia
+arquitectura del mismo.</p>
+
+<p>Pero quizás el mayor problema no sea inherente al sistema mismo, sino a
+la pésima configuración de los servidores de muchos <strong>ISP</strong>.
+<em>Fibertel</em>, el proveedor que utilizo, es un notable ejemplo de esta
+falencia. Una buena solución a esta situación es ejecutar un <em>servidor de
+nombres</em> en alguna PC de la red local, de forma tal que se comunique
+directamente con los <strong>root servers</strong> (evitando de esta forma
+pasar a través de los  servidores de nombres de nuestro proveedor).</p>
+
+<h2>Herramientas para aprender más</h2>
+
+<p>En sistemas <strong>Unix</strong> el comando <strong>dig</strong> (ver
+"<strong>man dig</strong>") permite realizar requerimientos "<em>a
+mano</em>" para poder investigar un poco más sobre el funcionamiento del
+<strong>DNS</strong> y, cómo no, también para detectar y solucionar
+problemas en la red.</p>
+
+<p>Los usuarios de sistemas <strong>Windows</strong> disponen del comando
+<strong>nslookup</strong> (aunque no tan potente como <strong>dig</strong>),
+para el mismo propósito.</p>
+
+
+<h2>Lectura adicional</h2>
+
+<ul>
+<li>La <a href="http://es.wikipedia.org/wiki/Domain_Name_System">página de
+Wikipedia sobre <strong>DNS</strong></a> contiene bastante información y
+buenos enlaces sobre este tema.</li>
+<li>El "<a href="http://www.insflug.org/COMOs/DNS-Como/DNS-Como.html"><em>DNS
+Cómo</em></a>" explica la configuración de <strong>bind</strong> en
+<strong>GNU/Linux</strong>.</li>
+<li>El <a
+href="http://www.rfc-es.org/rfc/rfc1591-es.txt"><strong>RFC</strong>
+1591</a> explica detalladamente la estructura del <strong>DNS</strong>.</li>
+<li>Los <strong>RFC</strong> <a
+href="ftp://ftp.rfc-editor.org/in-notes/rfc1034.txt">1034</a> y <a
+href="ftp://ftp.rfc-editor.org/in-notes/rfc1035.txt">1035</a> (ambos en
+inglés), describen completamente el <strong>DNS</strong>.</li>
+</ul>
+
+
+</body>
+</html>
+
+
+
