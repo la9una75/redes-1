@@ -61,9 +61,12 @@ pages:
 - SSH: 
     - Autenticación de llave pública: 'ssh/authKey.md'
 - Resolución de nombres: 
-#    - ¿Qué es el DNS?: 'dns/index.md'
     - El archivo hosts: 'dns/archivoHosts.md'
-    - DNS: 'dns/index.md'
+    - ¿Qué es el DNS?: 'dns/index.md'
+    - BIND: 'dns/bind.md'
+    - Instalación: 'dns/instalacion.md'
+    - Caché DNS: 'dns/cache.md'
+    - Servidor DNS local: 'dns/local.md'
 - LAMP:
     - ¿Qué es LAMP?: 'lamp/queEs.md'
     - Instalación: 'lamp/instalacion.md'
