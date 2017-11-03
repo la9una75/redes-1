@@ -78,7 +78,7 @@ ftp             CNAME   virtual
 
 ```
 
-El protocolo DNS permite también la creación de aliases, o canonical names, identificados por el tipo de registro CNAME. Un alias es un nombre alternativo de un sistema.
+El protocolo DNS permite también la creación de alias, o canonical names, identificados por el tipo de registro CNAME. Un alias es un nombre alternativo de un sistema.
 
 Al final del archivo podrán declararse algunos _aliases_ donde: el sistema `server` pasará también a ser conocido (CNAME o canonical name) como `proxy` y el servidor `virtual` responderá también por los nombres `www` y `ftp`. 
 
