@@ -5,6 +5,31 @@ sudo apt-get install bind9 bind9-doc dnsutils
 
 De esta forma instalaríamos los programas necesarios para disponer de un completo servidor DNS con **bind**. Tan solo será necesario configurarlo y ponerlo en marcha. 
 
+## Iniciando el servidor
+Para iniciar el servidor simplemente ejecutamos en una terminal:
+
+```bash
+sudo service bind9 start
+```
+Y para verificar que el servicio esté corriendo (presionamos la letra `q` para salir: 
+
+```bash
+sudo service bind9 status
+```
+O bien, si queremos verificar que el demonio _named_ esté escuchando en el puerto 53
+
+
+```bash
+sudo netstat -punta
+```
+
+De esta forma instalaríamos los programas necesarios para disponer de un completo servidor DNS con **bind**. Tan solo será necesario configurarlo y ponerlo en marcha. 
+
+De esta forma instalaríamos los programas necesarios para disponer de un completo servidor DNS con **bind**. Tan solo será necesario configurarlo y ponerlo en marcha. 
+
+De esta forma instalaríamos los programas necesarios para disponer de un completo servidor DNS con **bind**. Tan solo será necesario configurarlo y ponerlo en marcha. 
+
+
 ## Principales archivos de configuración 
 
 El archivo de configuración del DNS es el archivo `/etc/bind/named.conf`, pero este hace referencia a otros cuantos archivos como por ejemplo:

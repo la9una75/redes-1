@@ -6,100 +6,123 @@ Como forwarders podemos elegir entre dos opciones:
 
 * Utilizar los servidores **DNS de nuestro ISP** o proveedor de acceso a Internet.
 
-* Utilizar alguno de los servidores **DNS publicos**, como por ejemplo: 
+* Utilizar alguno de los servidores **DNS públicos**
 
-	- [Comodo](https://www.comodo.com/secure-dns): `8.26.56.26 - 8.20.247.20`
-  - [FoolDNS](http://www.fooldns.com/fooldns-community): `87.118.111.215 - 213.187.11.62`
-	- [Google](https://developers.google.com/speed/public-dns): `8.8.8.8 - 8.8.4.4`
-	- [OpenDNS](https://www.opendns.com): `208.67.222.222 - 208.67.220.220`
-	- [OpenNIC](https://www.opennicproject.org): `66.70.211.246 - 128.52.130.209`
-	- [Yandex](https://dns.yandex.com): `77.88.8.8 - 77.88.8.1`
+!!!done "Servidores DNS públicos" 
+    - [Comodo](https://www.comodo.com/secure-dns): `8.26.56.26 - 8.20.247.20`
+    - [FoolDNS](http://www.fooldns.com/fooldns-community): `87.118.111.215 - 213.187.11.62`
+    - [Google](https://developers.google.com/speed/public-dns): `8.8.8.8 - 8.8.4.4`
+    - [OpenDNS](https://www.opendns.com): `208.67.222.222 - 208.67.220.220`
+    - [OpenNIC](https://www.opennicproject.org): `66.70.211.246 - 128.52.130.209`
+    - [Yandex](https://dns.yandex.com): `77.88.8.8 - 77.88.8.1`
 
 Estos servicios prometen suministrar no sólo resoluciones más rápidas, sino también diversos servicios adicionales de seguridad, como filtros de direcciones maliciosos y otros más.
 
-En este caso, utilizaremos los servidores **OpenDNS**. Para tener otra opción, también se añadirá el del **router** ofrecido por nuestro proveedor de internet.
+## Ejemplo de archivo de configuración
+La configuración del servidor DNS caché se encuentra en el archivo `/etc/bind/named.conf.options`. 
 
-Por seguridad:
+Antes de comenzar, siempre conviene realizar una copia de seguridad del arvhivo en cuestión: 
 
-* sólo serán recibidas conexiones por la interfaz local o por la destinada a la red interna: `listen-on { 127.0.0.1; 192.168.1.100; };`
+```bash
+cd /etc/bind \
+sudo cp named.conf.options named.conf.options.original
+```
 
-* sólo serán contestados los pedidos de resolución que partan del propio puesto o de la red interna: `allow-query { 127.0.0.1; 192.168.1.0/24; };`
+Posteriormente, creamos un nuevo archivo para su edición: 
 
-* todos los otros pedidos **serán ignorados**, para evitar eventuales utilizaciones abusivas de nuestro servidor DNS por parte de terceros
+```bash
+sudo vim named.conf.options
+```
 
-La configuración está guardada en el archivo `/etc/bind/named.conf.options`:
+Y agregamos el siguiente contenido, el cual deberás adaptar según necesidad: 
 
 ```apache
+
 options {
+
+  #########################
+  ### Directorio chaché ###
+  #########################
+
   directory "/var/cache/bind";
 
-// If there is a firewall between you and nameservers you want
-// to talk to, you may need to fix the firewall to allow multiple
-// ports to talk.  See http://www.kb.cert.org/vuls/id/800113
+  ####################
+  ### Reenviadores ###
+  ####################
 
-// If your ISP provided one or more IP addresses for stable
-// nameservers, you probably want to use them as forwarders.
-// Uncomment the following block, and insert the addresses replacing
-// the all-0's placeholder.
+  forwarders {
+    # Servidores DNS públicos de Google
+    8.8.8.8;
+    8.8.4.4;
+    # Servidor DNS provisto por nuestro ISP (generalmente, el router)
+    192.168.0.1;
+  };
+  
+  #############################
+  ### Opciones de seguridad ###
+  #############################
 
-forwarders {
+  # Creando una lista de control de acceso (acl)  
+  acl "permitidos" {
+      192.168.0.0/24;
+      localhost;
+      localnets;
+  };
 
-  // OpenDNS servers
-  208.67.222.222;
-  208.67.220.220;
+  # Hosts que tienen permiso para escuchar peticiones por el puerto 53
+  # Cambiar 192.168.0.xxx por la dirección IP de nuestro servidor DNS
+  listen-on port 53 { 
+      127.0.0.1; 
+      192.168.0.xxx; 
+  };
+  
+  # Hosts que tienen permiso para escuchar peticiones IPv6
+  listen-on-v6 { any; };
+  
+  # Hosts que tienen permiso para realizar consultas
+  allow-query { permitidos; };
 
-  // DNS del router
-  192.168.1.1;
-
+  # Hosts que tienen permiso para realizar consultas recursivas
+  allow-recursion { permitidos; };
+  
+  # Permitiendo transferencia de zona a servidor DNS esclavo
+  allow-transfer { none; };
+  
+  # Permitiendo validación DNSSEC
+  dnssec-validation auto;
+  
+  # Respuesta NXDOMAIN según RFC1035 (yes en servidores antiguos) 
+  auth-nxdomain no;
+  
 };
 
-// Security options
-
-listen-on port 53 { 127.0.0.1; 192.168.1.100; };
-allow-query { 127.0.0.1; 192.168.1.0/24; };
-allow-recursion { 127.0.0.1; 192.168.1.0/24; };
-allow-transfer { none; };
-
-//========================================================================
-// If BIND logs error messages about the root key being expired,
-// you will need to update your keys.  See https://www.isc.org/bind-keys
-//========================================================================
-
-dnssec-validation auto;
-
-auth-nxdomain no;    # conform to RFC1035
-// listen-on-v6 { any; };
-
-};
 ```
+
+!!!tip "Comentarios"
+    La siguiente son etiquetas de comentarios válidas:
+
+      * `//` ó `#` Para realizar comentarios de una sola línea, al comienzo de la misma. 
+
+      * `/* texto */` Para realizar comentarios multilínea, colocando texto entre estas etiquetas. 
+
+Donde: 
+
+* **Directorio caché**: es la carpeta en la cual el servidor DNS guardará las consultas realizadas. 
+
+* **Forwarders**: son los servidores DNS a los cuáles consultará nuestro servidor DNS en caso de no ser capaz de resolver un nombre de dominio. En el ejemplo, se usan los servidores DNS públicos de _Google_ y, para tener otra opción, también se añade la IP del _router_, puesto que generalmente, es la dirección IP  ofrecida por nuestro proveedor de internet para la resolución de nombres de dominio. 
+
+* **Listas de control de acceso**: de manera conveniente se crea una lista de las direcciones IP que podrán realizar consultas a nuestro servidor DNS. En el ejemplo, se creó una lista llamada _permitidos_, la cual incluye todas las direcciones IP de la red `192.168.0.0/24`, la dirección local o `localhost` y todas las direcciones IP vinculadas con todas las interfaces de red del servidor, con la palabra reservada `localnets`. Todos los otros pedidos **serán ignorados**, para evitar eventuales utilizaciones abusivas de nuestro servidor DNS por parte de terceros
+
+!!!note "Opciones de permisión"
+    Además de emplear el nombre de una _acl_ creada (en nuestro ejemplo, _permitidos_), los valores que podemos utilizar a la hora de establecer los permisos para los distintos _hosts_ son: 
+
+    * `none`: ninguno
+    * `any`: todos
+
 
 ## Verificando la configuración
 Para cerciorase que los cambios realizados en el paso anterior fueron los correctos, ejecutamos el comando: 
 
 ```bash
 sudo named-checkconf
-```
-
-Luego abrimos el archivo encargado de la resolución de nombres en el equipo, también llamado _resolver_:
-
-```bash
-sudo vim /etc/resolvconf/resolv.conf.d/head
-```
-
-Y agregamos lo siguiente para que la resolución de nombres se haga localmente:
-
-```bash
-nameserver 127.0.0.1
-```
-
-Verificamos también que en el archivo `/etc/nsswitch.conf` la resolución de nombres pase también por el servicio DNS:
-
-```bash
-hosts:  files dns
-```
-
-Finalmente, reiniciamos el servicio DNS:
-
-```bash
-sudo service bind9 restart
 ```

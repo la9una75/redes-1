@@ -65,8 +65,12 @@ pages:
     - ¿Qué es el DNS?: 'dns/index.md'
     - BIND: 'dns/bind.md'
     - Instalación: 'dns/instalacion.md'
-    - Caché DNS: 'dns/cache.md'
-    - Servidor DNS local: 'dns/local.md'
+    - DNS caché: 'dns/cache.md'
+    - DNS local: 
+        - Zonas de autoridad: 'dns/zonas.md'
+        - Resolución directa: 'dns/resolvd.md'
+        - Resolución inversa: 'dns/resolvi.md'
+        - Configurando el resolver: 'dns/resolver.md'
 - LAMP:
     - ¿Qué es LAMP?: 'lamp/queEs.md'
     - Instalación: 'lamp/instalacion.md'
