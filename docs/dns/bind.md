@@ -19,6 +19,7 @@ verá más adelante.
 ## Bibliografía complementaria
 Se listan dos libros de consulta para ampliar los tópicos abordados en la presente documentación: 
 
-* [DNS and Bind, Ed.  O'Reilly](books/dnsAndBind5thEdition.pdf) [(source code)](books/pro-dns-bind-10-master.zip)
+* [DNS and Bind, Ed. O'Reilly](books/dnsAndBind5thEdition.pdf)
+* [DNS and BIND on IPv6, Ed. O'Reilly](books/DNSandBINDonIPv6.pdf)
 * [Pro DNS and Bind 10, Ed. Apress](books/ProDNSandBIND10.pdf) [(source code)](books/pro-dns-bind-10-master.zip)
 * [BIND 9 Administrator Reference Manual, Internet Software Consortium](books/BIND9AdministratorReferenceManualV9.10.3-P4.pdf)
