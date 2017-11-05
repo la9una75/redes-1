@@ -104,3 +104,4 @@ Estos son los tipos de servidores de acuerdo a su función:
 * [http://www.shenron.es/es/node/26](http://www.shenron.es/es/node/26)
 * [https://www.osmosislatina.com/dns/zonas.htm](https://www.osmosislatina.com/dns/zonas.htm)
 * [ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.html](ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.html)
+* [https://blog.ichasco.com/servidor-dns-master-slave-bind9/](https://blog.ichasco.com/servidor-dns-master-slave-bind9/)
