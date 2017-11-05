@@ -19,7 +19,7 @@ Como forwarders podemos elegir entre dos opciones:
 Estos servicios prometen suministrar no sólo resoluciones más rápidas, sino también diversos servicios adicionales de seguridad, como filtros de direcciones maliciosos y otros más.
 
 ## Ejemplo de archivo de configuración
-La configuración del servidor DNS caché se encuentra en el archivo `/etc/bind/named.conf.options`. 
+La configuración del servidor DNS caché se encuentra en el archivo `/etc/bind/named.conf.options`
 
 Antes de comenzar, siempre conviene realizar una copia de seguridad del arvhivo en cuestión: 
 
@@ -125,4 +125,10 @@ Para cerciorase que los cambios realizados en el paso anterior fueron los correc
 
 ```bash
 sudo named-checkconf
+```
+
+Y reiniciamos el servicio:
+
+```bash
+sudo service bind9 restart
 ```
