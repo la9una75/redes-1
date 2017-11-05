@@ -6,8 +6,9 @@ La base de datos para la resolución de nombres en la zona `home.lan` está guar
 ;
 ; BIND Archivo de zona para itel.lan
 ;
+$ORIGIN itel.lan.
+$TTL 30 	;30 segundos (solo para ambientes de pruebas)
 
-$TTL    3D
 @       IN      SOA     ns.itel.lan.    root.itel.lan. (
                         2013050601      ; Numero de serie
                         8H              ; refresh
@@ -15,8 +16,8 @@ $TTL    3D
                         4W              ; expire
                         1D )            ; minimum
 ;
-                NS      ns              ; Inet address of name server
-                MX      10 mail         ; Primary mail exchanger
+                NS      ns              ; Servidor de nombres
+                MX      10 mail         ; Servidor primario de correo
 
 ns              A       192.168.0.100
 mail            A       192.168.0.111

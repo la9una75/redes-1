@@ -72,6 +72,8 @@ pages:
             - Resolución directa: 'dns/resolvd.md'
             - Resolución inversa: 'dns/resolvi.md'
             - Configurando el resolver: 'dns/resolver.md'
+        - Configurando clientes: 'dns/clientes.md'
+        - Realizando pruebas: 'dns/test.md'
 - LAMP:
     - ¿Qué es LAMP?: 'lamp/queEs.md'
     - Instalación: 'lamp/instalacion.md'

@@ -1,9 +1,20 @@
-## Configurando el _resolver_
+Finalmente, tendremos que configurar nuestro servidor DNS para que resuelva dominios localmente. 
 
-Tendremos que añadir el dominio `itel.lan` en el archivo `/etc/resolvconf/resolv.conf.d/base`:
+Para ello, nos dirigimos al directorio `/etc/resolvconf/resolv.conf.d/`:
 
 ```apache
+cd resolvconf/resolv.conf.d
+```
 
+Luego abrimos el archivo en cuestión: 
+
+```apache
+sudo vim base
+```
+
+Y añadimos el dominio `itel.lan` en el archivo, de manera que nos quede:
+
+```apache
 domain itel.lan
 search itel.lan
 nameserver 127.0.0.1
@@ -11,20 +22,7 @@ nameserver 127.0.0.1
 
 De esta forma, cuando nos referimos al sistema `server`, éste será buscado en el dominio `itel.lan`, resultando en el **FQHN** `server.itel.lan`
 
-## Configurando el resolver
-Luego abrimos el archivo encargado de la resolución de nombres en el equipo, también llamado _resolver_:
-
-```bash
-sudo vim /etc/resolvconf/resolv.conf.d/head
-```
-
-Y agregamos lo siguiente para que la resolución de nombres se haga localmente:
-
-```bash
-nameserver 127.0.0.1
-```
-
-Verificamos también que en el archivo `/etc/nsswitch.conf` la resolución de nombres pase también por el servicio DNS:
+Además, verificamos que en el archivo `/etc/nsswitch.conf` la resolución de nombres pase también por el servicio DNS:
 
 ```bash
 hosts:  files dns

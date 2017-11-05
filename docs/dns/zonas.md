@@ -245,7 +245,8 @@ El registro de nombre canónico, enlaza un nombre con otro. Es también conocido
 La sintaxis empleada por el registro `CNAME` es la siguiente: 
 
 ```apache
-<alias-name>     IN     CNAME       <real-name>
+name            ttl     class   rr          canonical-name
+<alias-name>            IN      CNAME       <real-name>
 ```
 
 Donde cualquier petición enviada a `<alias-name>` apuntará al host `<real-name>`. 
@@ -272,7 +273,8 @@ Los registros `PTR` o punteros, son usados principalmente para la resolución in
 La sintaxis de uso de este registro es: 
 
 ```apache
-<last-IP-digit>      IN     PTR    <FQDN-of-system>
+name               ttl     class   rr     host-name
+<last-IP-digit>            IN      PTR    <FQDN-of-system>
 ```
 
 El valor `<last-IP-digit>` se refiere al último número en una dirección IP que apunta al `FQDN` de un sistema particular. 
@@ -296,19 +298,35 @@ Y de forma resumida:
 ### Otros registros
 Existen muchos otros registros de recursos disponibles. En la presente documentación se listaron los de uso frecuente. No obstante, a continuación se reseñan algunos de ellos: 
 
+#### AAAA
+Registro análogo al registro `A` pero para direcciones IPv6. Su sintaxis es la siguiente: 
+
+```apache
+name     ttl    class   rr       ipv6
+<host>          IN      AAAA     <IPv6-address>
+```
+
 #### TXT (_Text Record_)
 Un registro TXT es un registro DNS que proporciona información de texto a fuentes externas a tu dominio y que se puede utilizar con distintos fines. El valor del registro puede corresponder a un texto legible por una máquina o por una persona. 
 
-#### AAAA
+La sintaxis de declración de este registro es: 
 
-#### 
+```apache
+name     ttl    class   rr       text
+<host>          IN      TXT      "Algún texto descriptivo"
+```
 
+!!!info "Resource records"
+        Existen muchos más tipos de registros de recursos aunque no son tan comunes. Podés consultar más información sobre los mismos: 
+        
+        * [Wikipedia](https://es.wikipedia.org/wiki/Anexo:Tipos_de_registros_DNS)
+        * [Internet System Consortium](ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.ch06.html#types_of_resource_records_and_when_to_use_them)
 
 ## Ejemplos de archivos de zonas
 
  Vistos individualmente, las directivas y registros de recursos pueden ser difíciles de comprender. Sin embargo, cuando se colocan juntos en un mismo archivo, se vuelven más fáciles de entender.
 
-El ejemplo siguiente muestra un archivo de zona de resolución directa:
+El ejemplo siguiente muestra un **archivo de zona de resolución directa**:
 
 ```apache
 $ORIGIN ejemplo.com.
@@ -326,12 +344,12 @@ $TTL 86400
       IN     MX     10     mail.ejemplo.com.
       IN     MX     20     mail2.ejemplo.com.
 
-             IN     A       10.0.1.5
+             IN     A       192.168.0.5
 
-server1      IN     A       10.0.1.5
-server2      IN     A       10.0.1.7
-dns1         IN     A       10.0.1.2
-dns2         IN     A       10.0.1.3
+server1      IN     A       192.168.0.5
+server2      IN     A       192.168.0.7
+dns1         IN     A       192.168.0.2
+dns2         IN     A       192.168.0.3
 
 ftp          IN     CNAME   server1
 mail         IN     CNAME   server1
@@ -339,7 +357,7 @@ mail2        IN     CNAME   server2
 www          IN     CNAME   server2
 ```
 
-Y, a continuación, un archivo de zona de resolución inversa:
+Y, a continuación, un **archivo de zona de resolución inversa**:
 
 ```apache
 $ORIGIN 1.0.10.in-addr.arpa.
@@ -351,13 +369,9 @@ $TTL 86400
                     604800     ; expire after 1 week
                     86400 )    ; minimum TTL of 1 day
 
-      IN     NS     dns1.ejemplo.com.
-      IN     NS     dns2.ejemplo.com.
+2     IN     NS     dns1.ejemplo.com.
+3     IN     NS     dns2.ejemplo.com.
 
-20    IN     PTR    alice.ejemplo.com.
-21    IN     PTR    betty.ejemplo.com.
-22    IN     PTR    charlie.ejemplo.com.
-23    IN     PTR    doug.ejemplo.com.
-24    IN     PTR    ernest.ejemplo.com.
-25    IN     PTR    fanny.ejemplo.com.
+5     IN     PTR    server1.ejemplo.com.
+7     IN     PTR    server2.ejemplo.com.
 ```
