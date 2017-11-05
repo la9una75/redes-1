@@ -9,7 +9,9 @@ La resolución inversa se configura en nuestro ejemplo en el archivo `/etc/bind/
 ; BIND zone file for 192.168.0.xxx
 ;
 
-$TTL    3D
+$ORIGIN itel.lan.
+$TTL 30 				; 30 segundos (sólo para pruebas)
+
 @       IN      SOA     ns.itel.lan.    root.itel.lan. (
                         2013050601      ; serial
                         8H              ; refresh

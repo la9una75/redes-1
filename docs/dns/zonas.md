@@ -116,7 +116,7 @@ Donde:
 
 * `<minimum-TTL>` es la cantidad de tiempo que otros servidores de nombres guardan en caché la información de zona.
 
-!!!done "Sobre los servidores esclavos"
+!!!done "SOA y los servidores esclavos"
         Los parámetros que se encuentran dentro de `( )` son aquellos que regirán el funcionamiento de los servidores esclavos que existan en el sistema.
 
 !!!tip "Unidades para expresar tiempo"
@@ -331,6 +331,8 @@ El ejemplo siguiente muestra un **archivo de zona de resolución directa**:
 ```apache
 $ORIGIN ejemplo.com.
 $TTL 86400
+
+
 @     IN     SOA    dns1.ejemplo.com.     hostmaster.ejemplo.com. (
                     2001062501 ; serial
                     21600      ; refresh after 6 hours
@@ -362,6 +364,8 @@ Y, a continuación, un **archivo de zona de resolución inversa**:
 ```apache
 $ORIGIN 1.0.10.in-addr.arpa.
 $TTL 86400
+
+
 @     IN     SOA    dns1.ejemplo.com.     hostmaster.ejemplo.com. (
                     2001062501 ; serial
                     21600      ; refresh after 6 hours

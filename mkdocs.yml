@@ -68,7 +68,7 @@ pages:
         - Instalación: 'dns/instalacion.md'
         - DNS caché: 'dns/cache.md'
         - DNS local: 
-            - Zonas de autoridad: 'dns/zonas.md'
+            - Zona de autoridad: 'dns/zonas.md'
             - Resolución directa: 'dns/resolvd.md'
             - Resolución inversa: 'dns/resolvi.md'
             - Configurando el resolver: 'dns/resolver.md'
