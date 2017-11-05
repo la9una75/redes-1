@@ -20,19 +20,14 @@ O bien, si queremos verificar que el demonio _named_ esté escuchando en el puer
 
 
 ```bash
-sudo netstat -punta
+sudo netstat -puntl | grep named
 ```
 
 De esta forma instalaríamos los programas necesarios para disponer de un completo servidor DNS con **bind**. Tan solo será necesario configurarlo y ponerlo en marcha. 
 
-De esta forma instalaríamos los programas necesarios para disponer de un completo servidor DNS con **bind**. Tan solo será necesario configurarlo y ponerlo en marcha. 
-
-De esta forma instalaríamos los programas necesarios para disponer de un completo servidor DNS con **bind**. Tan solo será necesario configurarlo y ponerlo en marcha. 
-
-
 ## Principales archivos de configuración 
 
-El archivo de configuración del DNS es el archivo `/etc/bind/named.conf`, pero este hace referencia a otros cuantos archivos como por ejemplo:
+Una vez realizada la instalación, encontraremos los archivos de configuración en el directorio `/etc/bind/`. A continuación, listamos los mismos con una breve explicación de su función: 
 
   * **named.conf**: Archivo principal de configuración
   * **named.conf.options**: Opciones genéricas

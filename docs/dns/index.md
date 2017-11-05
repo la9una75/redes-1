@@ -100,3 +100,7 @@ Estos son los tipos de servidores de acuerdo a su función:
 * [http://www.ite.educacion.es/formacion/materiales/85/cd/linux/m2/servidor_dns.html](http://www.ite.educacion.es/formacion/materiales/85/cd/linux/m2/servidor_dns.html)
 * [http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-es-4/s1-bind-zone.html](http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-es-4/s1-bind-zone.html)
 * [http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-es-4/s1-bind-namedconf.html](http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-es-4/s1-bind-namedconf.html)
+* [http://hp.fciencias.unam.mx/~amem/dns/dns-3.html](http://hp.fciencias.unam.mx/~amem/dns/dns-3.html)
+* [http://www.shenron.es/es/node/26](http://www.shenron.es/es/node/26)
+* [https://www.osmosislatina.com/dns/zonas.htm](https://www.osmosislatina.com/dns/zonas.htm)
+* [ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.html](ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.html)

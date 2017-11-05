@@ -63,10 +63,10 @@ Anexa el nombre del dominio a registros no cualificados, tales como aquellos con
 Por ejemplo, un archivo de zona puede contener la línea siguiente: 
 
 ```apache
-$ORIGIN cualquiera.com.
+$ORIGIN ejemplo.com.
 ```
 
-Entonces, a cualquier nombre utilizado en _registros de recursos_ que no terminen en un punto (.) se le agregará `cualquiera.com`
+Entonces, a cualquier nombre utilizado en _registros de recursos_ que no terminen en un punto (.) se le agregará `ejemplo.com`
 
 !!!done "Uso de la directiva $ORIGIN"
          El uso de la directiva `$ORIGIN` no es necesario si la zona fue especificada en el archivo `/etc/named.conf`
@@ -78,7 +78,7 @@ Cuando se decide aumentar este valor, permite a los servidores de nombres remoto
 
 
 ### Registros de recursos de archivos de zona
-El componente principal de un archivo de zona es su registro de recursos o _Resource Records_ (`RR`).
+El componente principal de un archivo de zona son los registros de recursos o _Resource Records_ (`RR`).
 
 Hay muchos tipos de registros de recursos de archivos de zona. A continuación se listan los tipos de registros más frecuentes.
 
@@ -116,8 +116,22 @@ Donde:
 
 * `<minimum-TTL>` es la cantidad de tiempo que otros servidores de nombres guardan en caché la información de zona.
 
+!!!done "Sobre los servidores esclavos"
+        Los parámetros que se encuentran dentro de `( )` son aquellos que regirán el funcionamiento de los servidores esclavos que existan en el sistema.
+
 !!!tip "Unidades para expresar tiempo"
         Cuando se configura BIND, todos los tiempos son siempre referenciados en segundos. Sin embargo, es posible usar abreviaciones cuando se especifiquen unidades de tiempo además de segundos, tales como minutos (M), horas (H), días (D) y semanas (W). 
+
+Un ejemplo de aplicación para este registro: 
+
+```apache
+@     IN     SOA    dns1.ejemplo.com.     hostmaster.ejemplo.com. (
+                    2001062501 ; serial
+                    21600      ; actualizar después de 6 horas
+                    3600       ; reintentar después de 1 hora
+                    604800     ; expirar después de 1 semana
+                    86400 )    ; TTL mínimo de 1 día
+```
 
 #### NS (_Name Server_)
 Anuncia los nombres de servidores con autoridad sobre una zona particular.
@@ -125,18 +139,39 @@ Anuncia los nombres de servidores con autoridad sobre una zona particular.
 La sintaxis de un registro NS:
 
 ```apache
-      IN     NS     <nameserver-name>
+<zone-name>    IN     NS     <nameserver-name>
 ```
 
-El `<nameserver-name>` debería ser un FQDN.
+Donde `<zone-name>` es el nombre de la zona sobre la que el servidor posee autoridad. Luego, el `<nameserver-name>` debería ser un FQDN.
 
-Luego, es costumbre emplear dos servidores DNS con autoridad sobre el dominio. No es importante si estos nombres de servidores son esclavos o si son maestros; ambos son considerados con autoridad sobre el dominio. 
+Es costumbre emplear dos servidores DNS con autoridad sobre el dominio. No es importante si estos nombres de servidores son esclavos o si son maestros; ambos son considerados con autoridad sobre el dominio. 
 
-Un ejemplo de aplicación de este registro: 
+Un ejemplo del uso de este registro: 
+
+```apache
+ejemplo.com.   IN     NS     dns1.ejemplo.com.
+ejemplo.com.   IN     NS     dns2.ejemplo.com.
+```
+
+Sin embargo, como se explicó mas arriba, el símbolo `@` reemplaza el nombre del archivo de zona. Por tanto, podemos escribir:  
+
+```apache
+@   IN     NS     dns1.ejemplo.com.
+@   IN     NS     dns2.ejemplo.com.
+```
+
+Inclusive es posible dejar el parámetro del nombre de zona en blanco ya que en el `RR` anterior se utilizó. La regla es: si no se especifica nada antes del parámetro `IN` se asume el valor que existía anteriormente. Por lo tanto la configuración del `RR` sería:
 
 ```apache
 IN     NS     dns1.ejemplo.com.
 IN     NS     dns2.ejemplo.com.
+```
+
+Finalmente, podríamos prescindir también de la clase `IN` (_Internet_) ya que si no se no se especifica explícitamente, BIND utiliza el valor predeterminado `IN` de todos modos. Entonces, podríamos escribir: 
+
+```apache
+       NS     dns1.ejemplo.com.
+       NS     dns2.ejemplo.com.
 ```
 
 
@@ -146,10 +181,12 @@ Indica dónde debería de ir el correo enviado a un espacio de nombres particula
 La sintaxis empleada para definir un registro MX: 
 
 ```apache
-IN     MX     <preference-value>  <email-server-name>
+<zone-name>    IN     MX     <preference-value>  <email-server-name>
 ```
 
 Donde: 
+
+* `<zone-name>` es el nombre de la zona sobre la que el servidor posee autoridad.
 
 * `<preference-value>` permite una clasificación numérica de los servidores de correo para un espacio de nombres, dando preferencia a algunos sistemas de correo sobre otros. El registro de recursos MX con el valor más bajo `<preference-value>` es preferido sobre los otros. Sin embargo, múltiples servidores de correo pueden tener el mismo valor para distribuir el tráfico de forma pareja entre ellos.
 
@@ -158,11 +195,20 @@ Donde:
 Un ejemplo de configuración para este registro: 
 
 ```apache
-IN     MX     10     mail1.ejemplo.com.
-IN     MX     20     mail2.ejemplo.com.
+ejemplo.com.    IN     MX     10     mail1.ejemplo.com.
+ejemplo.com.    IN     MX     20     mail2.ejemplo.com.
 ```
 
-En este ejemplo, el primer servidor de correo `mail1.ejemplo.com` es preferido al servidor de correo `mail2.ejemplo.com` cuando se recibe correo destinado para el dominio `ejemplo.com`. 
+!!!done "Prioridad de los servidores de correo"
+        En el ejemplo anterior, el primer servidor de correo `mail1.ejemplo.com` es preferido al servidor de correo `mail2.ejemplo.com` cuando se recibe correo destinado para el dominio `ejemplo.com`. 
+
+No obstante, como se explicó en un [`RR` anterior](#ns-name-server), la configuración del registro se puede escribir de forma abreviada, como sigue: 
+
+```apache
+        MX     10     mail1.ejemplo.com.
+        MX     20     mail2.ejemplo.com.
+```
+
 
 #### A (_Address_)
 Un registro `A` o de direcciones enlaza un dominio con la dirección IP física de un servidor. 
@@ -170,7 +216,8 @@ Un registro `A` o de direcciones enlaza un dominio con la dirección IP física 
 La sintaxis para declarar este registro es: 
 
 ```apache
-<host>     IN     A     <IP-address>
+name    ttl     class   rr    ipv4
+<host>          IN      A     <IP-address>
 ```
 
 Si el valor `<host>` es omitido, o si en su lugar se usa el símbolo `@`, el registro `A` apunta a una dirección IP por defecto. Esto es así para todas las peticiones no FQDN.
@@ -178,14 +225,22 @@ Si el valor `<host>` es omitido, o si en su lugar se usa el símbolo `@`, el reg
 Si consideramos el siguiente ejemplo de registro `A` para el archivo de zona `ejemplo.com`:
 
 ```apache
-             IN     A       10.0.1.3
-servidor     IN     A       10.0.1.5
+                        IN     A       192.168.0.3
+servidor.ejemplo.com    IN     A       192.168.0.5
 ```
 
-Las peticiones para `ejemplo.com` son apuntadas a `10.0.1.3`, mientras que las solicitudes para `servidor.ejemplo.com` son dirigidas a `10.0.1.5`. 
+Las peticiones para `ejemplo.com` son apuntadas a `192.168.0.3`, mientras que las solicitudes para `servidor.ejemplo.com` son dirigidas a `192.168.0.5`. 
+
+Naturalmente, podemos escribir de manera abreviada la configuración para este registro: 
+
+```apache
+            A       192.168.0.3
+servidor    A       192.168.0.5
+```
+
 
 #### CNAME (_Canonical Name_)
-El registro del nombre canónico, enlaza un nombre con otro. Es también conocido como un alias.
+El registro de nombre canónico, enlaza un nombre con otro. Es también conocido como un alias.
 
 La sintaxis empleada por el registro `CNAME` es la siguiente: 
 
@@ -195,11 +250,114 @@ La sintaxis empleada por el registro `CNAME` es la siguiente:
 
 Donde cualquier petición enviada a `<alias-name>` apuntará al host `<real-name>`. 
 
-En el ejemplo siguiente, un registro `A` vincula un nombre de host a una dirección IP, mientras que un registro `CNAME` apunta al nombre host `www`, comúnmente usado para este.
+Veamos el ejemplo siguiente de aplicación: 
 
 ```apache
-servidor      IN     A       10.0.1.5
-www           IN     CNAME   servidor
+servidor.ejemplo.com      IN     A       192.168.0.5
+www.ejemplo.com           IN     CNAME   servidor.ejemplo.com
 ```
 
-#### SOA (_Start of Authority_)
+Un registro `A` vincula un nombre de host a una dirección IP, mientras que un registro `CNAME` apunta al nombre host `www.ejemplo.com`, comúnmente usado para este.
+
+De manera abreviada: 
+
+```apache
+servidor    A       192.168.0.5
+www         CNAME   servidor
+```
+
+#### PTR (_PoinTeR_)
+Los registros `PTR` o punteros, son usados principalmente para la resolución inversa de nombres, pues ellos apuntan direcciones IP de vuelta a un nombre particular. 
+
+La sintaxis de uso de este registro es: 
+
+```apache
+<last-IP-digit>      IN     PTR    <FQDN-of-system>
+```
+
+El valor `<last-IP-digit>` se refiere al último número en una dirección IP que apunta al `FQDN` de un sistema particular. 
+
+Un ejemplo de configuración empleando este registro: 
+
+```apache
+42.0.168.192.   IN PTR  servidor.ejemplo.com.
+114.0.168.192.  IN PTR  desarrollo.ejemplo.com.   
+135.0.168.192.  IN PTR  externo.ejemplo.com.
+```
+
+Y de forma resumida: 
+
+```apache
+42      PTR     servidor.ejemplo.com.
+114     PTR     desarrollo.ejemplo.com.   
+135     PTR     externo.ejemplo.com.
+```
+
+### Otros registros
+Existen muchos otros registros de recursos disponibles. En la presente documentación se listaron los de uso frecuente. No obstante, a continuación se reseñan algunos de ellos: 
+
+#### TXT (_Text Record_)
+Un registro TXT es un registro DNS que proporciona información de texto a fuentes externas a tu dominio y que se puede utilizar con distintos fines. El valor del registro puede corresponder a un texto legible por una máquina o por una persona. 
+
+#### AAAA
+
+#### 
+
+
+## Ejemplos de archivos de zonas
+
+ Vistos individualmente, las directivas y registros de recursos pueden ser difíciles de comprender. Sin embargo, cuando se colocan juntos en un mismo archivo, se vuelven más fáciles de entender.
+
+El ejemplo siguiente muestra un archivo de zona de resolución directa:
+
+```apache
+$ORIGIN ejemplo.com.
+$TTL 86400
+@     IN     SOA    dns1.ejemplo.com.     hostmaster.ejemplo.com. (
+                    2001062501 ; serial
+                    21600      ; refresh after 6 hours
+                    3600       ; retry after 1 hour
+                    604800     ; expire after 1 week
+                    86400 )    ; minimum TTL of 1 day
+
+      IN     NS     dns1.ejemplo.com.
+      IN     NS     dns2.ejemplo.com.
+
+      IN     MX     10     mail.ejemplo.com.
+      IN     MX     20     mail2.ejemplo.com.
+
+             IN     A       10.0.1.5
+
+server1      IN     A       10.0.1.5
+server2      IN     A       10.0.1.7
+dns1         IN     A       10.0.1.2
+dns2         IN     A       10.0.1.3
+
+ftp          IN     CNAME   server1
+mail         IN     CNAME   server1
+mail2        IN     CNAME   server2
+www          IN     CNAME   server2
+```
+
+Y, a continuación, un archivo de zona de resolución inversa:
+
+```apache
+$ORIGIN 1.0.10.in-addr.arpa.
+$TTL 86400
+@     IN     SOA    dns1.ejemplo.com.     hostmaster.ejemplo.com. (
+                    2001062501 ; serial
+                    21600      ; refresh after 6 hours
+                    3600       ; retry after 1 hour
+                    604800     ; expire after 1 week
+                    86400 )    ; minimum TTL of 1 day
+
+      IN     NS     dns1.ejemplo.com.
+      IN     NS     dns2.ejemplo.com.
+
+20    IN     PTR    alice.ejemplo.com.
+21    IN     PTR    betty.ejemplo.com.
+22    IN     PTR    charlie.ejemplo.com.
+23    IN     PTR    doug.ejemplo.com.
+24    IN     PTR    ernest.ejemplo.com.
+25    IN     PTR    fanny.ejemplo.com.
+```

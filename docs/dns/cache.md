@@ -73,11 +73,11 @@ options {
   # Cambiar 192.168.0.xxx por la dirección IP de nuestro servidor DNS
   listen-on port 53 { 
       127.0.0.1; 
-      192.168.0.xxx; 
+      192.168.0.xxx; # IP de tu servidor DNS
   };
   
   # Hosts que tienen permiso para escuchar peticiones IPv6
-  listen-on-v6 { any; };
+  listen-on-v6 { none; };
   
   # Hosts que tienen permiso para realizar consultas
   allow-query { permitidos; };
