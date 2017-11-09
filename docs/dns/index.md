@@ -1,5 +1,7 @@
 El **DNS** (por sus siglas en inglés _Domain Name System_) o **sistema de nombres de dominio** es un sistema de nomenclatura jerárquico descentralizado para dispositivos conectados a redes IP como Internet o una red privada.
 
+![DNS](imgDNS/dns.jpg)
+
 !!!done "Uso del DNS"
 		El servicio DNS se emplea fundamentalmente en la resolución de nombres, es decir, determinar cuál es la dirección IP que corresponde a un nombre de dominio determinado y viceversa. 
 
@@ -105,3 +107,4 @@ Estos son los tipos de servidores de acuerdo a su función:
 * [https://www.osmosislatina.com/dns/zonas.htm](https://www.osmosislatina.com/dns/zonas.htm)
 * [ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.html](ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.html)
 * [https://blog.ichasco.com/servidor-dns-master-slave-bind9/](https://blog.ichasco.com/servidor-dns-master-slave-bind9/)
+* [https://juncotic.com/dig-opciones-interesantes-para-consultas-dns/](https://juncotic.com/dig-opciones-interesantes-para-consultas-dns/)

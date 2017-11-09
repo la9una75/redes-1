@@ -6,11 +6,11 @@ La resolución inversa se configura en nuestro ejemplo en el archivo `/etc/bind/
 ```apache
 
 ;
-; BIND zone file for 192.168.0.xxx
+; BIND - Archivo de zona para 192.168.0.xxx
 ;
 
-$ORIGIN itel.lan.
 $TTL 30 				; 30 segundos (sólo para pruebas)
+
 
 @       IN      SOA     ns.itel.lan.    root.itel.lan. (
                         2013050601      ; serial
@@ -19,7 +19,7 @@ $TTL 30 				; 30 segundos (sólo para pruebas)
                         4W              ; expire
                         1D )            ; minimum
 ;
-                NS      ns.itel.lan.    ; Nameserver address
+                NS      ns.itel.lan.    ; Servidor de nombres
 
 100             PTR     ns.itel.lan.
 105             PTR     server.itel.lan.

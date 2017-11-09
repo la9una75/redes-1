@@ -4,11 +4,11 @@ La base de datos para la resolución de nombres en la zona `home.lan` está guar
 
 ```apache
 ;
-; BIND Archivo de zona para itel.lan
+; BIND - Archivo de zona para itel.lan
 ;
 
-$ORIGIN itel.lan.
 $TTL 30 				; 30 segundos (sólo para pruebas)	
+
 
 @       IN      SOA     ns.itel.lan.    root.itel.lan. (
                         2013050601      ; Numero de serie

@@ -11,14 +11,26 @@ La resolución de nombres traduce nombres de sistemas en sus direcciones IP y vi
 * **Archivo de zona de resolución directa**: contiene la información necesaria para convertir nombres de dominio en direcciones IP. En nuestro ejemplo, el archivo se llama `db.itel.lan` 
 * **Archivo de zona de resolución inversa** contiene la información necesaria para convertir direcciones IP en el respectivo nombre de sistema. En el ejemplo, el archivo se llama `db.0.168.192`
 
-Las zonas pueden declararse en el archivo `/etc/bind/named.conf.local`:
+Entonces, creamos los archivos: 
+
+```apache
+cd /etc/bind && sudo touch db.itel.lan db.0.168.192
+```
+
+Luego, abrimos el archivo `/etc/bind/named.conf.local`:
+
+```bash
+sudo vim /etc/bind/named.conf.local
+```
+
+Y declaramos los archivos de zona creados en el paso anterior: 
 
 ```bash
 
 
 // Zona de resolución directa
 
-    zone "home.lan" {
+    zone "itel.lan" {
         type master;
         file "/etc/bind/db.itel.lan";
     };
@@ -63,10 +75,10 @@ Anexa el nombre del dominio a registros no cualificados, tales como aquellos con
 Por ejemplo, un archivo de zona puede contener la línea siguiente: 
 
 ```apache
-$ORIGIN ejemplo.com.
+$ORIGIN itel.lan.
 ```
 
-Entonces, a cualquier nombre utilizado en _registros de recursos_ que no terminen en un punto (.) se le agregará `ejemplo.com`
+Entonces, a cualquier nombre utilizado en _registros de recursos_ que no terminen en un punto (.) se le agregará `itel.lan`
 
 !!!done "Uso de la directiva $ORIGIN"
          El uso de la directiva `$ORIGIN` no es necesario si la zona fue especificada en el archivo `/etc/named.conf`
@@ -125,7 +137,7 @@ Donde:
 Un ejemplo de aplicación para este registro: 
 
 ```apache
-@     IN     SOA    dns1.ejemplo.com.     hostmaster.ejemplo.com. (
+@     IN     SOA    dns1.itel.lan.     hostmaster.itel.lan. (
                     2001062501 ; serial
                     21600      ; actualizar después de 6 horas
                     3600       ; reintentar después de 1 hora
@@ -139,7 +151,8 @@ Anuncia los nombres de servidores con autoridad sobre una zona particular.
 La sintaxis de un registro NS:
 
 ```apache
-<zone-name>    IN     NS     <nameserver-name>
+name           ttl     class   rr     server
+<zone-name>            IN      NS     <nameserver-name>
 ```
 
 Donde `<zone-name>` es el nombre de la zona sobre la que el servidor posee autoridad. Luego, el `<nameserver-name>` debería ser un FQDN.
@@ -149,29 +162,29 @@ Es costumbre emplear dos servidores DNS con autoridad sobre el dominio. No es im
 Un ejemplo del uso de este registro: 
 
 ```apache
-ejemplo.com.   IN     NS     dns1.ejemplo.com.
-ejemplo.com.   IN     NS     dns2.ejemplo.com.
+itel.lan.   IN     NS     dns1.itel.lan.
+itel.lan.   IN     NS     dns2.itel.lan.
 ```
 
 Sin embargo, como se explicó mas arriba, el símbolo `@` reemplaza el nombre del archivo de zona. Por tanto, podemos escribir:  
 
 ```apache
-@   IN     NS     dns1.ejemplo.com.
-@   IN     NS     dns2.ejemplo.com.
+@   IN     NS     dns1.itel.lan.
+@   IN     NS     dns2.itel.lan.
 ```
 
 Inclusive es posible dejar el parámetro del nombre de zona en blanco ya que en el `RR` anterior se utilizó. La regla es: si no se especifica nada antes del parámetro `IN` se asume el valor que existía anteriormente. Por lo tanto la configuración del `RR` sería:
 
 ```apache
-IN     NS     dns1.ejemplo.com.
-IN     NS     dns2.ejemplo.com.
+IN     NS     dns1.itel.lan.
+IN     NS     dns2.itel.lan.
 ```
 
 Finalmente, podríamos prescindir también de la clase `IN` (_Internet_) ya que si no se no se especifica explícitamente, BIND utiliza el valor predeterminado `IN` de todos modos. Entonces, podríamos escribir: 
 
 ```apache
-       NS     dns1.ejemplo.com.
-       NS     dns2.ejemplo.com.
+       NS     dns1.itel.lan.
+       NS     dns2.itel.lan.
 ```
 
 
@@ -181,7 +194,8 @@ Indica dónde debería de ir el correo enviado a un espacio de nombres particula
 La sintaxis empleada para definir un registro MX: 
 
 ```apache
-<zone-name>    IN     MX     <preference-value>  <email-server-name>
+name           ttl     class    rr     priority            server
+<zone-name>            IN       MX     <preference-value>  <email-server-name>
 ```
 
 Donde: 
@@ -195,18 +209,18 @@ Donde:
 Un ejemplo de configuración para este registro: 
 
 ```apache
-ejemplo.com.    IN     MX     10     mail1.ejemplo.com.
-ejemplo.com.    IN     MX     20     mail2.ejemplo.com.
+itel.lan.    IN     MX     10     mail1.itel.lan.
+itel.lan.    IN     MX     20     mail2.itel.lan.
 ```
 
 !!!done "Prioridad de los servidores de correo"
-        En el ejemplo anterior, el primer servidor de correo `mail1.ejemplo.com` es preferido al servidor de correo `mail2.ejemplo.com` cuando se recibe correo destinado para el dominio `ejemplo.com`. 
+        En el ejemplo anterior, el primer servidor de correo `mail1.itel.lan` es preferido al servidor de correo `mail2.itel.lan` cuando se recibe correo destinado para el dominio `itel.lan`. 
 
 No obstante, como se explicó en un [`RR` anterior](#ns-name-server), la configuración del registro se puede escribir de forma abreviada, como sigue: 
 
 ```apache
-        MX     10     mail1.ejemplo.com.
-        MX     20     mail2.ejemplo.com.
+        MX     10     mail1.itel.lan.
+        MX     20     mail2.itel.lan.
 ```
 
 
@@ -222,14 +236,14 @@ name    ttl     class   rr    ipv4
 
 Si el valor `<host>` es omitido, o si en su lugar se usa el símbolo `@`, el registro `A` apunta a una dirección IP por defecto. Esto es así para todas las peticiones no FQDN.
 
-Si consideramos el siguiente ejemplo de registro `A` para el archivo de zona `ejemplo.com`:
+Si consideramos el siguiente ejemplo de registro `A` para el archivo de zona `itel.lan`:
 
 ```apache
-                        IN     A       192.168.0.3
-servidor.ejemplo.com    IN     A       192.168.0.5
+                     IN     A       192.168.0.3
+servidor.itel.lan    IN     A       192.168.0.5
 ```
 
-Las peticiones para `ejemplo.com` son apuntadas a `192.168.0.3`, mientras que las solicitudes para `servidor.ejemplo.com` son dirigidas a `192.168.0.5`. 
+Las peticiones para `itel.lan` son apuntadas a `192.168.0.3`, mientras que las solicitudes para `servidor.itel.lan` son dirigidas a `192.168.0.5`. 
 
 Naturalmente, podemos escribir de manera abreviada la configuración para este registro: 
 
@@ -254,11 +268,11 @@ Donde cualquier petición enviada a `<alias-name>` apuntará al host `<real-name
 Veamos el ejemplo siguiente de aplicación: 
 
 ```apache
-servidor.ejemplo.com      IN     A       192.168.0.5
-www.ejemplo.com           IN     CNAME   servidor.ejemplo.com
+servidor.itel.lan      IN     A       192.168.0.5
+www.itel.lan           IN     CNAME   servidor.itel.lan
 ```
 
-Un registro `A` vincula un nombre de host a una dirección IP, mientras que un registro `CNAME` apunta al nombre host `www.ejemplo.com`, comúnmente usado para este.
+Un registro `A` vincula un nombre de host a una dirección IP, mientras que un registro `CNAME` apunta al nombre host `www.itel.lan`, comúnmente usado para este.
 
 De manera abreviada: 
 
@@ -282,17 +296,17 @@ El valor `<last-IP-digit>` se refiere al último número en una dirección IP qu
 Un ejemplo de configuración empleando este registro: 
 
 ```apache
-42.0.168.192.   IN PTR  servidor.ejemplo.com.
-114.0.168.192.  IN PTR  desarrollo.ejemplo.com.   
-135.0.168.192.  IN PTR  externo.ejemplo.com.
+42.0.168.192.   IN PTR  servidor.itel.lan.
+114.0.168.192.  IN PTR  desarrollo.itel.lan.   
+135.0.168.192.  IN PTR  externo.itel.lan.
 ```
 
 Y de forma resumida: 
 
 ```apache
-42      PTR     servidor.ejemplo.com.
-114     PTR     desarrollo.ejemplo.com.   
-135     PTR     externo.ejemplo.com.
+42      PTR     servidor.itel.lan.
+114     PTR     desarrollo.itel.lan.   
+135     PTR     externo.itel.lan.
 ```
 
 ### Otros registros
@@ -329,26 +343,26 @@ name     ttl    class   rr       text
 El ejemplo siguiente muestra un **archivo de zona de resolución directa**:
 
 ```apache
-$ORIGIN ejemplo.com.
+$ORIGIN itel.lan.
 $TTL 86400
 
 
-@     IN     SOA    dns1.ejemplo.com.     hostmaster.ejemplo.com. (
+@     IN     SOA    dns1.itel.lan.     hostmaster.itel.lan. (
                     2001062501 ; serial
                     21600      ; refresh after 6 hours
                     3600       ; retry after 1 hour
                     604800     ; expire after 1 week
                     86400 )    ; minimum TTL of 1 day
 
-      IN     NS     dns1.ejemplo.com.
-      IN     NS     dns2.ejemplo.com.
+      IN     NS     dns1.itel.lan.
+      IN     NS     dns2.itel.lan.
 
-      IN     MX     10     mail.ejemplo.com.
-      IN     MX     20     mail2.ejemplo.com.
+      IN     MX     10     mail.itel.lan.
+      IN     MX     20     mail2.itel.lan.
 
              IN     A       192.168.0.5
 
-server1      IN     A       192.168.0.5
+server1      IN     A       192.168.0.6
 server2      IN     A       192.168.0.7
 dns1         IN     A       192.168.0.2
 dns2         IN     A       192.168.0.3
@@ -362,20 +376,20 @@ www          IN     CNAME   server2
 Y, a continuación, un **archivo de zona de resolución inversa**:
 
 ```apache
-$ORIGIN 1.0.10.in-addr.arpa.
+$ORIGIN 0.168.192.in-addr.arpa.
 $TTL 86400
 
 
-@     IN     SOA    dns1.ejemplo.com.     hostmaster.ejemplo.com. (
+@     IN     SOA    dns1.itel.lan.     hostmaster.itel.lan. (
                     2001062501 ; serial
                     21600      ; refresh after 6 hours
                     3600       ; retry after 1 hour
                     604800     ; expire after 1 week
                     86400 )    ; minimum TTL of 1 day
 
-2     IN     NS     dns1.ejemplo.com.
-3     IN     NS     dns2.ejemplo.com.
+2     IN     NS     dns1.itel.lan.
+3     IN     NS     dns2.itel.lan.
 
-5     IN     PTR    server1.ejemplo.com.
-7     IN     PTR    server2.ejemplo.com.
+6     IN     PTR    server1.itel.lan.
+7     IN     PTR    server2.itel.lan.
 ```
