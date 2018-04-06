@@ -21,7 +21,7 @@ Donde:
 * `[nombre]` Es el nombre del origen remoto (comunmente _origin_ aunque puede ser cualquier otro)
 * `[url]` Es la dirección URL o ruta hacia el repositorio remoto que deseamos vincular
 
-#### 1.1. Agregando repositorio remoto [SSH]
+### 1.1. Agregando repositorio remoto [SSH]
 ```bash
 git remote add origin usuario@192.168.0.200:/home/usuario/miRepositorio.git
 ```
@@ -31,7 +31,7 @@ Donde:
 * `192.168.0.200` es la dirección IP (o nombre de dominio) del servidor remoto. 
 * `/home/usuario/miRepositorio.git` es la ruta donde se ubica el repositorio en el servidor remoto.
 
-#### 1.2. Agregando repositorio remoto [HTTPS]
+### 1.2. Agregando repositorio remoto [HTTPS]
 ```bash
 git remote add origin https://github.com/usuario/repositorio.git
 ```
@@ -64,8 +64,8 @@ Si tenemos más de un origen remoto, el comando los listará todos.
 		2. [Renombrando el origen remoto](trabajandoConRemotos/#31-modificando-el-nombre-de-un-remoto)
 		3. [Eliminando el origen remoto](trabajandoConRemotos/#4-eliminando-un-origen-remoto)
 
-
 ## 3. Modificando un origen remoto
+
 Podemos modificar tanto el nombre de un remoto (es decir, su alias) así como la dirección URL del mismo. 
 
 
@@ -161,7 +161,7 @@ Al ejecutar git pull, por lo general se recupera la información del servidor re
 
 _Diferencia entre fetch-merge y pull_
 
-## 5. Enviando hacia nuestros repositorios remotos
+## 6. Enviando hacia nuestros repositorios remotos
 
 Cuando tu proyecto se encuentra en un estado que deseamos compartir, tenemos que enviarlo a un repositorio remoto. El comando que nos permite hacer esto es sencillo: 
 
@@ -176,3 +176,4 @@ $ git push origin master
 ```
 !!!warning "Uso del comando `pull`"
 		Este comando funciona únicamente si hemos clonado desde un servidor remoto o agregado un origen remoto en el que tengamos permiso de escritura, y nadie ha enviado información mientras tanto. Si nosotros y otra persona clonamos un repositorio a la vez, y otro envía su información y luego enviamos la nuestra, nuestro envío será rechazado. Tendremos que bajarnos primero el trabajo de la otra persona e incorporarlo en el nuestro para que se nos permita hacer un envío. 
+		
