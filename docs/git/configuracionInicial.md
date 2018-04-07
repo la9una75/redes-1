@@ -16,6 +16,30 @@ Y hacer lo propio con tu dirección de correo electrónico:
 ```bash
 git config --global user.email tuemail@ejemplo.com
 ```
+### Trabajando detrás de un proxy
+Podemos configurar nuestra conexión remota, cuando nos ubicamos detrás de un servidor proxy
+
+```bash
+git config --global http.proxy http://[usuario]:[contraseña]@[servidor]:[puerto]
+```
+
+Donde: 
+
+* [usuario] Es el nombre de usuario en el servidor proxy
+* [contraseña] Es la contraseña de usuario del servidor proxy
+* [servidor] Es la dirección IP o nombre de dominio del servidor proxy
+* [puerto] Es el puerto con el que está configurado el servidor proxy
+
+Si deseamos "limpiar" la configuración anterior del proxy, ejecutamos: 
+
+```bash
+git config --global --unset http.proxy
+```
+Finalmente, para verificar la configuración actual del proxy: 
+
+```bash
+git config --global --get http.proxy
+```
 
 ###Comprobando tu configuración
 Podés comprobar qué valor utilizará Git para una clave específica ejecutando `git config <key>`:
@@ -36,5 +60,4 @@ git config --list
 		Es posible consultar desde la terminal ayuda sobre los comandos empleados por git. Para ello, ejecutamos: 
 
 		`git help <comando>`
-
 
