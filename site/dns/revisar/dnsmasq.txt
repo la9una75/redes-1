@@ -1,0 +1,55 @@
+====== DNSMASQ: Servidor DNS y DHCP sencillo ======
+
+
+El paquete **dnsmasq** proporciona servicios como caché DNS y como servidor DHCP. Uno, o ambos de estos servicios, se pueden implementar.
+
+Como servidor, **[[redes:dns:tipos_de_servidor_dns#servidor_cache_dns|DNS Caché]]** puede almacenar las consultas DNS para mejorar las velocidades de conexión a los sitios visitados anteriormente o ser configurado como un **[[redes:dns:tipos_de_servidor_dns#servidor_dns_maestro|DNS Maestro]]** en nuestra red local. 
+
+Como servidor DHCP, dnsmasq puede ser utilizado para proporcionar direcciones IP internas y rutas a los equipos de una LAN.
+
+En resumen, **dnsmasq** es considerado ligero y fácil de configurar; está diseñado para su uso en un ordenador personal o para su uso en una red con menos de 50 ordenadores. También viene con un servidor [[https://es.wikipedia.org/wiki/Preboot_Execution_Environment|PXE]].
+
+===== Instalacion =====
+
+
+<code bash>
+sudo apt-get install dnsmasq
+</code>
+
+<WRAP center round important 100%>
+Sólo puede existir un servicio DNS corriendo en el servidor. Si ya habías instalado BIND, deberás desinstalarlo
+
+<code bash>
+sudo apt-get purge bind9 bind9utils
+</code>
+</WRAP>
+
+
+===== Configuración servidor DNS caché =====
+1. Modificar el archivo [[redes:dns:el_archivo_resolv.conf|resolv.conf]] y agregar el siguiente código
+
+<code bash>
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+</code>
+
+===== Configuración servidor DNS local =====
+
+**1.** Editar el archivo **[[redes:el_archivo_hosts|hosts]]** en el servidor DNS, incluyendo a todos los **[[redes:servidores_privados_virtuales_vps|clientes de la red]]** (cada cliente debe poseer un servidor web funcionando). 
+
+**2.** Modificar el archivo **[[redes:dns:el_archivo_resolv.conf|resolv.conf]]** para **indicar que nuestro propio servidor será quien resuelva los dominios locales**:
+
+<code bash>
+nameserver 192.168.0.x
+</code>
+Donde <wrap em>192.168.0.x</wrap> es la dirección **IP de tu máquina virtual**, en la que instalaste DNSMASQ. 
+
+**3.** Los dominios deben poseer un servidor web instalado. En caso que no exista dicho [[redes:webserver:instalacion_de_lamp|servidor web]] podés instalarlo: 
+<code apache>
+sudo apt-get install apache2
+</code>
+Se recomienda modificar la página de inicio a fin que se identifique con el dominio al que pertenece. 
+
+
+**4.** [[redes:dns:configurando_dns_clientes_windows|Configurar los clientes]] (Windows)
+

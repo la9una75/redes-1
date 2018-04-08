@@ -1,0 +1,21 @@
+====== Configurando los clientes (GNU/Linux) ======
+
+
+En el resto de PCs de la red (clientes), indicaremos la dirección IP del servidor DNS (en el ejemplo suponemos que es 192.168.0.112) [[redes:dns:el_archivo_resolv.conf|editando el archivo resolv.conf]]:
+
+<code bash>
+// En el resto de PCs de la red indicamos quién es el DNS
+// Editar /etc/resolv.conf del resto de PCs de la red
+
+nameserver 192.168.0.112
+</code>
+
+O bien, en caso de que el cliente poseea una IP fija:
+<code bash>
+// Nota: los valores son ficticios. Usar los valores de configuración de nuestra red local.
+iface eth0 inet static
+        address 192.168.0.150
+        netmask 255.255.255.0
+        gateway 192.168.0.1
+        dns-nameservers 192.168.0.112 		# IP de nuestro servidor DNS
+</code>

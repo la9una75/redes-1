@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <title>3.1.2 Cache DNS [Servidor Debian]</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="bind,bind9,cache,dhcp,dominio,dns,named,nombre,resolucion,servidor"/>
+<meta name="description" content="3.1.2 Cache DNS  Objetivo  Aunque las direcciones Internet tengan nombres “legibles” (www.google.com), éstos deben ser traducidos a la dirección IP (213.129.232.18) del respectivo servidor. Esa conversión es efectuada realizando una búsqueda en el"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="Servidor Debian"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/es/stretch/intranet/dns/cache?do=index" title="Índice"/>
+<link rel="alternate" type="text/html" title="HTML sencillo" href="/_export/xhtml/es/stretch/intranet/dns/cache"/>
+<link rel="canonical" href="https://servidordebian.org/es/stretch/intranet/dns/cache"/>
+<link rel="stylesheet" type="text/css" href="/lib/exe/css.php?t=dokuwiki&amp;tseed=18a8bd1dd98e78a6930cfe54daf2bbf4"/>
+<link rel="stylesheet" type="text/css" href="/lib/plugins/syntaxhighlighter4/dist/theme-default.css"/>
+<link rel="stylesheet" type="text/css" href="/lib/plugins/syntaxhighlighter4/dist/override.css"/>
+<link type="application/rss+xml" rel="alternate" title="Servidor Debian - Novedades" href="https://servidordebian.org/feed.php?ns=es"/>
+<link type="application/rss+xml" rel="alternate" title="Servidor Debian - Blog" href="https://servidordebian.org/feed.php?ns=ee:blog"/>
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">/*<![CDATA[*/var NS='es:stretch:intranet:dns';var JSINFO = {"id":"es:stretch:intranet:dns:cache","namespace":"es:stretch:intranet:dns","isadmin":0,"isauth":0};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/lib/exe/js.php?t=dokuwiki&amp;tseed=18a8bd1dd98e78a6930cfe54daf2bbf4&amp;lang=es"></script>
+<script type="text/javascript" src="/lib/plugins/syntaxhighlighter4/dist/syntaxhighlighter.js"></script>
+<script type="text/javascript" charset="utf-8">/*<![CDATA[*/jQuery(function(){
+	for ( i=0; i < document.forms.length; i++ ) {
+		if (document.forms[i].method == 'post') {
+			var myElement = document.createElement('input');
+			myElement.setAttribute('type', 'hidden');
+			myElement.name = 'bb2_screener_';
+			myElement.value = '1508950761 152.171.120.181';
+			document.forms[i].appendChild(myElement);
+		}
+	}
+});
+/*!]]>*/</script>
+<!--<![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="/_media/favicon.ico" />
+<link rel="apple-touch-icon" href="/_media/apple-touch-icon.png" />
+    </head>
+
+<body>
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_dokuwiki    showSidebar hasSidebar">
+
+        
+<!-- ********** HEADER ********** -->
+<div id="dokuwiki__header"><div class="pad group">
+
+    
+    <div class="headings group">
+        <ul class="a11y skip">
+            <li><a href="#dokuwiki__content">Saltar a contenido</a></li>
+        </ul>
+
+        <h1><a href="/start"  accesskey="h" title="[H]"><img src="/_media/logo.png" width="33" height="40" alt="" /> <span>Servidor Debian</span></a></h1>
+            </div>
+
+    <div class="tools group">
+        <!-- USER TOOLS -->
+                    <div id="dokuwiki__usertools">
+                <h3 class="a11y">Herramientas de usuario</h3>
+                <ul>
+                    <li class="action register"><a href="/es/stretch/intranet/dns/cache?do=register" title="Registrarse" rel="nofollow"><span>Registrarse</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 14c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4m-9-4V7H4v3H1v2h3v3h2v-3h3v-2m6 2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z"/></svg></a></li><li class="action login"><a href="/es/stretch/intranet/dns/cache?do=login&amp;sectok=" title="Conectarse" rel="nofollow"><span>Conectarse</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 17.25V14H3v-4h7V6.75L15.25 12 10 17.25M8 2h9a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4h2v4h9V4H8v4H6V4a2 2 0 0 1 2-2z"/></svg></a></li>                </ul>
+            </div>
+        
+        <!-- SITE TOOLS -->
+        <div id="dokuwiki__sitetools">
+            <h3 class="a11y">Herramientas del sitio</h3>
+            <form action="/start" accept-charset="utf-8" class="search" id="dw__search" method="get" role="search"><div class="no"><input type="hidden" name="do" value="search" /><input type="text" placeholder="Buscar" id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]" /><button type="submit" title="Buscar">Buscar</button><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>            <div class="mobileTools">
+                <form action="/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="es:stretch:intranet:dns:cache" /><select name="do" class="edit quickselect" title="Herramientas"><option value="">Herramientas</option><optgroup label="Herramientas de la página"><option value="edit">Ver la fuente de esta página</option><option value="backlink">Enlaces a esta página</option></optgroup><optgroup label="Herramientas del sitio"><option value="index">Índice</option></optgroup><optgroup label="Herramientas de usuario"><option value="register">Registrarse</option><option value="login">Conectarse</option></optgroup></select><button type="submit">&gt;</button></div></form>            </div>
+            <ul>
+                <li class="action index"><a href="/es/stretch/intranet/dns/cache?do=index" title="Índice [x]" rel="nofollow" accesskey="x">Índice</a></li>            </ul>
+        </div>
+
+    </div>
+
+    <!-- BREADCRUMBS -->
+            <div class="breadcrumbs">
+                            <div class="youarehere"><span class="bchead">Estás aquí: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start">Servidor Debian</a></bdi></span> » <bdi><a href="/es/start" class="wikilink1" title="es:start">Servidor Debian</a></bdi> » <bdi><a href="/es/stretch/start" class="wikilink1" title="es:stretch:start">Servidor Debian 9 &#039;Stretch&#039;</a></bdi> » <bdi><a href="/es/stretch/intranet/start" class="wikilink1" title="es:stretch:intranet:start">3. Servidor Intranet</a></bdi> » <bdi><a href="/es/stretch/intranet/dns/start" class="wikilink1" title="es:stretch:intranet:dns:start">3.1 DNS</a></bdi> » <bdi><span class="curid"><a href="/es/stretch/intranet/dns/cache" class="wikilink1" title="es:stretch:intranet:dns:cache">3.1.2 Cache DNS</a></span></bdi></div>
+                                </div>
+    
+
+
+    <hr class="a11y" />
+</div></div><!-- /header -->
+
+        <div class="wrapper group">
+
+                            <!-- ********** ASIDE ********** -->
+                <div id="dokuwiki__aside"><div class="pad aside include group">
+                    <h3 class="toggle">Barra lateral</h3>
+                    <div class="content"><div class="group">
+                                                <div class="plugin_translation"><span>Traducciones de esta página<sup><a href="/es/contrib/translation" class="wikilink1" title="es:contrib:translation">?</a></sup>:</span> <br /><form action="/start" id="translation__dropdown"><select name="id" class="wikilink1"><option class="wikilink1 cur" title="Español" value="es/stretch/intranet/dns/cache" selected="selected">Español (es)</option><option class="wikilink1" title="Português" value="pt/stretch/intranet/dns/cache">Português (pt)</option></select><input name="go" type="submit" value="&rarr;" /></form></div>&nbsp;
+                        <!-- EDIT1 PLUGIN_INCLUDE_START "includes:es:sidebarheader" [0-] --><div class="plugin_include_content plugin_include__includes:es:sidebarheader" id="plugin_include__includes__es__sidebarheader">
+
+<p>
+<img src="/_media/spacer.png?w=1&amp;h=1&amp;tok=ba47bf" class="media" alt="" width="1" height="1" />
+</p>
+<!-- EDIT3 PLUGIN_INCLUDE_EDITBTN "includes:es:sidebarheader" [0-] --><!-- EDIT2 PLUGIN_INCLUDE_END "includes:es:sidebarheader" [0-] --></div>
+<hr />
+<!-- EDIT4 PLUGIN_INCLUDE_START "includes:es:stretch:navmenu" [0-] --><div class="plugin_include_content plugin_include__includes:es:stretch:navmenu" id="plugin_include__includes__es__stretch__navmenu">
+
+<h1 class="sectionedit6" id="debian_9_stretch_server">Debian 9 &#039;Stretch&#039; Server</h1>
+<div class="level1">
+
+<div><div id="nojs_indexmenu_72783702159b2536174c85" data-jsajax="%26sort%3Dt%26nsort%3D1%26max%3D2" class="indexmenu_nojs">
+
+<ul class="idx">
+<li class="closed"><div class="li"><a href="/es/stretch/before/start" class="indexmenu_idx_head">0. Antes de empezar</a></div></li>
+<li class="closed"><div class="li"><a href="/es/stretch/install/start" class="indexmenu_idx_head">1. Instalación</a></div></li>
+<li class="closed"><div class="li"><span class="curid"><a href="/es/stretch/config/start" class="indexmenu_idx_head">2. Configuración</a></span></div></li>
+<li class="closed"><div class="li"><a href="/es/stretch/intranet/start" class="indexmenu_idx_head">3. Servidor Intranet</a></div></li>
+<li class="closed"><div class="li"><a href="/es/stretch/internet/start" class="indexmenu_idx_head">4. Servidor Internet</a></div></li>
+<li class="closed"><div class="li"><a href="/es/stretch/email/start" class="indexmenu_idx_head">5. Servidor de E-mail</a></div></li>
+<li class="closed"><div class="li"><a href="/es/stretch/monitoring/start" class="indexmenu_idx_head">6. Monitorización</a></div></li>
+<li class="closed"><div class="li"><a href="/es/stretch/security/start" class="indexmenu_idx_head">7. Seguridad</a></div></li>
+</ul>
+</div></div>
+<script type='text/javascript' charset='utf-8'>
+<!--//--><![CDATA[//><!--
+var indexmenu_72783702159b2536174c85 = new dTree('indexmenu_72783702159b2536174c85','indextheme');
+indexmenu_72783702159b2536174c85.config.urlbase='/';
+indexmenu_72783702159b2536174c85.config.sepchar='/';
+indexmenu_72783702159b2536174c85.config.toc=false;
+indexmenu_72783702159b2536174c85.config.useCookies=false;
+indexmenu_72783702159b2536174c85.config.jsajax='%26sort%3Dt%26nsort%3D1%26max%3D2';
+indexmenu_72783702159b2536174c85.add('es/stretch',0,-1,"Servidor Debian 9 &#039;Stretch&#039;",'es/stretch/start');
+indexmenu_72783702159b2536174c85.add('es/stretch/before',1,0,"0. Antes de empezar",'es/stretch/before/start',1,1);
+indexmenu_72783702159b2536174c85.add('es/stretch/install',2,0,"1. Instalaci\u00f3n",'es/stretch/install/start',1,1);
+indexmenu_72783702159b2536174c85.add('es/stretch/config',3,0,"2. Configuraci\u00f3n",'es/stretch/config/start',1,1);
+indexmenu_72783702159b2536174c85.add('es/stretch/intranet',4,0,"3. Servidor Intranet",'es/stretch/intranet/start',1,1);
+indexmenu_72783702159b2536174c85.add('es/stretch/internet',5,0,"4. Servidor Internet",'es/stretch/internet/start',1,1);
+indexmenu_72783702159b2536174c85.add('es/stretch/email',6,0,"5. Servidor de E-mail",'es/stretch/email/start',1,1);
+indexmenu_72783702159b2536174c85.add('es/stretch/monitoring',7,0,"6. Monitorizaci\u00f3n",'es/stretch/monitoring/start',1,1);
+indexmenu_72783702159b2536174c85.add('es/stretch/security',8,0,"7. Seguridad",'es/stretch/security/start',1,1);
+document.write(indexmenu_72783702159b2536174c85);
+jQuery(function(){indexmenu_72783702159b2536174c85.init(0,1,"",1,1);});
+//--><!]]>
+</script>
+
+</div>
+<!-- EDIT6 SECTION "Debian 9 'Stretch' Server" "debian_9_stretch_server" [1-] --><!-- EDIT7 PLUGIN_INCLUDE_EDITBTN "includes:es:stretch:navmenu" [0-] --><!-- EDIT5 PLUGIN_INCLUDE_END "includes:es:stretch:navmenu" [0-] --></div>
+
+<p>
+<img src="/_media/spacer.png?w=1&amp;h=1&amp;tok=ba47bf" class="media" alt="" width="1" height="1" />
+</p>
+<hr />
+<!-- EDIT8 PLUGIN_INCLUDE_START "includes:es:forum:navmenu" [0-] --><div class="plugin_include_content plugin_include__includes:es:forum:navmenu" id="plugin_include__includes__es__forum__navmenu">
+
+<div><div id="nojs_indexmenu_60721092159b2536176516" data-jsajax="%26sort%3Dt%26nsort%3D1%26max%3D1" class="indexmenu_nojs">
+
+<ul class="idx">
+<li class="level1" ><div class="li"><a href="/es/forum/server" class="wikilink1" title="es:forum:server">0. Servidor Debian</a></div></li>
+<li class="level1" ><div class="li"><a href="/es/forum/install" class="wikilink1" title="es:forum:install">1. Instalación</a></div></li>
+<li class="level1" ><div class="li"><a href="/es/forum/config" class="wikilink1" title="es:forum:config">2. Configuración</a></div></li>
+<li class="level1" ><div class="li"><a href="/es/forum/intranet" class="wikilink1" title="es:forum:intranet">3. Servidor Intranet</a></div></li>
+<li class="level1" ><div class="li"><a href="/es/forum/internet" class="wikilink1" title="es:forum:internet">4. Servidor Internet</a></div></li>
+<li class="level1" ><div class="li"><a href="/es/forum/email" class="wikilink1" title="es:forum:email">5. Servidor de Correo</a></div></li>
+<li class="level1" ><div class="li"><a href="/es/forum/monitoring" class="wikilink1" title="es:forum:monitoring">6. Monitorización</a></div></li>
+<li class="level1" ><div class="li"><a href="/es/forum/security" class="wikilink1" title="es:forum:security">7. Seguridad</a></div></li>
+</ul>
+</div></div>
+<script type='text/javascript' charset='utf-8'>
+<!--//--><![CDATA[//><!--
+var indexmenu_60721092159b2536176516 = new dTree('indexmenu_60721092159b2536176516','indextheme');
+indexmenu_60721092159b2536176516.config.urlbase='/';
+indexmenu_60721092159b2536176516.config.sepchar='/';
+indexmenu_60721092159b2536176516.config.toc=false;
+indexmenu_60721092159b2536176516.config.useCookies=false;
+indexmenu_60721092159b2536176516.config.jsajax='%26sort%3Dt%26nsort%3D1%26max%3D1';
+indexmenu_60721092159b2536176516.add('es/forum',0,-1,"Foro Servidor Debian",'es/forum/start');
+indexmenu_60721092159b2536176516.add('es/forum/server',1,0,"0. Servidor Debian",0,0,0);
+indexmenu_60721092159b2536176516.add('es/forum/install',2,0,"1. Instalaci\u00f3n",0,0,0);
+indexmenu_60721092159b2536176516.add('es/forum/config',3,0,"2. Configuraci\u00f3n",0,0,0);
+indexmenu_60721092159b2536176516.add('es/forum/intranet',4,0,"3. Servidor Intranet",0,0,0);
+indexmenu_60721092159b2536176516.add('es/forum/internet',5,0,"4. Servidor Internet",0,0,0);
+indexmenu_60721092159b2536176516.add('es/forum/email',6,0,"5. Servidor de Correo",0,0,0);
+indexmenu_60721092159b2536176516.add('es/forum/monitoring',7,0,"6. Monitorizaci\u00f3n",0,0,0);
+indexmenu_60721092159b2536176516.add('es/forum/security',8,0,"7. Seguridad",0,0,0);
+document.write(indexmenu_60721092159b2536176516);
+jQuery(function(){indexmenu_60721092159b2536176516.init(0,1,"",1,1);});
+//--><!]]>
+</script>
+<!-- EDIT10 PLUGIN_INCLUDE_EDITBTN "includes:es:forum:navmenu" [0-] --><!-- EDIT9 PLUGIN_INCLUDE_END "includes:es:forum:navmenu" [0-] --></div>
+
+<p>
+<img src="/_media/spacer.png?w=1&amp;h=1&amp;tok=ba47bf" class="media" alt="" width="1" height="1" />
+</p>
+<hr />
+<!-- EDIT11 PLUGIN_INCLUDE_START "includes:es:sidebarfooter" [0-] --><div class="plugin_include_content plugin_include__includes:es:sidebarfooter" id="plugin_include__includes__es__sidebarfooter">
+<!-- EDIT13 PLUGIN_INCLUDE_START "includes:es:blog:navmenu" [0-] --><div class="plugin_include_content plugin_include__includes:es:blog:navmenu" id="plugin_include__includes__es__blog__navmenu">
+
+<h1 class="sectionedit15" id="blog">Blog</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> <strong><a href="/es/blog/start" class="wikilink1" title="es:blog:start">Últimos artículos </a></strong></div>
+</li>
+<li class="level1"><div class="li"> <a href="/es/blog/2014/04_25_long_term_support_for_debian_6.0_announced" class="wikilink1" title="es:blog:2014:04_25_long_term_support_for_debian_6.0_announced">Long term support for Debian 6.0 Announced</a></div>
+</li>
+<li class="level1"><div class="li"> <strong><a href="/es/blog/archive" class="wikilink1" title="es:blog:archive">Histórico</a></strong></div>
+</li>
+<li class="level1"><div class="li"> <a href="/feed.php?ns=es:blog" class="media" title="feed.php"><img src="/_media/rss-feed.png?w=80&amp;h=15&amp;tok=8b472f" class="media" alt="" width="80" height="15" /></a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT15 SECTION "Blog" "blog" [1-] --><!-- EDIT16 PLUGIN_INCLUDE_EDITBTN "includes:es:blog:navmenu" [0-] --><!-- EDIT14 PLUGIN_INCLUDE_END "includes:es:blog:navmenu" [0-] --></div>
+<hr />
+<!-- EDIT17 PLUGIN_INCLUDE_START "includes:es:rssfeed" [0-] --><div class="plugin_include_content plugin_include__includes:es:rssfeed" id="plugin_include__includes__es__rssfeed">
+
+<p>
+<a href="https://servidordebian.org/feed.php?ns=es" class="media" target="_blank" title="https://servidordebian.org/feed.php?ns=es" rel="nofollow noopener"><img src="/_media/rss-feed.png?w=80&amp;h=15&amp;tok=8b472f" class="media" alt="" width="80" height="15" /></a>
+<a href="https://servidordebian.org/feed.php?ns=es" class="urlextern" target="_blank" title="https://servidordebian.org/feed.php?ns=es" rel="nofollow noopener">Novedades</a><br/>
+
+<a href="https://servidordebian.org/feed.php?ns=es:blog" class="media" target="_blank" title="https://servidordebian.org/feed.php?ns=es:blog" rel="nofollow noopener"><img src="/_media/rss-feed.png?w=80&amp;h=15&amp;tok=8b472f" class="media" alt="" width="80" height="15" /></a>
+<a href="https://servidordebian.org/feed.php?ns=es:blog" class="urlextern" target="_blank" title="https://servidordebian.org/feed.php?ns=es:blog" rel="nofollow noopener">Blog</a>
+</p>
+<!-- EDIT19 PLUGIN_INCLUDE_EDITBTN "includes:es:rssfeed" [0-] --><!-- EDIT18 PLUGIN_INCLUDE_END "includes:es:rssfeed" [0-] --></div>
+<hr />
+
+<h1 class="sectionedit20" id="versiones_anteriores">Versiones Anteriores</h1>
+<div class="level1">
+
+<p>
+<a href="/es/jessie/start" class="wikilink1" title="es:jessie:start">Servidor Debian 8 &#039;Jessie&#039;</a> <br/>
+
+<a href="/es/wheezy/start" class="wikilink1" title="es:wheezy:start">Servidor Debian 7.0 &quot;Wheezy&quot;</a> <br/>
+
+<a href="/es/squeeze/start" class="wikilink1" title="es:squeeze:start">Servidor Debian 6.0 &quot;Squeeze&quot;</a> <br/>
+
+</p>
+
+</div>
+<!-- EDIT20 SECTION "Versiones Anteriores" "versiones_anteriores" [74-] --><!-- EDIT21 PLUGIN_INCLUDE_EDITBTN "includes:es:sidebarfooter" [0-] --><!-- EDIT12 PLUGIN_INCLUDE_END "includes:es:sidebarfooter" [0-] --></div>
+<hr />
+                        <!-- GOOGLE ADS -->
+<div id="sidebar-google-ads">
+    <!-- Responsive ad unit (BETA) -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-2236114946067190"
+        data-ad-slot="6594633689"
+        data-ad-format="auto">
+    </ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div><!-- google ads -->
+                    </div></div>
+                </div></div><!-- /aside -->
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+                <div class="error">Action disabled: source</div>
+                <div class="pageId"><span>es:stretch:intranet:dns:cache</span></div>
+
+                <div class="page group">
+                                        <!-- GOOGLE ADS -->
+<div id="pageheader-google-ads">
+    <!-- Responsive ad unit (BETA) -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-2236114946067190"
+        data-ad-slot="6594633689"
+        data-ad-format="auto">
+    </ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div><!-- google ads -->
+<hr>
+                    <!-- wikipage start -->
+                    <!-- TOC START -->
+<div id="dw__toc">
+<h3 class="toggle">Tabla de Contenidos</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#objetivo">Objetivo</a></div></li>
+<li class="level1"><div class="li"><a href="#instalacion">Instalación</a></div></li>
+<li class="level1"><div class="li"><a href="#configuracion">Configuración</a></div></li>
+<li class="level1"><div class="li"><a href="#verificacion">Verificación</a></div></li>
+<li class="level1"><div class="li"><a href="#configuracion_de_los_clientes">Configuración de los clientes</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#windows">Windows</a></div></li>
+<li class="level2"><div class="li"><a href="#linux">Linux</a></div></li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#configuracion_automatica_de_clientes">Configuración automática de clientes</a></div></li>
+<li class="level1"><div class="li"><a href="#referencias">Referencias</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+<div class="plugin_include_content plugin_include__includes:es:stretch:pageheader" id="plugin_include__includes__es__stretch__pageheader">
+<div class="plugin_include_content plugin_include__includes:es:stretch:sectionheader" id="plugin_include__includes__es__stretch__sectionheader">
+<div class="plugin_include_content plugin_include__includes:es:stretch:chapterheader" id="plugin_include__includes__es__stretch__chapterheader">
+<div class="plugin_include_content plugin_include__includes:es:stretch:versionheader" id="plugin_include__includes__es__stretch__versionheader">
+<div class="plugin_include_content plugin_include__includes:es:stretch:commonheader" id="plugin_include__includes__es__stretch__commonheader">
+<div class="plugin_include_content plugin_include__includes:es:commonheader" id="plugin_include__includes__es__commonheader">
+
+<p>
+<img src="/_media/favicon.png" class="mediacenter" alt="" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<h1 class="sectionedit19" id="cache_dns">3.1.2 Cache DNS</h1>
+<div class="level1">
+
+</div>
+
+<h2 class="sectionedit20" id="objetivo">Objetivo</h2>
+<div class="level2">
+
+<p>
+Aunque las direcciones Internet tengan nombres “legibles” (www.google.com), éstos deben ser traducidos a la dirección <em>IP</em> (213.129.232.18) del respectivo servidor. Esa conversión es efectuada realizando una búsqueda en el <em><abbr title="Domain Name System">DNS</abbr></em> (<em>Domain Name System</em>).
+</p>
+
+<p>
+Una <em>cache <abbr title="Domain Name System">DNS</abbr></em> guardia localmente los resultados de esa búsqueda para utilización futura, evitando la repetición de búsquedas y aumentando drásticamente la velocidad de respuesta.
+</p>
+
+</div>
+
+<h2 class="sectionedit21" id="instalacion">Instalación</h2>
+<div class="level2">
+<pre class="code bash">root@server:~# apt-get install bind9 bind9-doc dnsutils</pre>
+
+</div>
+
+<h2 class="sectionedit22" id="configuracion">Configuración</h2>
+<div class="level2">
+
+<p>
+La configuración generada durante la instalación es perfectamente funcional, no requiere modificaciones. Sin embargo, vamos personalizar la instalación en 2 aspectos principales: vamos a definir a cuáles servidores consultará el nuestro para pedir ayuda en la resolución de nombres, si no es posible hacer esto localmente (<em>forwarders</em>) y vamos a fortalecer algunos aspectos de seguridad.
+</p>
+
+<p>
+Como <em>forwarders</em> podemos optar por varias hipótesis: una es utilizar los servidores <em><abbr title="Domain Name System">DNS</abbr></em> de nuestro proveedor de acceso a Internet.
+</p>
+
+<p>
+Otra posibilidad muy interesante es utilizar uno de los diversos servicios públicos de <em><abbr title="Domain Name System">DNS</abbr></em> disponibles en la actualidad, como:
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.opendns.com" class="urlextern" target="_blank" title="http://www.opendns.com" rel="nofollow noopener"> OpenDNS</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://code.google.com/speed/public-dns" class="urlextern" target="_blank" title="http://code.google.com/speed/public-dns" rel="nofollow noopener"> Google Public DNS</a></div>
+</li>
+</ul>
+
+<p>
+Estos servicios prometen suministrar no sólo resoluciones más rápidas, sino también diversos servicios adicionales de seguridad, como filtros de direcciones maliciosos y otros más.
+</p>
+
+<p>
+En este caso, utilizaremos los servidores <em>OpenDNS</em> (<a href="http://www.opendns.com" class="urlextern" target="_blank" title="http://www.opendns.com" rel="nofollow noopener">http://www.opendns.com</a>). Para tener otra opción, también se añadirá el del <em>router ADSL</em>.
+</p>
+
+<p>
+Por seguridad sólo serán recibidas conexiones por la interfaz local o por la destinada a la red interna (<em>listen-on { 127.0.0.1; 192.168.1.100; };</em>). Así mismo, sólo serán contestados los pedidos de resolución que partan del propio puesto o de la red interna (<em>allow-query { 127.0.0.1; 192.168.1.0/24; };</em>). Todos los otros pedidos serán ignorados, para evitar eventuales utilizaciones abusivas de nuestro servidor <em><abbr title="Domain Name System">DNS</abbr></em> por parte de terceros.
+</p>
+
+<p>
+La configuración está guardada en el archivo <em>/etc/bind/named.conf.options</em>:
+</p>
+<dl class="file">
+<dt><a href="/_export/code/es/stretch/intranet/dns/cache?codeblock=1" title="Descargar trozo de código fuente" class="mediafile mf_options">/etc/bind/named.conf.options</a></dt>
+<dd><pre class="file">options {
+        directory &quot;/var/cache/bind&quot;;
+
+        // If there is a firewall between you and nameservers you want
+        // to talk to, you may need to fix the firewall to allow multiple
+        // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
+
+        // If your ISP provided one or more IP addresses for stable
+        // nameservers, you probably want to use them as forwarders.
+        // Uncomment the following block, and insert the addresses replacing
+        // the all-0&#039;s placeholder.
+
+        forwarders {
+             // OpenDNS servers
+             208.67.222.222;
+             208.67.220.220;
+             // ADSL router
+             192.168.1.1;
+        };
+
+        // Security options
+        listen-on port 53 { 127.0.0.1; 192.168.1.100; };
+        allow-query { 127.0.0.1; 192.168.1.0/24; };
+        allow-recursion { 127.0.0.1; 192.168.1.0/24; };
+        allow-transfer { none; };
+
+        //========================================================================
+        // If BIND logs error messages about the root key being expired,
+        // you will need to update your keys.  See https://www.isc.org/bind-keys
+        //========================================================================
+        dnssec-validation auto;
+
+        auth-nxdomain no;    # conform to RFC1035
+        // listen-on-v6 { any; };
+};
+</pre>
+</dd></dl>
+
+<p>
+Verificar si el archivo de configuración fue correctamente editado:
+</p>
+<pre class="code bash">root@server:~# named-checkconf</pre>
+
+<p>
+Actualizar el archivo <em>/etc/resolv.conf</em> para que la resolución de nombres se haga localmente:
+</p>
+<dl class="file">
+<dt><a href="/_export/code/es/stretch/intranet/dns/cache?codeblock=3" title="Descargar trozo de código fuente" class="mediafile mf_conf">/etc/resolv.conf</a></dt>
+<dd><pre class="file">nameserver 127.0.0.1</pre>
+</dd></dl>
+
+<p>
+Verificar también que en el archivo <em>/etc/nsswitch.conf</em> la resolución de nombres pase también por el servicio <em><abbr title="Domain Name System">DNS</abbr></em>:
+</p>
+<dl class="file">
+<dt><a href="/_export/code/es/stretch/intranet/dns/cache?codeblock=4" title="Descargar trozo de código fuente" class="mediafile mf_conf">/etc/nsswitch.conf</a></dt>
+<dd><pre class="file"># [...]
+hosts:	files dns
+# [...]</pre>
+</dd></dl>
+
+<p>
+Reiniciar el servicio <em><abbr title="Domain Name System">DNS</abbr></em>:
+</p>
+<pre class="code bash">root@server:~# service bind9 restart</pre>
+
+</div>
+
+<h2 class="sectionedit23" id="verificacion">Verificación</h2>
+<div class="level2">
+
+<p>
+Para verificar la configuración, debe buscar la dirección IP de cualquier sitio en internet. El servidor <em><abbr title="Domain Name System">DNS</abbr></em> deberá mostrar nuestra dirección (<em>127.0.0.1</em>) y las direcciones <em>IP</em> del sitio buscado, se mostrarán de forma correcta:
+</p>
+<pre class="code bash">root@server:~# nslookup www.debian.org
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+&nbsp;
+Non-authoritative answer:
+Name:   www.debian.org
+Address: 5.153.231.4
+Name:   www.debian.org
+Address: 130.89.148.14</pre>
+
+<p>
+El proceso inverso, es decir, buscar un nombre a partir de una dirección <em>IP</em>, también debe funcionar:
+</p>
+<pre class="code bash">root@server:~# nslookup 5.153.231.4
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+&nbsp;
+Non-authoritative answer:
+4.231.153.5.in-addr.arpa        name = senfter.debian.org.
+&nbsp;
+Authoritative answers can be found from:
+.       nameserver = j.root-servers.net.
+.       nameserver = d.root-servers.net.
+.       nameserver = a.root-servers.net.
+.       nameserver = k.root-servers.net.
+.       nameserver = e.root-servers.net.
+.       nameserver = i.root-servers.net.
+.       nameserver = l.root-servers.net.
+.       nameserver = h.root-servers.net.
+.       nameserver = b.root-servers.net.
+.       nameserver = f.root-servers.net.
+.       nameserver = g.root-servers.net.
+.       nameserver = m.root-servers.net.
+.       nameserver = c.root-servers.net.</pre>
+
+</div>
+
+<h2 class="sectionedit24" id="configuracion_de_los_clientes">Configuración de los clientes</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit25" id="windows">Windows</h3>
+<div class="level3">
+
+<p>
+Para los sistemas Windows, debe indicar, las propiedades del protocolo de Internet (<em>TCP(IP)</em>) de conexión de red, y debe determinar la dirección de nuestro servidor <em><abbr title="Domain Name System">DNS</abbr></em> (<em>192.168.1.100</em>) como servidor <em><abbr title="Domain Name System">DNS</abbr></em> preferido.
+</p>
+
+<p>
+<img src="/_media/es/stretch/intranet/dns/dns-win.png" class="media" alt="" />
+</p>
+
+</div>
+
+<h3 class="sectionedit26" id="linux">Linux</h3>
+<div class="level3">
+
+<p>
+Para los sistemas Linux, se debe editar el archivo <em>/etc/resolv.conf</em> para substituir o añadir el <em>nameserver</em> con la dirección <em>IP</em> de nuestro servidor:
+</p>
+<pre class="code bash"># [...]
+nameserver 192.168.1.100
+# [...]</pre>
+
+</div>
+
+<h2 class="sectionedit27" id="configuracion_automatica_de_clientes">Configuración automática de clientes</h2>
+<div class="level2">
+
+<p>
+El servidor <abbr title="Domain Name System">DNS</abbr> puede ser atribuido a los clientes automáticamente, a través del protocolo DHCP. Para esto, basta acrecentar la opción domain-name-servers como la o las direcciones de los servidores <abbr title="Domain Name System">DNS</abbr> al archivo <em>/etc/dhcp/dhcpd.conf</em> del <a href="/es/stretch/intranet/dhcp/server" class="wikilink1" title="es:stretch:intranet:dhcp:server"> servidor DHCP</a>:
+</p>
+<dl class="file">
+<dt><a href="/_export/code/es/stretch/intranet/dns/cache?codeblock=9" title="Descargar trozo de código fuente" class="mediafile mf_conf">/etc/dhcp/dhcpd.conf</a></dt>
+<dd><pre class="file"># [...]
+option domain-name-servers 192.168.1.100;
+# [...]</pre>
+</dd></dl>
+
+</div>
+
+<h2 class="sectionedit28" id="referencias">Referencias</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.isc.org/sw/bind/" class="urlextern" target="_blank" title="http://www.isc.org/sw/bind/" rel="nofollow noopener"> ISC Bind</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://es.wikipedia.org/wiki/Domain_Name_System" class="urlextern" target="_blank" title="http://es.wikipedia.org/wiki/Domain_Name_System" rel="nofollow noopener"> Wikipedia: Domain Name System</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch18_:_Configuring_DNS" class="urlextern" target="_blank" title="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch18_:_Configuring_DNS" rel="nofollow noopener"> Linux Home Networking: Quick HOWTO: Ch18 Configuring DNS</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://langfeldt.net/DNS-HOWTO/BIND-9/DNS-HOWTO-3.html" class="urlextern" target="_blank" title="http://langfeldt.net/DNS-HOWTO/BIND-9/DNS-HOWTO-3.html" rel="nofollow noopener"> DNS Howto, 3. A resolving, caching name server</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.debian.org/doc/manuals/securing-debian-howto/ch-sec-services.en.html#s-sec-bind" class="urlextern" target="_blank" title="http://www.debian.org/doc/manuals/securing-debian-howto/ch-sec-services.en.html#s-sec-bind" rel="nofollow noopener"> Securing Debian Manual</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.opendns.com/" class="urlextern" target="_blank" title="http://www.opendns.com/" rel="nofollow noopener"> OpenDNS</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://code.google.com/speed/public-dns/" class="urlextern" target="_blank" title="http://code.google.com/speed/public-dns/" rel="nofollow noopener"> Google Public DNS</a></div>
+</li>
+</ul>
+<div class="tags"><span>
+	<a href="/tag/bind?do=showtag&amp;tag=bind" class="wikilink1" title="tag:bind" rel="tag">bind</a>,
+	<a href="/tag/bind9?do=showtag&amp;tag=bind9" class="wikilink1" title="tag:bind9" rel="tag">bind9</a>,
+	<a href="/tag/cache?do=showtag&amp;tag=cache" class="wikilink1" title="tag:cache" rel="tag">cache</a>,
+	<a href="/tag/dhcp?do=showtag&amp;tag=dhcp" class="wikilink1" title="tag:dhcp" rel="tag">dhcp</a>,
+	<a href="/tag/dominio?do=showtag&amp;tag=dominio" class="wikilink1" title="tag:dominio" rel="tag">dominio</a>,
+	<a href="/tag/dns?do=showtag&amp;tag=dns" class="wikilink1" title="tag:dns" rel="tag">dns</a>,
+	<a href="/tag/named?do=showtag&amp;tag=named" class="wikilink1" title="tag:named" rel="tag">named</a>,
+	<a href="/tag/nombre?do=showtag&amp;tag=nombre" class="wikilink1" title="tag:nombre" rel="tag">nombre</a>,
+	<a href="/tag/resolucion?do=showtag&amp;tag=resolucion" class="wikilink1" title="tag:resolucion" rel="tag">resolucion</a>,
+	<a href="/tag/servidor?do=showtag&amp;tag=servidor" class="wikilink1" title="tag:servidor" rel="tag">servidor</a>
+</span></div>
+
+</div>
+<div class="plugin_include_content plugin_include__includes:es:stretch:pagefooter" id="plugin_include__includes__es__stretch__pagefooter">
+<div class="level2">
+<script charset="utf-8" type="text/javascript">
+                    <!--//--><![CDATA[//><!--
+var disqus_url     = 'https://servidordebian.org/es/stretch/intranet/dns/cache';
+var disqus_title   = '3.1.2 Cache DNS';
+var disqus_message = '';
+var disqus_container_id = 'disqus__thread';
+                    //--><!]]>
+                    </script><div id="disqus__thread"></div><script type="text/javascript" src="//disqus.com/forums/servidordebian-es/embed.js"></script><noscript><a href="//servidordebian-es.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+</div>
+<div class="plugin_include_content plugin_include__includes:es:stretch:sectionfooter" id="plugin_include__includes__es__stretch__sectionfooter">
+<div class="level2">
+
+</div>
+<div class="plugin_include_content plugin_include__includes:es:stretch:chapterfooter" id="plugin_include__includes__es__stretch__chapterfooter">
+<div class="level2">
+
+</div>
+<div class="plugin_include_content plugin_include__includes:es:stretch:versionfooter" id="plugin_include__includes__es__stretch__versionfooter">
+<div class="level2">
+
+</div>
+<div class="plugin_include_content plugin_include__includes:es:stretch:commonfooter" id="plugin_include__includes__es__stretch__commonfooter">
+<div class="level2">
+
+</div>
+<div class="plugin_include_content plugin_include__includes:es:commonfooter" id="plugin_include__includes__es__commonfooter">
+<div class="level2">
+
+<p>
+<img src="/_media/favicon.png" class="mediacenter" alt="" />
+</p>
+
+<p>
+<ul class="socialite"><li class="socialite-item-color-twitter"><a class="socialite-link-color-twitter" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&text=3.1.2%20Cache%20DNS&via=Pinguim_Ribeiro">Twitter</a></li><li class="socialite-item-color-facebook"><a class="socialite-link-color-facebook" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache">Facebook</a></li><li class="socialite-item-color-googleplus"><a class="socialite-link-color-googleplus" href="https://plus.google.com/share?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache">Google+</a></li><li class="socialite-item-color-linkedin"><a class="socialite-link-color-linkedin" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&title=3.1.2%20Cache%20DNS&summary=3.1.2%20Cache%20DNS%0A%0AObjetivo%0A%0AAunque%20las%20direcciones%20Internet%20tengan%20nombres%20%E2%80%9Clegibles%E2%80%9D%20%28www.google.com%29%2C%20%C3%A9stos%20deben%20ser%20traducidos%20a%20la%20direcci%C3%B3n%20IP%20%28213.129.232.18%29%20del%20respectivo%20servidor.%20Esa%20conversi%C3%B3n%20es%20efectuada%20realizando%20una%20b%C3%BAsqueda%20en%20el&mini=true&source=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache">LinkedIn</a></li><li class="socialite-item-color-pinterest"><a class="socialite-link-color-pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&description=3.1.2%20Cache%20DNS">Pinterest</a></li><li class="socialite-item-color-tumblr"><a class="socialite-link-color-tumblr" href="http://www.tumblr.com/share/link?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&description=3.1.2%20Cache%20DNS">Tumblr</a></li><li class="socialite-item-color-reddit"><a class="socialite-link-color-reddit" href="http://www.reddit.com/submit?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&title=3.1.2%20Cache%20DNS">Reddit</a></li><li class="socialite-item-color-taringa"><a class="socialite-link-color-taringa" href="http://www.taringa.net/widgets/share.php?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&body=3.1.2%20Cache%20DNS">Taringa</a></li><li class="socialite-item-color-delicious"><a class="socialite-link-color-delicious" href="https://delicious.com/save?v=5&noui&jump=close&url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&title=3.1.2%20Cache%20DNS&provider=ServidorDebian.org">Delicious</a></li><li class="socialite-item-color-stumbleupon"><a class="socialite-link-color-stumbleupon" href="http://www.stumbleupon.com/submit?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&title=3.1.2%20Cache%20DNS">StumbleUpon</a></li><li class="socialite-item-color-xing"><a class="socialite-link-color-xing" href="https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache">Xing</a></li><li class="socialite-item-color-vk"><a class="socialite-link-color-vk" href="https://vk.com/share.php?url=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache&title=3.1.2%20Cache%20DNS&description=3.1.2%20Cache%20DNS%0A%0AObjetivo%0A%0AAunque%20las%20direcciones%20Internet%20tengan%20nombres%20%E2%80%9Clegibles%E2%80%9D%20%28www.google.com%29%2C%20%C3%A9stos%20deben%20ser%20traducidos%20a%20la%20direcci%C3%B3n%20IP%20%28213.129.232.18%29%20del%20respectivo%20servidor.%20Esa%20conversi%C3%B3n%20es%20efectuada%20realizando%20una%20b%C3%BAsqueda%20en%20el&noparse=true">Vk</a></li><li class="socialite-item-color-email"><a class="socialite-link-color-email" href="mailto:?subject=3.1.2%20Cache%20DNS&body=https%3A%2F%2Fservidordebian.org%2Fes%2Fstretch%2Fintranet%2Fdns%2Fcache: 3.1.2%20Cache%20DNS%0A%0AObjetivo%0A%0AAunque%20las%20direcciones%20Internet%20tengan%20nombres%20%E2%80%9Clegibles%E2%80%9D%20%28www.google.com%29%2C%20%C3%A9stos%20deben%20ser%20traducidos%20a%20la%20direcci%C3%B3n%20IP%20%28213.129.232.18%29%20del%20respectivo%20servidor.%20Esa%20conversi%C3%B3n%20es%20efectuada%20realizando%20una%20b%C3%BAsqueda%20en%20el">Email</a></li></ul>
+</p>
+
+</div>
+</div>
+<div class="level2">
+
+</div>
+</div>
+<div class="level2">
+
+</div>
+</div>
+<div class="level2">
+
+</div>
+</div>
+<div class="level2">
+
+</div>
+</div>
+<div class="level2">
+
+</div>
+</div>
+<div class="level2">
+
+</div>
+
+<script type='text/javascript'>
+syntaxhighlighterConfig = {
+  autoLinks: true,
+  gutter: true,
+  htmlScript: false,
+  tabSize: 4,
+  smartTabs: true
+}
+</script>
+
+                    <!-- wikipage stop -->
+                    <!-- GOOGLE ADS -->
+<div id="pagefooter-google-ads">
+    <!-- Responsive ad unit (BETA) -->
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-2236114946067190"
+        data-ad-slot="6594633689"
+        data-ad-format="auto">
+    </ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div><!-- google ads -->
+                </div>
+
+                <div class="docInfo"><bdi>es/stretch/intranet/dns/cache.txt</bdi> · Última modificación: 2017-07-10 09:35 (editor externo)</div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Herramientas de la página</h3>
+                <div class="tools">
+                    <ul>
+                        <li class="source"><a href="/es/stretch/intranet/dns/cache?do=edit" title="Ver la fuente de esta página [v]" rel="nofollow" accesskey="v"><span>Ver la fuente de esta página</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5V9M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m.12 13.5l3.74 3.74 1.42-1.41-2.33-2.33 2.33-2.33-1.42-1.41-3.74 3.74m11.16 0l-3.74-3.74-1.42 1.41 2.33 2.33-2.33 2.33 1.42 1.41 3.74-3.74z"/></svg></a></li><li class="backlink"><a href="/es/stretch/intranet/dns/cache?do=backlink" title="Enlaces a esta página" rel="nofollow"><span>Enlaces a esta página</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24 2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24 2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24.973.973 0 0 1 0-1.42z"/></svg></a></li><li class="top"><a href="#dokuwiki__top" title="Volver arriba [t]" rel="nofollow" accesskey="t"><span>Volver arriba</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+        
+<!-- ********** FOOTER ********** -->
+<div id="dokuwiki__footer"><div class="pad">
+    <div class="license">Excepto donde se indique lo contrario, el contenido de este wiki esta bajo la siguiente licencia: <bdi><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" class="urlextern" target="_blank">CC Attribution-Noncommercial-Share Alike 4.0 International</a></bdi></div>
+    <div class="buttons">
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank"><img src="/lib/images/license/button/cc-by-nc-sa.png" alt="CC Attribution-Noncommercial-Share Alike 4.0 International" /></a>        <a href="https://www.dokuwiki.org/donate" title="Donate" target="_blank"><img
+            src="/lib/tpl/dokuwiki/images/button-donate.gif" width="80" height="15" alt="Donate" /></a>
+        <a href="https://php.net" title="Powered by PHP" target="_blank"><img
+            src="/lib/tpl/dokuwiki/images/button-php.gif" width="80" height="15" alt="Powered by PHP" /></a>
+        <a href="//validator.w3.org/check/referer" title="Valid HTML5" target="_blank"><img
+            src="/lib/tpl/dokuwiki/images/button-html5.png" width="80" height="15" alt="Valid HTML5" /></a>
+        <a href="//jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS" target="_blank"><img
+            src="/lib/tpl/dokuwiki/images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+        <a href="https://dokuwiki.org/" title="Driven by DokuWiki" target="_blank"><img
+            src="/lib/tpl/dokuwiki/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+    </div>
+</div></div><!-- /footer -->
+
+<!-- Google Services -->
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-28018418-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Google Adds -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="/lib/exe/indexer.php?id=es%3Astretch%3Aintranet%3Adns%3Acache&amp;1508950761" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div></body>
+</html>

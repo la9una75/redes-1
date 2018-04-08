@@ -1,0 +1,1919 @@
+
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Redes de datos con software libre">
+      
+      
+        <link rel="canonical" href="http://www.redes.rauljesus.com/dns/zonas/">
+      
+      
+        <meta name="author" content="Raul Jesus Lopez">
+      
+      
+        <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.3">
+    
+    
+      
+        <title>Zona de autoridad - Redes con software libre</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-4d315b386e.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <!--
+        link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        -->
+
+        <link rel="stylesheet" href="../../assets/fonts/material/material.css">
+
+        <link rel="stylesheet" href="../../assets/fonts/roboto/roboto.css">
+
+        <link rel="stylesheet" href="../../assets/fonts/robotomono/robotomono.css">
+
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <!--
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      -->
+    
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://www.redes.rauljesus.com" title="Redes con software libre" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  BIND
+                </span>
+              
+                <span class="md-header-nav__parent">
+                  DNS local
+                </span>
+              
+            
+            Zona de autoridad
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="es" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No se encontraron coincidencias para su búsqueda" data-md-lang-result-one="1 coincidencia encontrada" data-md-lang-result-other="# coincidencias encontradas">
+            Comience a escribir para iniciar su búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      Ver en GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
+    Redes con software libre
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      Ver en GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Inicio" class="md-nav__link">
+      Inicio
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      SSH
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        SSH
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ssh/authKey/" title="Autenticación de llave pública" class="md-nav__link">
+      Autenticación de llave pública
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Resolución de nombres
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Resolución de nombres
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../archivoHosts/" title="El archivo hosts" class="md-nav__link">
+      El archivo hosts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="¿Qué es el DNS?" class="md-nav__link">
+      ¿Qué es el DNS?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3" checked>
+    
+    <label class="md-nav__link" for="nav-3-3">
+      BIND
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        BIND
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bind/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cache/" title="DNS caché" class="md-nav__link">
+      DNS caché
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3-4" type="checkbox" id="nav-3-3-4" checked>
+    
+    <label class="md-nav__link" for="nav-3-3-4">
+      DNS local
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-4">
+        DNS local
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Zona de autoridad
+      </label>
+    
+    <a href="./" title="Zona de autoridad" class="md-nav__link md-nav__link--active">
+      Zona de autoridad
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creando-y-declarando-archivos-de-zonas" title="Creando y declarando archivos de zonas" class="md-nav__link">
+    Creando y declarando archivos de zonas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contenido-de-los-archivos-de-zona" title="Contenido de los archivos de zona" class="md-nav__link">
+    Contenido de los archivos de zona
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directivas-de-archivos-de-zona" title="Directivas de archivos de zona" class="md-nav__link">
+    Directivas de archivos de zona
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#include" title="$INCLUDE" class="md-nav__link">
+    $INCLUDE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#origin" title="$ORIGIN" class="md-nav__link">
+    $ORIGIN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ttl" title="$TTL" class="md-nav__link">
+    $TTL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registros-de-recursos-de-archivos-de-zona" title="Registros de recursos de archivos de zona" class="md-nav__link">
+    Registros de recursos de archivos de zona
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#soa-start-of-authority" title="SOA (Start of Authority)" class="md-nav__link">
+    SOA (Start of Authority)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ns-name-server" title="NS (Name Server)" class="md-nav__link">
+    NS (Name Server)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mx-mail-exchange" title="MX (Mail eXchange)" class="md-nav__link">
+    MX (Mail eXchange)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-address" title="A (Address)" class="md-nav__link">
+    A (Address)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cname-canonical-name" title="CNAME (Canonical Name)" class="md-nav__link">
+    CNAME (Canonical Name)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ptr-pointer" title="PTR (PoinTeR)" class="md-nav__link">
+    PTR (PoinTeR)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otros-registros" title="Otros registros" class="md-nav__link">
+    Otros registros
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aaaa" title="AAAA" class="md-nav__link">
+    AAAA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#txt-text-record" title="TXT (Text Record)" class="md-nav__link">
+    TXT (Text Record)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-de-archivos-de-zonas" title="Ejemplos de archivos de zonas" class="md-nav__link">
+    Ejemplos de archivos de zonas
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../resolvd/" title="Resolución directa" class="md-nav__link">
+      Resolución directa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../resolvi/" title="Resolución inversa" class="md-nav__link">
+      Resolución inversa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../resolver/" title="Configurando el resolver" class="md-nav__link">
+      Configurando el resolver
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../clientes/" title="Configurando clientes" class="md-nav__link">
+      Configurando clientes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../test/" title="Realizando pruebas" class="md-nav__link">
+      Realizando pruebas
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      LAMP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        LAMP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/queEs/" title="¿Qué es LAMP?" class="md-nav__link">
+      ¿Qué es LAMP?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/gestionBasica/" title="Gestión básica" class="md-nav__link">
+      Gestión básica
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/userdir/" title="Web de usuario" class="md-nav__link">
+      Web de usuario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/virtualHosts/" title="Hosts virtuales" class="md-nav__link">
+      Hosts virtuales
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Samba
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Samba
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/" title="¿Qué es SAMBA?" class="md-nav__link">
+      ¿Qué es SAMBA?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/configuracionGeneral/" title="Configuración general" class="md-nav__link">
+      Configuración general
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/gestionUsuarios/" title="Gestión de usuarios" class="md-nav__link">
+      Gestión de usuarios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/comparticionUsuario/" title="Carpeta de usuario" class="md-nav__link">
+      Carpeta de usuario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/comparticionGrupo/" title="Carpeta de grupo" class="md-nav__link">
+      Carpeta de grupo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/comparticionInvitados/" title="Carpeta de invitados" class="md-nav__link">
+      Carpeta de invitados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/clientesWindows/" title="Clientes Windows" class="md-nav__link">
+      Clientes Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../samba/ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Icecast
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Icecast
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/" title="¿Qué es Icecast?" class="md-nav__link">
+      ¿Qué es Icecast?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/inicializacion/" title="Inicializando el servidor" class="md-nav__link">
+      Inicializando el servidor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/configuracionGeneral/" title="Configuración general" class="md-nav__link">
+      Configuración general
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/broadcasting/" title="Broadcasting" class="md-nav__link">
+      Broadcasting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/administracion/" title="Administración" class="md-nav__link">
+      Administración
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Git
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/" title="¿Qué es Git?" class="md-nav__link">
+      ¿Qué es Git?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/flujoEntornosDistribuidos/" title="Entornos distribuidos" class="md-nav__link">
+      Entornos distribuidos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/instalacion/" title="Instalación de Git" class="md-nav__link">
+      Instalación de Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/configuracionInicial/" title="Configuración inicial" class="md-nav__link">
+      Configuración inicial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/losTresEstados/" title="Los tres estados" class="md-nav__link">
+      Los tres estados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/repositorioLocal/" title="Inicializando repositorio local" class="md-nav__link">
+      Inicializando repositorio local
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/servidorGit/" title="Git en el servidor" class="md-nav__link">
+      Git en el servidor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/trabajandoConRemotos/" title="Trabajando con remotos" class="md-nav__link">
+      Trabajando con remotos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/ramas/" title="Ramas" class="md-nav__link">
+      Ramas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/deshaciendoCambios/" title="Deshaciendo cambios" class="md-nav__link">
+      Deshaciendo cambios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/otrosComandosGit/" title="Otros comandos" class="md-nav__link">
+      Otros comandos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/ejemploGit/" title="Ejemplo de uso de git" class="md-nav__link">
+      Ejemplo de uso de git
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Nagios
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Nagios
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/" title="¿Qué es Nagios?" class="md-nav__link">
+      ¿Qué es Nagios?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/configuracion/" title="Configuración inicial" class="md-nav__link">
+      Configuración inicial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/equipos/" title="Definiendo equipos" class="md-nav__link">
+      Definiendo equipos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/grupos/" title="Definiendo grupos" class="md-nav__link">
+      Definiendo grupos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/servicios/" title="Definiendo servicios" class="md-nav__link">
+      Definiendo servicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/nsclient/" title="Agente Windows" class="md-nav__link">
+      Agente Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/iconos/" title="Definiendo íconos" class="md-nav__link">
+      Definiendo íconos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/recursos/" title="Recursos adicionales" class="md-nav__link">
+      Recursos adicionales
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Proxy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Proxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy/" title="Instrucciones" class="md-nav__link">
+      Instrucciones
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creando-y-declarando-archivos-de-zonas" title="Creando y declarando archivos de zonas" class="md-nav__link">
+    Creando y declarando archivos de zonas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contenido-de-los-archivos-de-zona" title="Contenido de los archivos de zona" class="md-nav__link">
+    Contenido de los archivos de zona
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directivas-de-archivos-de-zona" title="Directivas de archivos de zona" class="md-nav__link">
+    Directivas de archivos de zona
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#include" title="$INCLUDE" class="md-nav__link">
+    $INCLUDE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#origin" title="$ORIGIN" class="md-nav__link">
+    $ORIGIN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ttl" title="$TTL" class="md-nav__link">
+    $TTL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registros-de-recursos-de-archivos-de-zona" title="Registros de recursos de archivos de zona" class="md-nav__link">
+    Registros de recursos de archivos de zona
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#soa-start-of-authority" title="SOA (Start of Authority)" class="md-nav__link">
+    SOA (Start of Authority)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ns-name-server" title="NS (Name Server)" class="md-nav__link">
+    NS (Name Server)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mx-mail-exchange" title="MX (Mail eXchange)" class="md-nav__link">
+    MX (Mail eXchange)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-address" title="A (Address)" class="md-nav__link">
+    A (Address)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cname-canonical-name" title="CNAME (Canonical Name)" class="md-nav__link">
+    CNAME (Canonical Name)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ptr-pointer" title="PTR (PoinTeR)" class="md-nav__link">
+    PTR (PoinTeR)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otros-registros" title="Otros registros" class="md-nav__link">
+    Otros registros
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aaaa" title="AAAA" class="md-nav__link">
+    AAAA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#txt-text-record" title="TXT (Text Record)" class="md-nav__link">
+    TXT (Text Record)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-de-archivos-de-zonas" title="Ejemplos de archivos de zonas" class="md-nav__link">
+    Ejemplos de archivos de zonas
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Zona de autoridad</h1>
+                
+                <p>Aunque se pueda atribuir nombres a los diversos sistemas de una red, estos no consiguen reconocerse entre sí sin un sistema de resolución de nombres. Para que un sistema consiga localizar la dirección IP asociada al nombre de otro sistema, es necesario que éste esté registrado en un servidor DNS, para permitir la resolución de nombres.
+Atención</p>
+<div class="admonition warning">
+<p class="admonition-title">Importante<p>Antes de instalar el servidor DNS, la <a href="../cache/">Cache DNS</a> debe estar previamente configurada y verificada.</p>
+</p>
+</div>
+<h2 id="creando-y-declarando-archivos-de-zonas">Creando y declarando archivos de zonas<a class="headerlink" href="#creando-y-declarando-archivos-de-zonas" title="Permanent link">&para;</a></h2>
+<p>La resolución de nombres traduce nombres de sistemas en sus direcciones IP y viceversa. Así, la configuración consiste, básicamente en la creación de 2 archivos de zona:</p>
+<ul>
+<li><strong>Archivo de zona de resolución directa</strong>: contiene la información necesaria para convertir nombres de dominio en direcciones IP. En nuestro ejemplo, el archivo se llama <code>db.itel.lan</code> </li>
+<li><strong>Archivo de zona de resolución inversa</strong> contiene la información necesaria para convertir direcciones IP en el respectivo nombre de sistema. En el ejemplo, el archivo se llama <code>db.0.168.192</code></li>
+</ul>
+<p>Entonces, creamos los archivos: </p>
+<div class="codehilite"><pre><span></span><span class="nb">cd</span> <span class="sx">/etc/bind</span> &amp;&amp; sudo touch db.itel.lan db.0.168.192
+</pre></div>
+
+
+<p>Luego, abrimos el archivo <code>/etc/bind/named.conf.local</code>:</p>
+<div class="codehilite"><pre><span></span>sudo vim /etc/bind/named.conf.local
+</pre></div>
+
+
+<p>Y declaramos los archivos de zona creados en el paso anterior: </p>
+<div class="codehilite"><pre><span></span>// Zona de resolución directa
+
+    zone <span class="s2">&quot;itel.lan&quot;</span> <span class="o">{</span>
+        <span class="nb">type</span> master<span class="p">;</span>
+        file <span class="s2">&quot;/etc/bind/db.itel.lan&quot;</span><span class="p">;</span>
+    <span class="o">}</span><span class="p">;</span>
+
+// Zona de resolución inversa
+
+    zone <span class="s2">&quot;0.168.192.in-addr.arpa&quot;</span> <span class="o">{</span>
+        <span class="nb">type</span> master<span class="p">;</span>
+        file <span class="s2">&quot;/etc/bind/db.0.168.192&quot;</span><span class="p">;</span>
+    <span class="o">}</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Por último, verificamos que el archivo de configuración no contenga errores:</p>
+<div class="codehilite"><pre><span></span>sudo named-checkconf
+</pre></div>
+
+
+<h2 id="contenido-de-los-archivos-de-zona">Contenido de los archivos de zona<a class="headerlink" href="#contenido-de-los-archivos-de-zona" title="Permanent link">&para;</a></h2>
+<p>Los Archivos de zona contienen información sobre un espacio de nombres particular. </p>
+<p>Cada archivo de zona contiene <strong>directivas</strong> y <strong>registros de recursos</strong>. Las directivas le dicen al servidor de nombres que realice tareas o aplique configuraciones especiales a la zona. Los registros de recursos define los parámetros de la zona y asignan identidades a hosts individuales. Las directivas son opcionales, pero los registros de recursos se requieren para proporcionar servicios de nombres a la zona.</p>
+<div class="admonition warning">
+<p class="admonition-title">Declaración de registros y directivas<p>Todas las directivas y registros de recursos deben ir en sus propias líneas individuales.</p>
+</p>
+</div>
+<p>Los comentarios se pueden colocar después de los punto y comas (<code>;</code>) en archivos de zona. </p>
+<h3 id="directivas-de-archivos-de-zona">Directivas de archivos de zona<a class="headerlink" href="#directivas-de-archivos-de-zona" title="Permanent link">&para;</a></h3>
+<p>Las directivas comienzan con el símbolo de dolar (<code>$</code>) seguido del nombre de la directiva. Usualmente aparecen en la parte superior del archivo de zona.</p>
+<p>Lo siguiente son directivas usadas a menudo:</p>
+<h4 id="include">$INCLUDE<a class="headerlink" href="#include" title="Permanent link">&para;</a></h4>
+<p>Se utiliza para incluir otro archivo de zona en el archivo de zona donde se usa la directiva. Así se pueden almacenar configuraciones de zona suplementarias aparte del archivo de zona principal.</p>
+<h4 id="origin">$ORIGIN<a class="headerlink" href="#origin" title="Permanent link">&para;</a></h4>
+<p>Anexa el nombre del dominio a registros no cualificados, tales como aquellos con el nombre de host solamente.</p>
+<p>Por ejemplo, un archivo de zona puede contener la línea siguiente: </p>
+<div class="codehilite"><pre><span></span><span class="err">$</span><span class="nb">ORIGIN</span> itel.lan.
+</pre></div>
+
+
+<p>Entonces, a cualquier nombre utilizado en <em>registros de recursos</em> que no terminen en un punto (.) se le agregará <code>itel.lan</code></p>
+<div class="admonition done">
+<p class="admonition-title">Uso de la directiva $ORIGIN<p>El uso de la directiva <code>$ORIGIN</code> no es necesario si la zona fue especificada en el archivo <code>/etc/named.conf</code></p>
+</p>
+</div>
+<h4 id="ttl">$TTL<a class="headerlink" href="#ttl" title="Permanent link">&para;</a></h4>
+<p>Ajusta el valor <em>Time to Live</em> (<code>TTL</code>) predeterminado para la zona. Este es el tiempo en el que un <strong>registro de recurso</strong> de zona es válido. Cada recurso puede contener su propio valor TTL, el cual ignora esta directiva.</p>
+<p>Cuando se decide aumentar este valor, permite a los servidores de nombres remotos hacer caché a la información de zona para un período más largo de tiempo, reduciendo el número de consultas para la zona. </p>
+<h3 id="registros-de-recursos-de-archivos-de-zona">Registros de recursos de archivos de zona<a class="headerlink" href="#registros-de-recursos-de-archivos-de-zona" title="Permanent link">&para;</a></h3>
+<p>El componente principal de un archivo de zona son los registros de recursos o <em>Resource Records</em> (<code>RR</code>).</p>
+<p>Hay muchos tipos de registros de recursos de archivos de zona. A continuación se listan los tipos de registros más frecuentes.</p>
+<h4 id="soa-start-of-authority">SOA (<em>Start of Authority</em>)<a class="headerlink" href="#soa-start-of-authority" title="Permanent link">&para;</a></h4>
+<p>El registro de recursos <code>SOA</code> indica el inicio de una zona autoritativa para un determinado nombre de dominio. Un registro <code>SOA</code> es el primer registro en un archivo de zona.</p>
+<p>El ejemplo siguiente muestra la estructura básica de un registro de recursos <code>SOA</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">@</span>     <span class="nb">IN</span>     SOA    &lt;primary-name-server&gt;     &lt;hostmaster-email&gt; (
+                    <span class="nt">&lt;serial-number&gt;</span>
+                    <span class="nt">&lt;time-to-refresh&gt;</span>
+                    <span class="nt">&lt;time-to-retry&gt;</span>
+                    <span class="nt">&lt;time-to-expire&gt;</span>
+                    <span class="nt">&lt;minimum-TTL&gt;</span> <span class="err">)</span>
+</pre></div>
+
+
+<p>Donde:</p>
+<ul>
+<li>
+<p><code>@</code> es reemplazado por el contenido de la directiva $ORIGIN (o el nombre de la zona, si la directiva $ORIGIN no está configurada).</p>
+</li>
+<li>
+<p><code>IN</code> significa <em>Internet Address</em> o dirección de internet.</p>
+</li>
+<li>
+<p><code>&lt;primary-name-server&gt;</code> es el nombre del <em>host</em> del servidor de nombres que tiene autoridad sobre este dominio. </p>
+</li>
+<li>
+<p><code>&lt;hostmaster-email&gt;</code> es el correo electrónico de la persona a contactar sobre este dominio.</p>
+</li>
+<li>
+<p><code>&lt;serial-number&gt;</code>  es un valor numérico que es incrementado cada vez que se cambia el archivo de zona. Es usado por los servidores esclavos para determinar si esta usando datos de la zona desactualizados y si debería refrescarlos.</p>
+</li>
+<li>
+<p><code>&lt;time-to-refresh&gt;</code> es el valor numérico que los servidores esclavos utilizan para determinar cuánto tiempo debe esperar antes de preguntar al servidor de nombres maestro si se han realizado cambios a la zona. </p>
+</li>
+<li>
+<p><code>&lt;time-to-retry&gt;</code> es un valor numérico usado por los servidores esclavos para determinar el intervalo de tiempo que tiene que esperar antes de emitir una petición de actualización de datos en caso de que el servidor de nombres maestro no responda. </p>
+</li>
+<li>
+<p><code>&lt;time-to-expire&gt;</code> es el tiempo que, ante la no respuesta del servidor maestro, los servidores esclavos dejan de responder como autoridad sobre un dominio. </p>
+</li>
+<li>
+<p><code>&lt;minimum-TTL&gt;</code> es la cantidad de tiempo que otros servidores de nombres guardan en caché la información de zona.</p>
+</li>
+</ul>
+<div class="admonition done">
+<p class="admonition-title">SOA y los servidores esclavos<p>Los parámetros que se encuentran dentro de <code>( )</code> son aquellos que regirán el funcionamiento de los servidores esclavos que existan en el sistema.</p>
+</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Unidades para expresar tiempo<p>Cuando se configura BIND, todos los tiempos son siempre referenciados en segundos. Sin embargo, es posible usar abreviaciones cuando se especifiquen unidades de tiempo además de segundos, tales como minutos (M), horas (H), días (D) y semanas (W). </p>
+</p>
+</div>
+<p>Un ejemplo de aplicación para este registro: </p>
+<div class="codehilite"><pre><span></span><span class="err">@</span>     <span class="nb">IN</span>     SOA    dns1.itel.lan.     hostmaster.itel.lan. (
+                    <span class="err">2001062501</span> <span class="err">;</span> <span class="nb">serial</span>
+                    <span class="m">21600</span>      ; actualizar después de <span class="m">6</span> horas
+                    <span class="err">3600</span>       <span class="err">;</span> <span class="nb">reintentar</span> después de <span class="m">1</span> hora
+                    <span class="err">604800</span>     <span class="err">;</span> <span class="nb">expirar</span> después de <span class="m">1</span> semana
+                    <span class="err">86400</span> <span class="err">)</span>    <span class="err">;</span> <span class="nb">TTL</span> mínimo de <span class="m">1</span> día
+</pre></div>
+
+
+<h4 id="ns-name-server">NS (<em>Name Server</em>)<a class="headerlink" href="#ns-name-server" title="Permanent link">&para;</a></h4>
+<p>Anuncia los nombres de servidores con autoridad sobre una zona particular.</p>
+<p>La sintaxis de un registro NS:</p>
+<div class="codehilite"><pre><span></span><span class="nb">name</span>           ttl     class   rr     server
+<span class="nt">&lt;zone-name&gt;</span>            <span class="nb">IN</span>      NS     &lt;nameserver-name&gt;
+</pre></div>
+
+
+<p>Donde <code>&lt;zone-name&gt;</code> es el nombre de la zona sobre la que el servidor posee autoridad. Luego, el <code>&lt;nameserver-name&gt;</code> debería ser un FQDN.</p>
+<p>Es costumbre emplear dos servidores DNS con autoridad sobre el dominio. No es importante si estos nombres de servidores son esclavos o si son maestros; ambos son considerados con autoridad sobre el dominio. </p>
+<p>Un ejemplo del uso de este registro: </p>
+<div class="codehilite"><pre><span></span><span class="err">itel</span>.<span class="err">lan</span>.   <span class="nb">IN</span>     NS     dns1.itel.lan.
+<span class="err">itel</span>.<span class="err">lan</span>.   <span class="nb">IN</span>     NS     dns2.itel.lan.
+</pre></div>
+
+
+<p>Sin embargo, como se explicó mas arriba, el símbolo <code>@</code> reemplaza el nombre del archivo de zona. Por tanto, podemos escribir:  </p>
+<div class="codehilite"><pre><span></span><span class="err">@</span>   <span class="nb">IN</span>     NS     dns1.itel.lan.
+<span class="err">@</span>   <span class="nb">IN</span>     NS     dns2.itel.lan.
+</pre></div>
+
+
+<p>Inclusive es posible dejar el parámetro del nombre de zona en blanco ya que en el <code>RR</code> anterior se utilizó. La regla es: si no se especifica nada antes del parámetro <code>IN</code> se asume el valor que existía anteriormente. Por lo tanto la configuración del <code>RR</code> sería:</p>
+<div class="codehilite"><pre><span></span><span class="nb">IN</span>     NS     dns1.itel.lan.
+<span class="nb">IN</span>     NS     dns2.itel.lan.
+</pre></div>
+
+
+<p>Finalmente, podríamos prescindir también de la clase <code>IN</code> (<em>Internet</em>) ya que si no se no se especifica explícitamente, BIND utiliza el valor predeterminado <code>IN</code> de todos modos. Entonces, podríamos escribir: </p>
+<div class="codehilite"><pre><span></span>       <span class="nb">NS</span>     dns1.itel.lan.
+       <span class="nb">NS</span>     dns2.itel.lan.
+</pre></div>
+
+
+<h4 id="mx-mail-exchange">MX (<em>Mail eXchange</em>)<a class="headerlink" href="#mx-mail-exchange" title="Permanent link">&para;</a></h4>
+<p>Indica dónde debería de ir el correo enviado a un espacio de nombres particular controlado por esta zona.</p>
+<p>La sintaxis empleada para definir un registro MX: </p>
+<div class="codehilite"><pre><span></span><span class="nb">name</span>           ttl     class    rr     priority            server
+<span class="nt">&lt;zone-name&gt;</span>            <span class="nb">IN</span>       MX     &lt;preference-value&gt;  &lt;email-server-name&gt;
+</pre></div>
+
+
+<p>Donde: </p>
+<ul>
+<li>
+<p><code>&lt;zone-name&gt;</code> es el nombre de la zona sobre la que el servidor posee autoridad.</p>
+</li>
+<li>
+<p><code>&lt;preference-value&gt;</code> permite una clasificación numérica de los servidores de correo para un espacio de nombres, dando preferencia a algunos sistemas de correo sobre otros. El registro de recursos MX con el valor más bajo <code>&lt;preference-value&gt;</code> es preferido sobre los otros. Sin embargo, múltiples servidores de correo pueden tener el mismo valor para distribuir el tráfico de forma pareja entre ellos.</p>
+</li>
+<li>
+<p><code>&lt;email-server-name&gt;</code> puede ser un nombre de servidor o FQDN.</p>
+</li>
+</ul>
+<p>Un ejemplo de configuración para este registro: </p>
+<div class="codehilite"><pre><span></span><span class="err">itel</span>.<span class="err">lan</span>.    <span class="nb">IN</span>     MX     <span class="m">10</span>     mail1.itel.lan.
+<span class="err">itel</span>.<span class="err">lan</span>.    <span class="nb">IN</span>     MX     <span class="m">20</span>     mail2.itel.lan.
+</pre></div>
+
+
+<div class="admonition done">
+<p class="admonition-title">Prioridad de los servidores de correo<p>En el ejemplo anterior, el primer servidor de correo <code>mail1.itel.lan</code> es preferido al servidor de correo <code>mail2.itel.lan</code> cuando se recibe correo destinado para el dominio <code>itel.lan</code>. </p>
+</p>
+</div>
+<p>No obstante, como se explicó en un <a href="#ns-name-server"><code>RR</code> anterior</a>, la configuración del registro se puede escribir de forma abreviada, como sigue: </p>
+<div class="codehilite"><pre><span></span>        <span class="nb">MX</span>     <span class="m">10</span>     mail1.itel.lan.
+        <span class="nb">MX</span>     <span class="m">20</span>     mail2.itel.lan.
+</pre></div>
+
+
+<h4 id="a-address">A (<em>Address</em>)<a class="headerlink" href="#a-address" title="Permanent link">&para;</a></h4>
+<p>Un registro <code>A</code> o de direcciones enlaza un dominio con la dirección IP física de un servidor. </p>
+<p>La sintaxis para declarar este registro es: </p>
+<div class="codehilite"><pre><span></span><span class="nb">name</span>    ttl     class   rr    ipv4
+<span class="nt">&lt;host&gt;</span>          <span class="nb">IN</span>      A     &lt;IP-address&gt;
+</pre></div>
+
+
+<p>Si el valor <code>&lt;host&gt;</code> es omitido, o si en su lugar se usa el símbolo <code>@</code>, el registro <code>A</code> apunta a una dirección IP por defecto. Esto es así para todas las peticiones no FQDN.</p>
+<p>Si consideramos el siguiente ejemplo de registro <code>A</code> para el archivo de zona <code>itel.lan</code>:</p>
+<div class="codehilite"><pre><span></span>                     <span class="nb">IN</span>     A       <span class="m">192.168.0.3</span>
+<span class="err">servidor</span>.<span class="err">itel</span>.<span class="nb">lan</span>    IN     A       <span class="m">192.168.0.5</span>
+</pre></div>
+
+
+<p>Las peticiones para <code>itel.lan</code> son apuntadas a <code>192.168.0.3</code>, mientras que las solicitudes para <code>servidor.itel.lan</code> son dirigidas a <code>192.168.0.5</code>. </p>
+<p>Naturalmente, podemos escribir de manera abreviada la configuración para este registro: </p>
+<div class="codehilite"><pre><span></span>            <span class="nb">A</span>       <span class="m">192.168.0.3</span>
+<span class="nb">servidor</span>    A       <span class="m">192.168.0.5</span>
+</pre></div>
+
+
+<h4 id="cname-canonical-name">CNAME (<em>Canonical Name</em>)<a class="headerlink" href="#cname-canonical-name" title="Permanent link">&para;</a></h4>
+<p>El registro de nombre canónico, enlaza un nombre con otro. Es también conocido como un alias.</p>
+<p>La sintaxis empleada por el registro <code>CNAME</code> es la siguiente: </p>
+<div class="codehilite"><pre><span></span><span class="nb">name</span>            ttl     class   rr          canonical-name
+<span class="nt">&lt;alias-name&gt;</span>            <span class="nb">IN</span>      CNAME       &lt;real-name&gt;
+</pre></div>
+
+
+<p>Donde cualquier petición enviada a <code>&lt;alias-name&gt;</code> apuntará al host <code>&lt;real-name&gt;</code>. </p>
+<p>Veamos el ejemplo siguiente de aplicación: </p>
+<div class="codehilite"><pre><span></span><span class="err">servidor</span>.<span class="err">itel</span>.<span class="nb">lan</span>      IN     A       <span class="m">192.168.0.5</span>
+<span class="err">www</span>.<span class="err">itel</span>.<span class="nb">lan</span>           IN     CNAME   servidor.itel.lan
+</pre></div>
+
+
+<p>Un registro <code>A</code> vincula un nombre de host a una dirección IP, mientras que un registro <code>CNAME</code> apunta al nombre host <code>www.itel.lan</code>, comúnmente usado para este.</p>
+<p>De manera abreviada: </p>
+<div class="codehilite"><pre><span></span><span class="nb">servidor</span>    A       <span class="m">192.168.0.5</span>
+<span class="nb">www</span>         CNAME   servidor
+</pre></div>
+
+
+<h4 id="ptr-pointer">PTR (<em>PoinTeR</em>)<a class="headerlink" href="#ptr-pointer" title="Permanent link">&para;</a></h4>
+<p>Los registros <code>PTR</code> o punteros, son usados principalmente para la resolución inversa de nombres, pues ellos apuntan direcciones IP de vuelta a un nombre particular. </p>
+<p>La sintaxis de uso de este registro es: </p>
+<div class="codehilite"><pre><span></span><span class="nb">name</span>               ttl     class   rr     host-name
+<span class="nt">&lt;last-IP-digit&gt;</span>            <span class="nb">IN</span>      PTR    &lt;FQDN-of-system&gt;
+</pre></div>
+
+
+<p>El valor <code>&lt;last-IP-digit&gt;</code> se refiere al último número en una dirección IP que apunta al <code>FQDN</code> de un sistema particular. </p>
+<p>Un ejemplo de configuración empleando este registro: </p>
+<div class="codehilite"><pre><span></span><span class="err">42</span>.<span class="err">0</span>.<span class="err">168</span>.<span class="err">192</span>.   <span class="nb">IN</span> PTR  servidor.itel.lan.
+<span class="err">114</span>.<span class="err">0</span>.<span class="err">168</span>.<span class="err">192</span>.  <span class="nb">IN</span> PTR  desarrollo.itel.lan.   
+<span class="err">135</span>.<span class="err">0</span>.<span class="err">168</span>.<span class="err">192</span>.  <span class="nb">IN</span> PTR  externo.itel.lan.
+</pre></div>
+
+
+<p>Y de forma resumida: </p>
+<div class="codehilite"><pre><span></span><span class="err">42</span>      <span class="nb">PTR</span>     servidor.itel.lan.
+<span class="err">114</span>     <span class="nb">PTR</span>     desarrollo.itel.lan.   
+<span class="err">135</span>     <span class="nb">PTR</span>     externo.itel.lan.
+</pre></div>
+
+
+<h3 id="otros-registros">Otros registros<a class="headerlink" href="#otros-registros" title="Permanent link">&para;</a></h3>
+<p>Existen muchos otros registros de recursos disponibles. En la presente documentación se listaron los de uso frecuente. No obstante, a continuación se reseñan algunos de ellos: </p>
+<h4 id="aaaa">AAAA<a class="headerlink" href="#aaaa" title="Permanent link">&para;</a></h4>
+<p>Registro análogo al registro <code>A</code> pero para direcciones IPv6. Su sintaxis es la siguiente: </p>
+<div class="codehilite"><pre><span></span><span class="nb">name</span>     ttl    class   rr       ipv6
+<span class="nt">&lt;host&gt;</span>          <span class="nb">IN</span>      AAAA     &lt;IPv6-address&gt;
+</pre></div>
+
+
+<h4 id="txt-text-record">TXT (<em>Text Record</em>)<a class="headerlink" href="#txt-text-record" title="Permanent link">&para;</a></h4>
+<p>Un registro TXT es un registro DNS que proporciona información de texto a fuentes externas a tu dominio y que se puede utilizar con distintos fines. El valor del registro puede corresponder a un texto legible por una máquina o por una persona. </p>
+<p>La sintaxis de declración de este registro es: </p>
+<div class="codehilite"><pre><span></span><span class="nb">name</span>     ttl    class   rr       text
+<span class="nt">&lt;host&gt;</span>          <span class="nb">IN</span>      TXT      <span class="s2">&quot;Algún texto descriptivo&quot;</span>
+</pre></div>
+
+
+<div class="admonition info">
+<p class="admonition-title">Resource records<p>Existen muchos más tipos de registros de recursos aunque no son tan comunes. Podés consultar más información sobre los mismos: </p>
+<ul>
+<li><a href="https://es.wikipedia.org/wiki/Anexo:Tipos_de_registros_DNS">Wikipedia</a></li>
+<li><a href="ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.ch06.html#types_of_resource_records_and_when_to_use_them">Internet System Consortium</a></li>
+</ul>
+</p>
+</div>
+<h2 id="ejemplos-de-archivos-de-zonas">Ejemplos de archivos de zonas<a class="headerlink" href="#ejemplos-de-archivos-de-zonas" title="Permanent link">&para;</a></h2>
+<p>Vistos individualmente, las directivas y registros de recursos pueden ser difíciles de comprender. Sin embargo, cuando se colocan juntos en un mismo archivo, se vuelven más fáciles de entender.</p>
+<p>El ejemplo siguiente muestra un <strong>archivo de zona de resolución directa</strong>:</p>
+<div class="codehilite"><pre><span></span><span class="err">$</span><span class="nb">ORIGIN</span> itel.lan.
+<span class="err">$</span><span class="nb">TTL</span> <span class="m">86400</span>
+
+
+<span class="err">@</span>     <span class="nb">IN</span>     SOA    dns1.itel.lan.     hostmaster.itel.lan. (
+                    <span class="err">2001062501</span> <span class="err">;</span> <span class="nb">serial</span>
+                    <span class="m">21600</span>      ; refresh after <span class="m">6</span> hours
+                    <span class="err">3600</span>       <span class="err">;</span> <span class="nb">retry</span> after <span class="m">1</span> hour
+                    <span class="err">604800</span>     <span class="err">;</span> <span class="nb">expire</span> after <span class="m">1</span> week
+                    <span class="err">86400</span> <span class="err">)</span>    <span class="err">;</span> <span class="nb">minimum</span> TTL of <span class="m">1</span> day
+
+      <span class="nb">IN</span>     NS     dns1.itel.lan.
+      <span class="nb">IN</span>     NS     dns2.itel.lan.
+
+      <span class="nb">IN</span>     MX     <span class="m">10</span>     mail.itel.lan.
+      <span class="nb">IN</span>     MX     <span class="m">20</span>     mail2.itel.lan.
+
+             <span class="nb">IN</span>     A       <span class="m">192.168.0.5</span>
+
+<span class="nb">server1</span>      IN     A       <span class="m">192.168.0.6</span>
+<span class="nb">server2</span>      IN     A       <span class="m">192.168.0.7</span>
+<span class="nb">dns1</span>         IN     A       <span class="m">192.168.0.2</span>
+<span class="nb">dns2</span>         IN     A       <span class="m">192.168.0.3</span>
+
+<span class="nb">ftp</span>          IN     CNAME   server1
+<span class="nb">mail</span>         IN     CNAME   server1
+<span class="nb">mail2</span>        IN     CNAME   server2
+<span class="nb">www</span>          IN     CNAME   server2
+</pre></div>
+
+
+<p>Y, a continuación, un <strong>archivo de zona de resolución inversa</strong>:</p>
+<div class="codehilite"><pre><span></span><span class="err">$</span><span class="nb">ORIGIN</span> <span class="m">0</span>.168.192.in-addr.arpa.
+<span class="err">$</span><span class="nb">TTL</span> <span class="m">86400</span>
+
+
+<span class="err">@</span>     <span class="nb">IN</span>     SOA    dns1.itel.lan.     hostmaster.itel.lan. (
+                    <span class="err">2001062501</span> <span class="err">;</span> <span class="nb">serial</span>
+                    <span class="m">21600</span>      ; refresh after <span class="m">6</span> hours
+                    <span class="err">3600</span>       <span class="err">;</span> <span class="nb">retry</span> after <span class="m">1</span> hour
+                    <span class="err">604800</span>     <span class="err">;</span> <span class="nb">expire</span> after <span class="m">1</span> week
+                    <span class="err">86400</span> <span class="err">)</span>    <span class="err">;</span> <span class="nb">minimum</span> TTL of <span class="m">1</span> day
+
+<span class="err">2</span>     <span class="nb">IN</span>     NS     dns1.itel.lan.
+<span class="err">3</span>     <span class="nb">IN</span>     NS     dns2.itel.lan.
+
+<span class="err">6</span>     <span class="nb">IN</span>     PTR    server1.itel.lan.
+<span class="err">7</span>     <span class="nb">IN</span>     PTR    server2.itel.lan.
+</pre></div>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../cache/" title="DNS caché" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                DNS caché
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../resolvd/" title="Resolución directa" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Resolución directa
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Hecho con &#9829; usando
+        <a href="http://www.mkdocs.org" target="_blank" title="MkDocs">MkDocs</a>
+        y
+        <a href="https://github.com/squidfunk/mkdocs-material" target="_blank" title="Material for MkDocs">Material</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://twitter.com/la9una" class="md-footer-social__link fa fa-twitter"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-683e1b679e.js"></script>
+      
+      
+        
+        <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+        
+          
+            
+            <script src="../../assets/javascripts/lunr/lunr.es.js"></script>
+          
+        
+        
+      
+      <script>app.initialize({url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

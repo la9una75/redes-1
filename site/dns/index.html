@@ -1,0 +1,1483 @@
+
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Redes de datos con software libre">
+      
+      
+        <link rel="canonical" href="http://www.redes.rauljesus.com/dns/">
+      
+      
+        <meta name="author" content="Raul Jesus Lopez">
+      
+      
+        <link rel="shortcut icon" href="../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.3">
+    
+    
+      
+        <title>¿Qué es el DNS? - Redes con software libre</title>
+      
+    
+    
+      <script src="../assets/javascripts/modernizr-e826f8942a.js"></script>
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application-4d315b386e.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-23f75ab9c7.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <!--
+        link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        -->
+
+        <link rel="stylesheet" href="../assets/fonts/material/material.css">
+
+        <link rel="stylesheet" href="../assets/fonts/roboto/roboto.css">
+
+        <link rel="stylesheet" href="../assets/fonts/robotomono/robotomono.css">
+
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <!--
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      -->
+    
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://www.redes.rauljesus.com" title="Redes con software libre" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Resolución de nombres
+                </span>
+              
+            
+            ¿Qué es el DNS?
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="es" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No se encontraron coincidencias para su búsqueda" data-md-lang-result-one="1 coincidencia encontrada" data-md-lang-result-other="# coincidencias encontradas">
+            Comience a escribir para iniciar su búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      Ver en GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
+    Redes con software libre
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      Ver en GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Inicio" class="md-nav__link">
+      Inicio
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      SSH
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        SSH
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ssh/authKey/" title="Autenticación de llave pública" class="md-nav__link">
+      Autenticación de llave pública
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Resolución de nombres
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Resolución de nombres
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="archivoHosts/" title="El archivo hosts" class="md-nav__link">
+      El archivo hosts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        ¿Qué es el DNS?
+      </label>
+    
+    <a href="./" title="¿Qué es el DNS?" class="md-nav__link md-nav__link--active">
+      ¿Qué es el DNS?
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-nombres-de-dominio-dns" title="Tipos de nombres de dominio DNS" class="md-nav__link">
+    Tipos de nombres de dominio DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura-del-dns" title="Arquitectura del DNS" class="md-nav__link">
+    Arquitectura del DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminologia" title="Terminología" class="md-nav__link">
+    Terminología
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionamiento-del-dns" title="Funcionamiento del DNS" class="md-nav__link">
+    Funcionamiento del DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-servidores-dns" title="Tipos de servidores DNS" class="md-nav__link">
+    Tipos de servidores DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-conocimiento" title="Base de conocimiento" class="md-nav__link">
+    Base de conocimiento
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      BIND
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        BIND
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="bind/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="cache/" title="DNS caché" class="md-nav__link">
+      DNS caché
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3-4" type="checkbox" id="nav-3-3-4">
+    
+    <label class="md-nav__link" for="nav-3-3-4">
+      DNS local
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-4">
+        DNS local
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="zonas/" title="Zona de autoridad" class="md-nav__link">
+      Zona de autoridad
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="resolvd/" title="Resolución directa" class="md-nav__link">
+      Resolución directa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="resolvi/" title="Resolución inversa" class="md-nav__link">
+      Resolución inversa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="resolver/" title="Configurando el resolver" class="md-nav__link">
+      Configurando el resolver
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clientes/" title="Configurando clientes" class="md-nav__link">
+      Configurando clientes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="test/" title="Realizando pruebas" class="md-nav__link">
+      Realizando pruebas
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      LAMP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        LAMP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lamp/queEs/" title="¿Qué es LAMP?" class="md-nav__link">
+      ¿Qué es LAMP?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lamp/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lamp/gestionBasica/" title="Gestión básica" class="md-nav__link">
+      Gestión básica
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lamp/userdir/" title="Web de usuario" class="md-nav__link">
+      Web de usuario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lamp/virtualHosts/" title="Hosts virtuales" class="md-nav__link">
+      Hosts virtuales
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lamp/ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Samba
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Samba
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/" title="¿Qué es SAMBA?" class="md-nav__link">
+      ¿Qué es SAMBA?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/configuracionGeneral/" title="Configuración general" class="md-nav__link">
+      Configuración general
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/gestionUsuarios/" title="Gestión de usuarios" class="md-nav__link">
+      Gestión de usuarios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/comparticionUsuario/" title="Carpeta de usuario" class="md-nav__link">
+      Carpeta de usuario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/comparticionGrupo/" title="Carpeta de grupo" class="md-nav__link">
+      Carpeta de grupo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/comparticionInvitados/" title="Carpeta de invitados" class="md-nav__link">
+      Carpeta de invitados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/clientesWindows/" title="Clientes Windows" class="md-nav__link">
+      Clientes Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../samba/ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Icecast
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Icecast
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../icecast/" title="¿Qué es Icecast?" class="md-nav__link">
+      ¿Qué es Icecast?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../icecast/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../icecast/inicializacion/" title="Inicializando el servidor" class="md-nav__link">
+      Inicializando el servidor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../icecast/configuracionGeneral/" title="Configuración general" class="md-nav__link">
+      Configuración general
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../icecast/broadcasting/" title="Broadcasting" class="md-nav__link">
+      Broadcasting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../icecast/administracion/" title="Administración" class="md-nav__link">
+      Administración
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Git
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/" title="¿Qué es Git?" class="md-nav__link">
+      ¿Qué es Git?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/flujoEntornosDistribuidos/" title="Entornos distribuidos" class="md-nav__link">
+      Entornos distribuidos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/instalacion/" title="Instalación de Git" class="md-nav__link">
+      Instalación de Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/configuracionInicial/" title="Configuración inicial" class="md-nav__link">
+      Configuración inicial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/losTresEstados/" title="Los tres estados" class="md-nav__link">
+      Los tres estados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/repositorioLocal/" title="Inicializando repositorio local" class="md-nav__link">
+      Inicializando repositorio local
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/servidorGit/" title="Git en el servidor" class="md-nav__link">
+      Git en el servidor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/trabajandoConRemotos/" title="Trabajando con remotos" class="md-nav__link">
+      Trabajando con remotos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/ramas/" title="Ramas" class="md-nav__link">
+      Ramas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/deshaciendoCambios/" title="Deshaciendo cambios" class="md-nav__link">
+      Deshaciendo cambios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/otrosComandosGit/" title="Otros comandos" class="md-nav__link">
+      Otros comandos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/ejemploGit/" title="Ejemplo de uso de git" class="md-nav__link">
+      Ejemplo de uso de git
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Nagios
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Nagios
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/" title="¿Qué es Nagios?" class="md-nav__link">
+      ¿Qué es Nagios?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/configuracion/" title="Configuración inicial" class="md-nav__link">
+      Configuración inicial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/equipos/" title="Definiendo equipos" class="md-nav__link">
+      Definiendo equipos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/grupos/" title="Definiendo grupos" class="md-nav__link">
+      Definiendo grupos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/servicios/" title="Definiendo servicios" class="md-nav__link">
+      Definiendo servicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/nsclient/" title="Agente Windows" class="md-nav__link">
+      Agente Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/iconos/" title="Definiendo íconos" class="md-nav__link">
+      Definiendo íconos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/recursos/" title="Recursos adicionales" class="md-nav__link">
+      Recursos adicionales
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Proxy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Proxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../proxy/" title="Instrucciones" class="md-nav__link">
+      Instrucciones
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-nombres-de-dominio-dns" title="Tipos de nombres de dominio DNS" class="md-nav__link">
+    Tipos de nombres de dominio DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura-del-dns" title="Arquitectura del DNS" class="md-nav__link">
+    Arquitectura del DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminologia" title="Terminología" class="md-nav__link">
+    Terminología
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionamiento-del-dns" title="Funcionamiento del DNS" class="md-nav__link">
+    Funcionamiento del DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-servidores-dns" title="Tipos de servidores DNS" class="md-nav__link">
+    Tipos de servidores DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-de-conocimiento" title="Base de conocimiento" class="md-nav__link">
+    Base de conocimiento
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>¿Qué es el DNS?</h1>
+                
+                <p>El <strong>DNS</strong> (por sus siglas en inglés <em>Domain Name System</em>) o <strong>sistema de nombres de dominio</strong> es un sistema de nomenclatura jerárquico descentralizado para dispositivos conectados a redes IP como Internet o una red privada.</p>
+<p><img alt="DNS" src="./imgDNS/dns.jpg" /></p>
+<div class="admonition done">
+<p class="admonition-title">Uso del DNS<p>El servicio DNS se emplea fundamentalmente en la resolución de nombres, es decir, determinar cuál es la dirección IP que corresponde a un nombre de dominio determinado y viceversa. </p>
+</p>
+</div>
+<h2 id="tipos-de-nombres-de-dominio-dns">Tipos de nombres de dominio DNS<a class="headerlink" href="#tipos-de-nombres-de-dominio-dns" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong><em>Root Domain</em></strong> o <strong>Dominio raíz</strong> es un dominio que se indica mediante un punto <code>(.)</code> y se encuentra en la raíz o el nivel más alto de la jerarquía de dominios. </p>
+</li>
+<li>
+<p><strong><em>Top Level Domains</em> (TLD)</strong> o <strong>dominios de nivel superior</strong> son aquellos que no pertenecen a otro dominio. <a href="https://es.wikipedia.org/wiki/Dominio_de_nivel_superior">Existen varios tipos</a>, entre los más importantes tenemos a: </p>
+<ul>
+<li>
+<p><strong>ccTLD</strong> (del inglés, <em>country code top level domain</em>) o <em>dominio de nivel superior geográfico</em>, son dominios reservados para países o territorios independientes. Por ejemplo: <code>.ar</code> (Argentina), <code>.es</code> (España), <code>.uy</code> (Uruguay), etc.</p>
+</li>
+<li>
+<p><strong>gTLD</strong> (del inglés <em>general top level domain</em>) o <em>dominio de nivel superior genérico</em>, que mantiene la IANA (del inglés, <em>Internet Assigned Numbers Authoruty</em>). Por ejemplo: <code>.com</code> (comercial), <code>.gob</code> (gubernamental), <code>.edu</code> (educación), etc.  </p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><em>Domain Name</em></strong> o <strong>nombre de dominio</strong> es un nombre fácil de recordar asociado a una dirección IP. Se trata de un nombre único que se muestra después del signo <code>@</code> en las direcciones de correo electrónico y después de <code>www.</code> en las direcciones web. También puede entenderse como una sucesión de nombres concatenados por puntos, como por ejemplo: <code>dominio.com.ar</code>, <code>com.ar</code> y <code>ar</code></p>
+</li>
+<li>
+<p><strong><em>Host Name</em></strong> o <strong>nombre de host</strong> es una sola "palabra" que puede incluir letras, números y guiones. Por ejemplo: <code>www</code>, <code>blog</code> y <code>guia-educativa</code>. En ocasiones, coincide con el nombre del equipo. </p>
+</li>
+<li>
+<p><strong><em>Subdomain</em></strong> o <strong>subdominio</strong> forma parte de un dominio más grande. Por ejemplo, <code>itel.edu.ar</code> es un subdominio de <code>edu.ar</code>, que a su vez lo es del TLD <code>ar</code></p>
+</li>
+<li>
+<p><strong><em>Fully Qualified Host Name</em> (FQHN)</strong> o <strong>nombre completo de un host</strong>, está formado por el <em>hostname</em>, seguido de un punto y su correspondiente <em>nombre de dominio</em>. Por ejemplo, dada la computadora llamada <code>pc1</code> y el nombre de dominio <code>algo.com.</code>, el FQDN será <code>pc1.algo.com.</code>; a su vez, un FQDN asociado a <code>pc1</code> podría ser <code>biblioteca.pc1.algo.com.</code>. </p>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Punto final<p>En los sistemas de nombre de dominio de zonas, y más especialmente en los FQDN, los nombres de dominio se especificarán con un punto <code>(.)</code> <strong>al final del nombre</strong>, aunque se puede omitir. Dicho punto indica el dominio raíz. </p>
+</p>
+</div>
+<h2 id="arquitectura-del-dns">Arquitectura del DNS<a class="headerlink" href="#arquitectura-del-dns" title="Permanent link">&para;</a></h2>
+<p>El sistema DNS funciona principalmente en base al protocolo UDP. Los requerimientos se realizan a través del puerto 53.</p>
+<ul>
+<li>
+<p><strong>Cliente DNS</strong>: está instalado en el cliente (es decir, nosotros) y realiza peticiones de resolución de nombres a los servidores DNS.</p>
+</li>
+<li>
+<p><strong>Servidor DNS</strong>: son los que contestan las peticiones y resuelven los nombres mediante un sistema estructurado en árbol. Las direcciones DNS que ponemos en la configuración de la conexión, son las direcciones de los Servidores DNS.</p>
+</li>
+</ul>
+<p><img alt="Arquitectura del DNS" src="./imgDNS/dnsArbol.png" /></p>
+<p>El sistema está estructurado en forma de “árbol“. Cada nodo del árbol está compuesto por un grupo de servidores que se encargan de resolver un conjunto de dominios (zona de autoridad). </p>
+<p>Un servidor puede delegar en otro (u otros) la autoridad sobre alguna de sus sub-zonas (esto es, algún subdominio de la zona sobre la que él tiene autoridad). Un subdominio puede verse como una especialización de un dominio de nivel anterior. </p>
+<h2 id="terminologia">Terminología<a class="headerlink" href="#terminologia" title="Permanent link">&para;</a></h2>
+<p>Antes de proseguir, es necesario introducir algunos términos básicos para evitar confusiones y ambigüedades. </p>
+<ul>
+<li><strong>Zona de autoridad</strong> es una parte del espacio de nombre de dominios sobre la que es responsable un servidor DNS, que puede tener autoridad sobre varias zonas. En otras palabras, son bases de datos, distribuidas en servidores DNS especiales, en las que se almacenan los registros actualizados de cada dominio en el mundo. Estas zonas son autoritativas, en el sentido de que contienen la información oficial, reconocida y verídica de cada dominio.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Servidores raíz<p>Los <a href="http://www.root-servers.org/"><em>root servers</em></a> o <em>servidores raíz</em> tienen autoridad sobre el dominio raíz <code>(.)</code>, éstos rara vez cambian, siendo actualmente 13.</p>
+</p>
+</div>
+<p><img alt="Zonas delegadas" src="./imgDNS/zonas.jpg" /></p>
+<h2 id="funcionamiento-del-dns">Funcionamiento del DNS<a class="headerlink" href="#funcionamiento-del-dns" title="Permanent link">&para;</a></h2>
+<p>La operación del <em>resolver</em> se inicia cuando recibe un nombre y debe traducirlo. Para comenzar el proceso de traducción el resolver debe conocer uno o más servidores de nombres a quienes enviarles la consulta. Esta información se configura en cada máquina, colocando la dirección IP del servidor (por supuesto, no es posible usar el nombre en este lugar). La traducción completa se le pide al servidor local.</p>
+<p><img alt="Funcionamiento del DNS" src="./imgDNS/funcionamientoDNS.png" /></p>
+<p>Para resolver una consulta, un servidor de nombres debe conocer a lo menos a los servidores raíz. De ese modo, si nunca ha oído hablar de ninguno de los dominios del nombre, puede preguntarle a un servidor raíz. Por lo menos, el servidor raíz tiene que conocer la lista de servidores del dominio de primer nivel del nombre (o sabe que no existe). Si sabe más que eso (por ejemplo, si es secundario del dominio de primer nivel) responde lo más posible. Las respuestas son de dos tipos: una lista de servidores de nombres que saben más que él (servidores del dominio o del sub-dominio) o una lista de direcciones IP que corresponden a la máquina buscada. </p>
+<ol>
+<li>
+<p>Una aplicación (cliente) necesita resolver un FQHN y envía un requerimiento al servidor de nombres configurado en el sistema. Este servidor de nombres, normalmente, es el provisto por el ISP. En nuestro caso, será el servidor de nombres local que instalaremos y configuraremos. Este servidor local se conoce también como <em>resolver</em>.</p>
+</li>
+<li>
+<p>El servidor de nombres consulta a uno de los servidores raíz (cuya dirección IP debe conocer previamente).</p>
+</li>
+<li>
+<p>El servidor raíz devuelve el nombre del servidor a quien se le ha delegado la sub-zona.</p>
+</li>
+<li>
+<p>El servidor inicial interroga al nuevo servidor.</p>
+</li>
+<li>
+<p>El nuevo servidor que posee autoridad sobre la zona interrogada devuelve el nombre del servidor que posee el dominio buscado</p>
+</li>
+<li>
+<p>El servidor DNS iniciar interroga al nuevo servidor con autoridad sobre la zona en cuestión</p>
+</li>
+<li>
+<p>El nuevo servidor resuelve el nombre correspondiente, si este existe.</p>
+</li>
+<li>
+<p>El servidor inicial informa al cliente el nombre resuelto.</p>
+</li>
+</ol>
+<h2 id="tipos-de-servidores-dns">Tipos de servidores DNS<a class="headerlink" href="#tipos-de-servidores-dns" title="Permanent link">&para;</a></h2>
+<p>Estos son los tipos de servidores de acuerdo a su función:</p>
+<ul>
+<li><strong>Primarios o maestros</strong>: guardan los datos de un espacio de nombres en sus ficheros.</li>
+<li><strong>Secundarios o esclavos</strong>: obtienen los datos de los servidores primarios a través de una transferencia de zona.</li>
+<li><strong>Locales o caché</strong>: funcionan con el mismo software, pero no contienen la base de datos para la resolución de nombres. Cuando se les realiza una consulta, estos a su vez consultan a los servidores DNS correspondientes, almacenando la respuesta en su base de datos para agilizar la repetición de estas peticiones en el futuro continuo o libre.</li>
+</ul>
+<h2 id="base-de-conocimiento">Base de conocimiento<a class="headerlink" href="#base-de-conocimiento" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://es.wikipedia.org/wiki/Sistema_de_nombres_de_dominio">https://es.wikipedia.org/wiki/Sistema_de_nombres_de_dominio</a></li>
+<li><a href="http://es.tldp.org/Manuales-LuCAS/GARL2/garl2/x-087-2-resolv.howdnsworks.html">http://es.tldp.org/Manuales-LuCAS/GARL2/garl2/x-087-2-resolv.howdnsworks.html</a></li>
+<li><a href="https://blog.smaldone.com.ar/2006/12/05/como-funciona-el-dns/">https://blog.smaldone.com.ar/2006/12/05/como-funciona-el-dns</a></li>
+<li><a href="https://geekytheory.com/como-funciona-el-dns">https://geekytheory.com/como-funciona-el-dns</a></li>
+<li><a href="https://users.dcc.uchile.cl/~jpiquer/Internet/DNS/node3.html">https://users.dcc.uchile.cl/~jpiquer/Internet/DNS/node3.html</a></li>
+<li><a href="https://www.xatakamovil.com/conectividad/como-funciona-internet-dns">https://www.xatakamovil.com/conectividad/como-funciona-internet-dns</a></li>
+<li><a href="https://servidordebian.org/es/stretch/intranet/dns/start">https://servidordebian.org/es/stretch/intranet/dns/start</a></li>
+<li><a href="https://www.osmosislatina.com/dns/zonas.htm">https://www.osmosislatina.com/dns/zonas.htm</a></li>
+<li><a href="https://support.google.com/a/answer/2573637">https://support.google.com/a/answer/2573637</a></li>
+<li><a href="https://support.google.com/a/answer/48090?hl=es">https://support.google.com/a/answer/48090?hl=es</a></li>
+<li><a href="https://technet.microsoft.com/es-ar/library/dd197446(v=ws.10).aspx">https://technet.microsoft.com/es-ar/library/dd197446(v=ws.10).aspx</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name">https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name</a></li>
+<li><a href="http://www.ite.educacion.es/formacion/materiales/85/cd/linux/m2/servidor_dns.html">http://www.ite.educacion.es/formacion/materiales/85/cd/linux/m2/servidor_dns.html</a></li>
+<li><a href="http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-es-4/s1-bind-zone.html">http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-es-4/s1-bind-zone.html</a></li>
+<li><a href="http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-es-4/s1-bind-namedconf.html">http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-rg-es-4/s1-bind-namedconf.html</a></li>
+<li><a href="http://hp.fciencias.unam.mx/~amem/dns/dns-3.html">http://hp.fciencias.unam.mx/~amem/dns/dns-3.html</a></li>
+<li><a href="http://www.shenron.es/es/node/26">http://www.shenron.es/es/node/26</a></li>
+<li><a href="https://www.osmosislatina.com/dns/zonas.htm">https://www.osmosislatina.com/dns/zonas.htm</a></li>
+<li><a href="ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.html">ftp://ftp.isc.org/isc/bind9/9.10.3-P4/doc/arm/Bv9ARM.html</a></li>
+<li><a href="https://blog.ichasco.com/servidor-dns-master-slave-bind9/">https://blog.ichasco.com/servidor-dns-master-slave-bind9/</a></li>
+<li><a href="https://juncotic.com/dig-opciones-interesantes-para-consultas-dns/">https://juncotic.com/dig-opciones-interesantes-para-consultas-dns/</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="archivoHosts/" title="El archivo hosts" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                El archivo hosts
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="bind/" title="Introducción" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Introducción
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Hecho con &#9829; usando
+        <a href="http://www.mkdocs.org" target="_blank" title="MkDocs">MkDocs</a>
+        y
+        <a href="https://github.com/squidfunk/mkdocs-material" target="_blank" title="Material for MkDocs">Material</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://twitter.com/la9una" class="md-footer-social__link fa fa-twitter"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application-683e1b679e.js"></script>
+      
+      
+        
+        <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+        
+          
+            
+            <script src="../assets/javascripts/lunr/lunr.es.js"></script>
+          
+        
+        
+      
+      <script>app.initialize({url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
