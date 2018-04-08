@@ -5,6 +5,7 @@
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Redes de datos con software libre">
       
@@ -17,7 +18,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.6.0">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.3">
     
     
       
@@ -25,12 +26,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr-56ade86843.js"></script>
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-72266791c5.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-4d315b386e.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-f78e5cb881.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
       
     
     
@@ -38,27 +39,22 @@
         
         
         
-
         <!--
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         -->
+
         <link rel="stylesheet" href="../../assets/fonts/material/material.css">
 
-         <link rel="stylesheet" href="../../assets/fonts/roboto/roboto.css">
+        <link rel="stylesheet" href="../../assets/fonts/roboto/roboto.css">
 
-          <link rel="stylesheet" href="../../assets/fonts/robotomono/robotomono.css">
-        
+        <link rel="stylesheet" href="../../assets/fonts/robotomono/robotomono.css">
 
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
-     
       <!--
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
       -->
     
-    
-
     
     
   </head>
@@ -66,7 +62,7 @@
   
   
   
-    <body data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+    <body data-md-color-primary="pink" data-md-color-accent="pink">
   
     <svg class="md-svg">
       <defs>
@@ -84,10 +80,11 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <a href="http://www.redes.rauljesus.com" title="Redes con software libre" class="md-icon md-icon--home md-header-nav__button">
-          </a>
-        
+        <a href="http://www.redes.rauljesus.com" title="Redes con software libre" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
@@ -98,7 +95,7 @@
             
               
                 <span class="md-header-nav__parent">
-                  Control de versiones
+                  Git
                 </span>
               
             
@@ -110,17 +107,17 @@
         
           <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
           
-<div class="md-search" data-md-component="search">
+<div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" required placeholder="Buscar" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <input type="text" class="md-search__input" name="query" required placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
       <label class="md-icon md-search__icon" for="search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">close</button>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="es" data-md-lang-tokenizer="[\s\-]+">
           <div class="md-search-result__meta" data-md-lang-result-none="No se encontraron coincidencias para su búsqueda" data-md-lang-result-one="1 coincidencia encontrada" data-md-lang-result-other="# coincidencias encontradas">
             Comience a escribir para iniciar su búsqueda
           </div>
@@ -132,16 +129,16 @@
 </div>
         
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <div class="md-header-nav__source">
-          
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
             
 
 
   
 
 
-  <a href="https://github.com/la9una/redes" target="_blank" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -154,14 +151,15 @@
     </div>
   </a>
 
-          
+          </div>
         </div>
-      </div>
+      
     </div>
   </nav>
 </header>
     
     <div class="md-container">
+      
       
       
       <main class="md-main">
@@ -173,9 +171,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    
-      <i class="md-icon md-icon--home md-nav__button"></i>
-    
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
     Redes con software libre
   </label>
   
@@ -186,7 +186,7 @@
   
 
 
-  <a href="https://github.com/la9una/redes" target="_blank" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -282,6 +282,174 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/" title="¿Qué es el DNS?" class="md-nav__link">
+      ¿Qué es el DNS?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      BIND
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        BIND
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/bind/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/cache/" title="DNS caché" class="md-nav__link">
+      DNS caché
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3-4" type="checkbox" id="nav-3-3-4">
+    
+    <label class="md-nav__link" for="nav-3-3-4">
+      DNS local
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-4">
+        DNS local
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/zonas/" title="Zona de autoridad" class="md-nav__link">
+      Zona de autoridad
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolvd/" title="Resolución directa" class="md-nav__link">
+      Resolución directa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolvi/" title="Resolución inversa" class="md-nav__link">
+      Resolución inversa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolver/" title="Configurando el resolver" class="md-nav__link">
+      Configurando el resolver
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/clientes/" title="Configurando clientes" class="md-nav__link">
+      Configurando clientes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/test/" title="Realizando pruebas" class="md-nav__link">
+      Realizando pruebas
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -297,11 +465,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Servidor web
+      LAMP
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Servidor web
+        LAMP
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -393,11 +561,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
-      Servidor de compartición
+      Samba
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
-        Servidor de compartición
+        Samba
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -525,11 +693,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
-      Servidor de streaming
+      Icecast
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-6">
-        Servidor de streaming
+        Icecast
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -623,11 +791,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
     
     <label class="md-nav__link" for="nav-7">
-      Control de versiones
+      Git
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-7">
-        Control de versiones
+        Git
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -744,6 +912,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../deshaciendoCambios/" title="Deshaciendo cambios" class="md-nav__link">
+      Deshaciendo cambios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -798,12 +978,6 @@
       
       
       
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comentarios" class="md-nav__link md-nav__link--active">
-            Comentarios
-          </a>
-        </li>
-      
     </ul>
   
 </nav>
@@ -819,6 +993,174 @@
   <li class="md-nav__item">
     <a href="../ejemploGit/" title="Ejemplo de uso de git" class="md-nav__link">
       Ejemplo de uso de git
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Nagios
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Nagios
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/" title="¿Qué es Nagios?" class="md-nav__link">
+      ¿Qué es Nagios?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/configuracion/" title="Configuración inicial" class="md-nav__link">
+      Configuración inicial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/equipos/" title="Definiendo equipos" class="md-nav__link">
+      Definiendo equipos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/grupos/" title="Definiendo grupos" class="md-nav__link">
+      Definiendo grupos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/servicios/" title="Definiendo servicios" class="md-nav__link">
+      Definiendo servicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/nsclient/" title="Agente Windows" class="md-nav__link">
+      Agente Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/iconos/" title="Definiendo íconos" class="md-nav__link">
+      Definiendo íconos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/recursos/" title="Recursos adicionales" class="md-nav__link">
+      Recursos adicionales
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Proxy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Proxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy/" title="Instrucciones" class="md-nav__link">
+      Instrucciones
     </a>
   </li>
 
@@ -876,12 +1218,6 @@
       
       
       
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comentarios" class="md-nav__link md-nav__link--active">
-            Comentarios
-          </a>
-        </li>
-      
     </ul>
   
 </nav>
@@ -899,50 +1235,50 @@
                 
                 <h2 id="mostrando-diferencias">Mostrando diferencias<a class="headerlink" href="#mostrando-diferencias" title="Permanent link">&para;</a></h2>
 <p>El comando <code>diff</code> compara lo que tenemos en el directorio de trabajo con lo que está en el área de preparación:</p>
-<div class="codehilite"><pre>git diff
+<div class="codehilite"><pre><span></span>git diff
 </pre></div>
 
 
 <p>Para ver las diferencias existentes entre dos ramas, ejecutamos: </p>
-<div class="codehilite"><pre>git diff <span class="o">[</span>rama1<span class="o">]</span> <span class="o">[</span>rama2<span class="o">]</span>
+<div class="codehilite"><pre><span></span>git diff <span class="o">[</span>rama1<span class="o">]</span> <span class="o">[</span>rama2<span class="o">]</span>
 </pre></div>
 
 
 <h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
 <p>Podemos ver el historial de commits del proyecto usando el comando <code>log</code></p>
 <p>Muestra el historial con el formato que indicamos:</p>
-<div class="codehilite"><pre>git log --pretty<span class="o">=</span>format:<span class="s2">&quot;%h - %an, %ar : %s&quot;</span>
+<div class="codehilite"><pre><span></span>git log --pretty<span class="o">=</span>format:<span class="s2">&quot;%h - %an, %ar : %s&quot;</span>
 </pre></div>
 
 
 <p>Cambiamos la n por cualquier número entero, por ejemplo: <code>git log -2</code> nos mostrará los 2 commits más recientes:</p>
-<div class="codehilite"><pre>git log -n
+<div class="codehilite"><pre><span></span>git log -n
 </pre></div>
 
 
 <p>Muestra los commits realizados después de la fecha especificada:</p>
-<div class="codehilite"><pre>git log --after<span class="o">=</span><span class="s2">&quot;2016-04-07 00:00:00&quot;</span>
+<div class="codehilite"><pre><span></span>git log --after<span class="o">=</span><span class="s2">&quot;2016-04-07 00:00:00&quot;</span>
 </pre></div>
 
 
 <p>Muestra los commits realizados antes de la fecha especificada:</p>
-<div class="codehilite"><pre>git log --before<span class="o">=</span><span class="s2">&quot;2016-04-08 00:00:00&quot;</span>
+<div class="codehilite"><pre><span></span>git log --before<span class="o">=</span><span class="s2">&quot;2016-04-08 00:00:00&quot;</span>
 </pre></div>
 
 
 <p>Las banderas del comando <code>git log</code> se pueden usar juntas según son convenga, por ejemplo:</p>
-<div class="codehilite"><pre>git log --after<span class="o">=</span><span class="s2">&quot;2016-04-07 12:00:00&quot;</span> --before<span class="o">=</span><span class="s2">&quot;2016-04-07 12:30:00&quot;</span>
+<div class="codehilite"><pre><span></span>git log --after<span class="o">=</span><span class="s2">&quot;2016-04-07 12:00:00&quot;</span> --before<span class="o">=</span><span class="s2">&quot;2016-04-07 12:30:00&quot;</span>
 </pre></div>
 
 
 <p>Este comando nos muestra el historial en una sola línea por commit:</p>
-<div class="codehilite"><pre>git log --oneline
+<div class="codehilite"><pre><span></span>git log --oneline
 </pre></div>
 
 
 <h2 id="renombrar-archivos">Renombrar archivos<a class="headerlink" href="#renombrar-archivos" title="Permanent link">&para;</a></h2>
 <p>Podemos renombrar archivos directamente desde Git con el comando</p>
-<div class="codehilite"><pre>git mv file_from file_to
+<div class="codehilite"><pre><span></span>git mv file_from file_to
 </pre></div>
 
 
@@ -954,7 +1290,7 @@
 </ol>
 <h2 id="ignorando-archivos">Ignorando archivos<a class="headerlink" href="#ignorando-archivos" title="Permanent link">&para;</a></h2>
 <p>A menudo tendrás un tipo de archivos que no quieras que Git añada automáticamente o te muestre como no versionado. Suelen ser archivos generados automáticamente, como archivos de log, o archivos generados por tu compilador. Para estos casos puedes crear un archivo llamado .gitignore, en el que listas los patrones de nombres que deseas que sean ignorados. He aquí un archivo .gitignore de ejemplo:</p>
-<div class="codehilite"><pre>*.<span class="o">[</span>oa<span class="o">]</span>
+<div class="codehilite"><pre><span></span>*.<span class="o">[</span>oa<span class="o">]</span>
 *~
 </pre></div>
 
@@ -969,7 +1305,7 @@
 </ul>
 <p>Los patrones glob son expresiones regulares simplificadas que pueden ser usadas por las shells. Un asterisco <code>(*)</code> reconoce cero o más caracteres; <code>[abc]</code> reconoce cualquier carácter de los especificados entre corchetes (en este caso, a, b o c); una interrogación <code>(?)</code> reconoce un único carácter; y caracteres entre corchetes separados por un guión <code>([0-9])</code> reconoce cualquier carácter entre ellos (en este caso, de 0 a 9).</p>
 <p>He aquí otro ejemplo de archivo <code>.gitignore</code>:</p>
-<div class="codehilite"><pre><span class="c1"># a comment – this is ignored</span>
+<div class="codehilite"><pre><span></span><span class="c1"># a comment – this is ignored</span>
 <span class="c1"># no .a files</span>
 *.a
 <span class="c1"># but do track lib.a, even though you&#39;re ignoring .a files above</span>
@@ -989,22 +1325,6 @@ doc/**/*.txt
               
               
                 
-                  <h2 id="__comments">Comentarios</h2>
-                  <div id="disqus_thread"></div>
-<script>
-  var disqus_config = function () {
-    this.page.url = "http://www.redes.rauljesus.com/git/otrosComandosGit/";
-    this.page.identifier =
-      "/git/otrosComandosGit/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "//rauljesuscom.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-                
               
             </article>
           </div>
@@ -1017,7 +1337,7 @@ doc/**/*.txt
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../ramas/" title="Ramas" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../deshaciendoCambios/" title="Deshaciendo cambios" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1026,7 +1346,7 @@ doc/**/*.txt
                 <span class="md-footer-nav__direction">
                   Anterior
                 </span>
-                Ramas
+                Deshaciendo cambios
               </span>
             </div>
           </a>
@@ -1064,7 +1384,7 @@ doc/**/*.txt
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-      <a href="https://twitter.com/la9una" class="md-footer-social__link fa fa-twitter" target="_blank"></a>
+      <a href="https://twitter.com/la9una" class="md-footer-social__link fa fa-twitter"></a>
     
   </div>
 
@@ -1075,7 +1395,19 @@ doc/**/*.txt
       
     </div>
     
-      <script src="../../assets/javascripts/application-7018102a8b.js"></script>
+      <script src="../../assets/javascripts/application-683e1b679e.js"></script>
+      
+      
+        
+        <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+        
+          
+            
+            <script src="../../assets/javascripts/lunr/lunr.es.js"></script>
+          
+        
+        
+      
       <script>app.initialize({url:{base:"../.."}})</script>
       
     

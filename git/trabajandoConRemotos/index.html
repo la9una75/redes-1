@@ -5,6 +5,7 @@
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Redes de datos con software libre">
       
@@ -17,7 +18,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.6.0">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.3">
     
     
       
@@ -25,12 +26,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr-56ade86843.js"></script>
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-72266791c5.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-4d315b386e.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-f78e5cb881.palette.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
       
     
     
@@ -38,27 +39,22 @@
         
         
         
-
         <!--
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         -->
+
         <link rel="stylesheet" href="../../assets/fonts/material/material.css">
 
-         <link rel="stylesheet" href="../../assets/fonts/roboto/roboto.css">
+        <link rel="stylesheet" href="../../assets/fonts/roboto/roboto.css">
 
-          <link rel="stylesheet" href="../../assets/fonts/robotomono/robotomono.css">
-        
+        <link rel="stylesheet" href="../../assets/fonts/robotomono/robotomono.css">
 
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
-     
       <!--
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
       -->
     
-    
-
     
     
   </head>
@@ -66,7 +62,7 @@
   
   
   
-    <body data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+    <body data-md-color-primary="pink" data-md-color-accent="pink">
   
     <svg class="md-svg">
       <defs>
@@ -84,10 +80,11 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <a href="http://www.redes.rauljesus.com" title="Redes con software libre" class="md-icon md-icon--home md-header-nav__button">
-          </a>
-        
+        <a href="http://www.redes.rauljesus.com" title="Redes con software libre" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
@@ -98,7 +95,7 @@
             
               
                 <span class="md-header-nav__parent">
-                  Control de versiones
+                  Git
                 </span>
               
             
@@ -110,17 +107,17 @@
         
           <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
           
-<div class="md-search" data-md-component="search">
+<div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="search"></label>
   <div class="md-search__inner">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" required placeholder="Buscar" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <input type="text" class="md-search__input" name="query" required placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
       <label class="md-icon md-search__icon" for="search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">close</button>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="es" data-md-lang-tokenizer="[\s\-]+">
           <div class="md-search-result__meta" data-md-lang-result-none="No se encontraron coincidencias para su búsqueda" data-md-lang-result-one="1 coincidencia encontrada" data-md-lang-result-other="# coincidencias encontradas">
             Comience a escribir para iniciar su búsqueda
           </div>
@@ -132,16 +129,16 @@
 </div>
         
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <div class="md-header-nav__source">
-          
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
             
 
 
   
 
 
-  <a href="https://github.com/la9una/redes" target="_blank" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -154,14 +151,15 @@
     </div>
   </a>
 
-          
+          </div>
         </div>
-      </div>
+      
     </div>
   </nav>
 </header>
     
     <div class="md-container">
+      
       
       
       <main class="md-main">
@@ -173,9 +171,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    
-      <i class="md-icon md-icon--home md-nav__button"></i>
-    
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
     Redes con software libre
   </label>
   
@@ -186,7 +186,7 @@
   
 
 
-  <a href="https://github.com/la9una/redes" target="_blank" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -282,6 +282,174 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/" title="¿Qué es el DNS?" class="md-nav__link">
+      ¿Qué es el DNS?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      BIND
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        BIND
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/bind/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/cache/" title="DNS caché" class="md-nav__link">
+      DNS caché
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3-4" type="checkbox" id="nav-3-3-4">
+    
+    <label class="md-nav__link" for="nav-3-3-4">
+      DNS local
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-4">
+        DNS local
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/zonas/" title="Zona de autoridad" class="md-nav__link">
+      Zona de autoridad
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolvd/" title="Resolución directa" class="md-nav__link">
+      Resolución directa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolvi/" title="Resolución inversa" class="md-nav__link">
+      Resolución inversa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolver/" title="Configurando el resolver" class="md-nav__link">
+      Configurando el resolver
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/clientes/" title="Configurando clientes" class="md-nav__link">
+      Configurando clientes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/test/" title="Realizando pruebas" class="md-nav__link">
+      Realizando pruebas
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -297,11 +465,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
-      Servidor web
+      LAMP
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
-        Servidor web
+        LAMP
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -393,11 +561,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
-      Servidor de compartición
+      Samba
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
-        Servidor de compartición
+        Samba
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -525,11 +693,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
-      Servidor de streaming
+      Icecast
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-6">
-        Servidor de streaming
+        Icecast
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -623,11 +791,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
     
     <label class="md-nav__link" for="nav-7">
-      Control de versiones
+      Git
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-7">
-        Control de versiones
+        Git
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -827,19 +995,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-enviando-hacia-nuestros-repositorios-remotos" title="5. Enviando hacia nuestros repositorios remotos" class="md-nav__link">
-    5. Enviando hacia nuestros repositorios remotos
+  <a href="#6-enviando-hacia-nuestros-repositorios-remotos" title="6. Enviando hacia nuestros repositorios remotos" class="md-nav__link">
+    6. Enviando hacia nuestros repositorios remotos
   </a>
   
 </li>
       
       
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comentarios" class="md-nav__link md-nav__link--active">
-            Comentarios
-          </a>
-        </li>
       
     </ul>
   
@@ -866,6 +1028,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../deshaciendoCambios/" title="Deshaciendo cambios" class="md-nav__link">
+      Deshaciendo cambios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../otrosComandosGit/" title="Otros comandos" class="md-nav__link">
       Otros comandos
     </a>
@@ -880,6 +1054,174 @@
   <li class="md-nav__item">
     <a href="../ejemploGit/" title="Ejemplo de uso de git" class="md-nav__link">
       Ejemplo de uso de git
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Nagios
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Nagios
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/" title="¿Qué es Nagios?" class="md-nav__link">
+      ¿Qué es Nagios?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/configuracion/" title="Configuración inicial" class="md-nav__link">
+      Configuración inicial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/equipos/" title="Definiendo equipos" class="md-nav__link">
+      Definiendo equipos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/grupos/" title="Definiendo grupos" class="md-nav__link">
+      Definiendo grupos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/servicios/" title="Definiendo servicios" class="md-nav__link">
+      Definiendo servicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/nsclient/" title="Agente Windows" class="md-nav__link">
+      Agente Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/iconos/" title="Definiendo íconos" class="md-nav__link">
+      Definiendo íconos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/recursos/" title="Recursos adicionales" class="md-nav__link">
+      Recursos adicionales
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Proxy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Proxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy/" title="Instrucciones" class="md-nav__link">
+      Instrucciones
     </a>
   </li>
 
@@ -990,19 +1332,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-enviando-hacia-nuestros-repositorios-remotos" title="5. Enviando hacia nuestros repositorios remotos" class="md-nav__link">
-    5. Enviando hacia nuestros repositorios remotos
+  <a href="#6-enviando-hacia-nuestros-repositorios-remotos" title="6. Enviando hacia nuestros repositorios remotos" class="md-nav__link">
+    6. Enviando hacia nuestros repositorios remotos
   </a>
   
 </li>
       
       
-      
-        <li class="md-nav__item">
-          <a href="#__comments" title="Comentarios" class="md-nav__link md-nav__link--active">
-            Comentarios
-          </a>
-        </li>
       
     </ul>
   
@@ -1026,7 +1362,7 @@
 <h2 id="1-agregando-un-origen-remoto">1. Agregando un origen remoto<a class="headerlink" href="#1-agregando-un-origen-remoto" title="Permanent link">&para;</a></h2>
 <p>Si quisieramos <strong>sincronizar nuestro repositorio local con un repositorio remoto</strong>, primero deberíamos agregar el origen remoto, es decir, la dirección del servidor remoto con el que deseamos sincronizar nuestros archivos. Cabe aclarar que para poder realizar esta acción el administrador del repositorio remoto debe habernos otorgados los permisos correspondientes. </p>
 <p>La sintaxis general para realizar esta acción es: </p>
-<div class="codehilite"><pre>git remote add <span class="o">[</span>nombre<span class="o">]</span> <span class="o">[</span>url<span class="o">]</span>
+<div class="codehilite"><pre><span></span>git remote add <span class="o">[</span>nombre<span class="o">]</span> <span class="o">[</span>url<span class="o">]</span>
 </pre></div>
 
 
@@ -1035,8 +1371,8 @@
 <li><code>[nombre]</code> Es el nombre del origen remoto (comunmente <em>origin</em> aunque puede ser cualquier otro)</li>
 <li><code>[url]</code> Es la dirección URL o ruta hacia el repositorio remoto que deseamos vincular</li>
 </ul>
-<h4 id="11-agregando-repositorio-remoto-ssh">1.1. Agregando repositorio remoto [SSH]<a class="headerlink" href="#11-agregando-repositorio-remoto-ssh" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre>git remote add origin usuario@192.168.0.200:/home/usuario/miRepositorio.git
+<h3 id="11-agregando-repositorio-remoto-ssh">1.1. Agregando repositorio remoto [SSH]<a class="headerlink" href="#11-agregando-repositorio-remoto-ssh" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>git remote add origin usuario@192.168.0.200:/home/usuario/miRepositorio.git
 </pre></div>
 
 
@@ -1046,8 +1382,8 @@
 <li><code>192.168.0.200</code> es la dirección IP (o nombre de dominio) del servidor remoto. </li>
 <li><code>/home/usuario/miRepositorio.git</code> es la ruta donde se ubica el repositorio en el servidor remoto.</li>
 </ul>
-<h4 id="12-agregando-repositorio-remoto-https">1.2. Agregando repositorio remoto [HTTPS]<a class="headerlink" href="#12-agregando-repositorio-remoto-https" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre>git remote add origin https://github.com/usuario/repositorio.git
+<h3 id="12-agregando-repositorio-remoto-https">1.2. Agregando repositorio remoto [HTTPS]<a class="headerlink" href="#12-agregando-repositorio-remoto-https" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>git remote add origin https://github.com/usuario/repositorio.git
 </pre></div>
 
 
@@ -1059,13 +1395,13 @@
 </ul>
 <h2 id="2-visualizar-origenes-remotos">2. Visualizar orígenes remotos<a class="headerlink" href="#2-visualizar-origenes-remotos" title="Permanent link">&para;</a></h2>
 <p>Para ver los remotos que tenemos configurados, debemos ejecutar:</p>
-<div class="codehilite"><pre>git remote
+<div class="codehilite"><pre><span></span>git remote
 </pre></div>
 
 
 <p>Dicho comando <strong>mostrará los nombres de cada uno de los remotos que tenemos especificados</strong>. Si hemos clonado un repositorio, deberíamos ver al menos <em>origin</em> (origen, en inglés); este es el nombre que por defecto Git le da al servidor del que has clonado.</p>
 <p>También podemos pasar la opción -v, la cual <strong>muestra las URLs que Git ha asociado al nombre del remoto</strong> y que serán usadas al leer y escribir en ese remoto:</p>
-<div class="codehilite"><pre>git remote -v
+<div class="codehilite"><pre><span></span>git remote -v
 </pre></div>
 
 
@@ -1083,12 +1419,12 @@
 <p>Podemos modificar tanto el nombre de un remoto (es decir, su alias) así como la dirección URL del mismo. </p>
 <h3 id="31-modificando-el-nombre-de-un-remoto">3.1. Modificando el nombre de un remoto<a class="headerlink" href="#31-modificando-el-nombre-de-un-remoto" title="Permanent link">&para;</a></h3>
 <p>Si queremos cambiar el nombre de un remoto (alias) tendremos que recurrir al siguiente comando: </p>
-<div class="codehilite"><pre>git remote rename <span class="o">[</span>nombreRemotoViejo<span class="o">]</span> <span class="o">[</span>nombreRemotoNuevo<span class="o">]</span>
+<div class="codehilite"><pre><span></span>git remote rename <span class="o">[</span>nombreRemotoViejo<span class="o">]</span> <span class="o">[</span>nombreRemotoNuevo<span class="o">]</span>
 </pre></div>
 
 
 <p>Por ejemplo, si quisiésemos cambiar el nombre de pb a paul, lo haremos de la siguiente manera: </p>
-<div class="codehilite"><pre>git remote rename pb paul
+<div class="codehilite"><pre><span></span>git remote rename pb paul
 </pre></div>
 
 
@@ -1099,46 +1435,46 @@
 </div>
 <h3 id="32-asignando-un-nuevo-nombre-para-un-remoto">3.2. Asignando un nuevo nombre para un remoto<a class="headerlink" href="#32-asignando-un-nuevo-nombre-para-un-remoto" title="Permanent link">&para;</a></h3>
 <p>Existe otra manera -tal vez menos elegante- de modificar el nombre de un remoto. Teniendo en cuenta que hemos agregado un origen remoto de la siguiente manera: </p>
-<div class="codehilite"><pre>git remote add origin git@github.com:usuario/repositorio.git  
+<div class="codehilite"><pre><span></span>git remote add origin git@github.com:usuario/repositorio.git  
 </pre></div>
 
 
 <p>Podemos modificar el nombre del remoto por otro: </p>
-<div class="codehilite"><pre>git remote add otroOrigen git@github.com:usuario/repositorio.git  
+<div class="codehilite"><pre><span></span>git remote add otroOrigen git@github.com:usuario/repositorio.git  
 </pre></div>
 
 
 <h3 id="33-modificando-la-url-de-un-remoto">3.3. Modificando la URL de un remoto<a class="headerlink" href="#33-modificando-la-url-de-un-remoto" title="Permanent link">&para;</a></h3>
 <p>Otra opción posible es modificar la URL del repositorio remoto según: </p>
-<div class="codehilite"><pre>git remote set-url <span class="o">[</span>nombreRemoto<span class="o">]</span> <span class="o">[</span>nuevaURL<span class="o">]</span>
+<div class="codehilite"><pre><span></span>git remote set-url <span class="o">[</span>nombreRemoto<span class="o">]</span> <span class="o">[</span>nuevaURL<span class="o">]</span>
 </pre></div>
 
 
 <p>Por ejemplo: </p>
-<div class="codehilite"><pre>git remote set-url origin https://github.com/usuario/repositorio.git
+<div class="codehilite"><pre><span></span>git remote set-url origin https://github.com/usuario/repositorio.git
 </pre></div>
 
 
 <h2 id="4-eliminando-un-origen-remoto">4. Eliminando un origen remoto<a class="headerlink" href="#4-eliminando-un-origen-remoto" title="Permanent link">&para;</a></h2>
 <p>Si por alguna razón queremos eliminar eliminar un remoto -ya sea que hemos cambiado de servidor o no queremos seguir utilizando un mirror, o quizás un colaborador a dejado de trabajar en el proyecto- podemos eliminar el origen remoto ateniéndonos a la siguiente sintaxis del comando:</p>
-<div class="codehilite"><pre>git remote rm <span class="o">[</span>nombreRemoto<span class="o">]</span> 
+<div class="codehilite"><pre><span></span>git remote rm <span class="o">[</span>nombreRemoto<span class="o">]</span> 
 </pre></div>
 
 
 <p>Por ejemplo: </p>
-<div class="codehilite"><pre>git remote rm paul
+<div class="codehilite"><pre><span></span>git remote rm paul
 </pre></div>
 
 
 <h2 id="5-recibiendo-desde-nuestros-repositorios-remotos">5. Recibiendo desde nuestros repositorios remotos<a class="headerlink" href="#5-recibiendo-desde-nuestros-repositorios-remotos" title="Permanent link">&para;</a></h2>
 <p>Para recuperar datos de tus repositorios remotos podemos ejecutar:</p>
-<div class="codehilite"><pre>$ git fetch <span class="o">[</span>nombreRemoto<span class="o">]</span>
+<div class="codehilite"><pre><span></span>$ git fetch <span class="o">[</span>nombreRemoto<span class="o">]</span>
 </pre></div>
 
 
 <p>Este comando recupera todos los datos del proyecto remoto que no tengamos todavía.</p>
 <p>Si clonamos un repositorio, el comando añade automáticamente ese repositorio remoto con el nombre de "origin". Por tanto, el comando: </p>
-<div class="codehilite"><pre>git fetch origin
+<div class="codehilite"><pre><span></span>git fetch origin
 </pre></div>
 
 
@@ -1148,26 +1484,26 @@
 </p>
 </div>
 <p>Estaremos en condiciones de verificar manualmente las diferencias. Para <strong>fusionar los cambios descargados desde el repositorio remoto con nuestro repositorio local</strong>, deberemos ejecutar: </p>
-<div class="codehilite"><pre>git merge origin/master
+<div class="codehilite"><pre><span></span>git merge origin/master
 </pre></div>
 
 
 <p>Existe otra comando que combina, de una vez, las acciones de los comandos <code>fetch</code> y <code>merge</code>: el comando <code>pull</code>: </p>
-<div class="codehilite"><pre>git pull
+<div class="codehilite"><pre><span></span>git pull
 </pre></div>
 
 
 <p>Al ejecutar git pull, por lo general se recupera la información del servidor remoto que clonamos, y automáticamente se intenta unir con el código con el que estamos trabajando actualmente.</p>
 <p><img alt="Diferencia entre fetch-merge y pull" src="../imgGit/fetchMergePull2.png" /></p>
 <p><em>Diferencia entre fetch-merge y pull</em></p>
-<h2 id="5-enviando-hacia-nuestros-repositorios-remotos">5. Enviando hacia nuestros repositorios remotos<a class="headerlink" href="#5-enviando-hacia-nuestros-repositorios-remotos" title="Permanent link">&para;</a></h2>
+<h2 id="6-enviando-hacia-nuestros-repositorios-remotos">6. Enviando hacia nuestros repositorios remotos<a class="headerlink" href="#6-enviando-hacia-nuestros-repositorios-remotos" title="Permanent link">&para;</a></h2>
 <p>Cuando tu proyecto se encuentra en un estado que deseamos compartir, tenemos que enviarlo a un repositorio remoto. El comando que nos permite hacer esto es sencillo: </p>
-<div class="codehilite"><pre>git push <span class="o">[</span>nombre-remoto<span class="o">][</span>nombre-rama<span class="o">]</span>
+<div class="codehilite"><pre><span></span>git push <span class="o">[</span>nombre-remoto<span class="o">][</span>nombre-rama<span class="o">]</span>
 </pre></div>
 
 
 <p>Por ejmplo, si queremos enviar nuestra rama maestra (master) a nuestro servidor origen (origin), ejecutaríamos el siguiente comando:</p>
-<div class="codehilite"><pre>$ git push origin master
+<div class="codehilite"><pre><span></span>$ git push origin master
 </pre></div>
 
 
@@ -1180,22 +1516,6 @@
                 
               
               
-                
-                  <h2 id="__comments">Comentarios</h2>
-                  <div id="disqus_thread"></div>
-<script>
-  var disqus_config = function () {
-    this.page.url = "http://www.redes.rauljesus.com/git/trabajandoConRemotos/";
-    this.page.identifier =
-      "/git/trabajandoConRemotos/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "//rauljesuscom.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
                 
               
             </article>
@@ -1256,7 +1576,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-      <a href="https://twitter.com/la9una" class="md-footer-social__link fa fa-twitter" target="_blank"></a>
+      <a href="https://twitter.com/la9una" class="md-footer-social__link fa fa-twitter"></a>
     
   </div>
 
@@ -1267,7 +1587,19 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application-7018102a8b.js"></script>
+      <script src="../../assets/javascripts/application-683e1b679e.js"></script>
+      
+      
+        
+        <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+        
+          
+            
+            <script src="../../assets/javascripts/lunr/lunr.es.js"></script>
+          
+        
+        
+      
       <script>app.initialize({url:{base:"../.."}})</script>
       
     

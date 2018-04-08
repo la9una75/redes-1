@@ -1,0 +1,23 @@
+====== Configurando los clientes (Microsoft Windows) ======
+
+Para configurar los clientes en **Windows 7** deberemos seguir estos pasos: 
+
+  - Panel de control > Ver el estado y las tareas de red.
+  - En la parte izquierda, Cambiar configuración del adaptador.
+  - Seleccionamos la tarjeta de red que queramos cambiar. Si usamos Wi-Fi, será una conexión de red inalámbrica, si no, una conexión de área local. Con el botón derecho del ratón, Propiedades.
+  - En Protocolo de internet versión 4, Propiedades.
+  - Elegimos Usar las siguientes direcciones de servidor DNS e introducimos las que queramos.
+  - Aceptamos y cerramos.
+
+La ventana donde tendremos que ingresar la información es similar a la siguiente: 
+
+{{ :redes:dns:dnswindows7.png |Ejemplo de configuración de DNS}}
+
+<wrap em>NOTA: La imagen fue tomada de internet. Nosotros tendremos que ingresar la dirección IP de nuestro servidor DNS.</wrap> 
+
+[[https://kuyne.blogspot.com.ar/2012/08/como-cambiar-direccion-ip-y-servidor.html|Configurar clientes en otras versiones de Microsoft Windows]]
+
+===== Probando el funcionamiento del servidor =====
+Podemos probar el funcionamiento de nuestro servidor DNS mediante los comando **host** o **dig** en GNU/Linux o el comando **nslookup**, en GNU/Linux y Windows. Por ejemplo: 
+
+{{ :redes:dns:dnsfuncionando.png |DNS funcionando correctamente}}
