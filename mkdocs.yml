@@ -18,8 +18,8 @@ theme_dir: 'themes/material'
 # Opciones
 extra:
   palette:
-    primary: 'pink'
-    accent: 'pink'
+    primary: 'indigo'
+    accent: 'indigo'
 #  font:
 #    text: 'Roboto'
 #    code: 'Roboto Mono'

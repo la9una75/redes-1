@@ -7,7 +7,6 @@ echo "*************************************"
 
 sleep 1
 git checkout master
-mkdocs serve &
 git add .
 git commit -m "`date`"
 git push origin master
