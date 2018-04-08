@@ -20,9 +20,9 @@ extra:
   palette:
     primary: 'indigo'
     accent: 'indigo'
-font:
-    text: 'Roboto'
-    code: 'Roboto Mono'
+#font:
+#    text: 'Roboto'
+#    code: 'Roboto Mono'
   social:
 #    - type: 'github'
 #      link: 'https://github.com/la9una'
