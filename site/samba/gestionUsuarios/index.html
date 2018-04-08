@@ -1,0 +1,1542 @@
+
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Redes de datos con software libre">
+      
+      
+        <link rel="canonical" href="http://www.redes.rauljesus.com/samba/gestionUsuarios/">
+      
+      
+        <meta name="author" content="Raul Jesus Lopez">
+      
+      
+        <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.3">
+    
+    
+      
+        <title>Gestión de usuarios - Redes con software libre</title>
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application-4d315b386e.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <!--
+        link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        -->
+
+        <link rel="stylesheet" href="../../assets/fonts/material/material.css">
+
+        <link rel="stylesheet" href="../../assets/fonts/roboto/roboto.css">
+
+        <link rel="stylesheet" href="../../assets/fonts/robotomono/robotomono.css">
+
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <!--
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      -->
+    
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://www.redes.rauljesus.com" title="Redes con software libre" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+                <span class="md-header-nav__parent">
+                  Samba
+                </span>
+              
+            
+            Gestión de usuarios
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="es" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No se encontraron coincidencias para su búsqueda" data-md-lang-result-one="1 coincidencia encontrada" data-md-lang-result-other="# coincidencias encontradas">
+            Comience a escribir para iniciar su búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      Ver en GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
+    Redes con software libre
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/la9una/redes" title="Ir al repositorio en GitHub" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      Ver en GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Inicio" class="md-nav__link">
+      Inicio
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      SSH
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        SSH
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ssh/authKey/" title="Autenticación de llave pública" class="md-nav__link">
+      Autenticación de llave pública
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Resolución de nombres
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Resolución de nombres
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/archivoHosts/" title="El archivo hosts" class="md-nav__link">
+      El archivo hosts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/" title="¿Qué es el DNS?" class="md-nav__link">
+      ¿Qué es el DNS?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      BIND
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        BIND
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/bind/" title="Introducción" class="md-nav__link">
+      Introducción
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/cache/" title="DNS caché" class="md-nav__link">
+      DNS caché
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3-4" type="checkbox" id="nav-3-3-4">
+    
+    <label class="md-nav__link" for="nav-3-3-4">
+      DNS local
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-4">
+        DNS local
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/zonas/" title="Zona de autoridad" class="md-nav__link">
+      Zona de autoridad
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolvd/" title="Resolución directa" class="md-nav__link">
+      Resolución directa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolvi/" title="Resolución inversa" class="md-nav__link">
+      Resolución inversa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/resolver/" title="Configurando el resolver" class="md-nav__link">
+      Configurando el resolver
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/clientes/" title="Configurando clientes" class="md-nav__link">
+      Configurando clientes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/test/" title="Realizando pruebas" class="md-nav__link">
+      Realizando pruebas
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      LAMP
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        LAMP
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/queEs/" title="¿Qué es LAMP?" class="md-nav__link">
+      ¿Qué es LAMP?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/gestionBasica/" title="Gestión básica" class="md-nav__link">
+      Gestión básica
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/userdir/" title="Web de usuario" class="md-nav__link">
+      Web de usuario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/virtualHosts/" title="Hosts virtuales" class="md-nav__link">
+      Hosts virtuales
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lamp/ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Samba
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Samba
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="¿Qué es SAMBA?" class="md-nav__link">
+      ¿Qué es SAMBA?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configuracionGeneral/" title="Configuración general" class="md-nav__link">
+      Configuración general
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Gestión de usuarios
+      </label>
+    
+    <a href="./" title="Gestión de usuarios" class="md-nav__link md-nav__link--active">
+      Gestión de usuarios
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-usuarios-en-gnulinux" title="Creación de usuarios en GNU/Linux" class="md-nav__link">
+    Creación de usuarios en GNU/Linux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-grupos-en-gnulinux" title="Creación de grupos en GNU/Linux" class="md-nav__link">
+    Creación de grupos en GNU/Linux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agregando-usuarios-a-un-grupo-en-gnulinux" title="Agregando usuarios a un grupo en GNU/Linux" class="md-nav__link">
+    Agregando usuarios a un grupo en GNU/Linux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificando-a-que-grupos-pertenece-un-usuario-en-gnulinux" title="Verificando a que grupos pertenece un usuario en GNU/Linux" class="md-nav__link">
+    Verificando a que grupos pertenece un usuario en GNU/Linux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agregando-usuarios-al-servidor-samba" title="Agregando usuarios al servidor SAMBA" class="md-nav__link">
+    Agregando usuarios al servidor SAMBA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-usuario-en-windows-7" title="Creación de usuario en Windows 7" class="md-nav__link">
+    Creación de usuario en Windows 7
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-0" title="Paso 0" class="md-nav__link">
+    Paso 0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-1" title="Paso 1" class="md-nav__link">
+    Paso 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2" title="Paso 2" class="md-nav__link">
+    Paso 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3" title="Paso 3" class="md-nav__link">
+    Paso 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4" title="Paso 4" class="md-nav__link">
+    Paso 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5" title="Paso 5" class="md-nav__link">
+    Paso 5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6" title="Paso 6" class="md-nav__link">
+    Paso 6
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../comparticionUsuario/" title="Carpeta de usuario" class="md-nav__link">
+      Carpeta de usuario
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../comparticionGrupo/" title="Carpeta de grupo" class="md-nav__link">
+      Carpeta de grupo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../comparticionInvitados/" title="Carpeta de invitados" class="md-nav__link">
+      Carpeta de invitados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../clientesWindows/" title="Clientes Windows" class="md-nav__link">
+      Clientes Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ejercicios/" title="Ejercicios" class="md-nav__link">
+      Ejercicios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Icecast
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Icecast
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/" title="¿Qué es Icecast?" class="md-nav__link">
+      ¿Qué es Icecast?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/inicializacion/" title="Inicializando el servidor" class="md-nav__link">
+      Inicializando el servidor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/configuracionGeneral/" title="Configuración general" class="md-nav__link">
+      Configuración general
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/broadcasting/" title="Broadcasting" class="md-nav__link">
+      Broadcasting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../icecast/administracion/" title="Administración" class="md-nav__link">
+      Administración
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Git
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/" title="¿Qué es Git?" class="md-nav__link">
+      ¿Qué es Git?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/flujoEntornosDistribuidos/" title="Entornos distribuidos" class="md-nav__link">
+      Entornos distribuidos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/instalacion/" title="Instalación de Git" class="md-nav__link">
+      Instalación de Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/configuracionInicial/" title="Configuración inicial" class="md-nav__link">
+      Configuración inicial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/losTresEstados/" title="Los tres estados" class="md-nav__link">
+      Los tres estados
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/repositorioLocal/" title="Inicializando repositorio local" class="md-nav__link">
+      Inicializando repositorio local
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/servidorGit/" title="Git en el servidor" class="md-nav__link">
+      Git en el servidor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/trabajandoConRemotos/" title="Trabajando con remotos" class="md-nav__link">
+      Trabajando con remotos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/ramas/" title="Ramas" class="md-nav__link">
+      Ramas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/deshaciendoCambios/" title="Deshaciendo cambios" class="md-nav__link">
+      Deshaciendo cambios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/otrosComandosGit/" title="Otros comandos" class="md-nav__link">
+      Otros comandos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/ejemploGit/" title="Ejemplo de uso de git" class="md-nav__link">
+      Ejemplo de uso de git
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Nagios
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Nagios
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/" title="¿Qué es Nagios?" class="md-nav__link">
+      ¿Qué es Nagios?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/instalacion/" title="Instalación" class="md-nav__link">
+      Instalación
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/configuracion/" title="Configuración inicial" class="md-nav__link">
+      Configuración inicial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/equipos/" title="Definiendo equipos" class="md-nav__link">
+      Definiendo equipos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/grupos/" title="Definiendo grupos" class="md-nav__link">
+      Definiendo grupos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/servicios/" title="Definiendo servicios" class="md-nav__link">
+      Definiendo servicios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/nsclient/" title="Agente Windows" class="md-nav__link">
+      Agente Windows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/iconos/" title="Definiendo íconos" class="md-nav__link">
+      Definiendo íconos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../nagios/recursos/" title="Recursos adicionales" class="md-nav__link">
+      Recursos adicionales
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Proxy
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Proxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy/" title="Instrucciones" class="md-nav__link">
+      Instrucciones
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Tabla de contenidos</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-usuarios-en-gnulinux" title="Creación de usuarios en GNU/Linux" class="md-nav__link">
+    Creación de usuarios en GNU/Linux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-grupos-en-gnulinux" title="Creación de grupos en GNU/Linux" class="md-nav__link">
+    Creación de grupos en GNU/Linux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agregando-usuarios-a-un-grupo-en-gnulinux" title="Agregando usuarios a un grupo en GNU/Linux" class="md-nav__link">
+    Agregando usuarios a un grupo en GNU/Linux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificando-a-que-grupos-pertenece-un-usuario-en-gnulinux" title="Verificando a que grupos pertenece un usuario en GNU/Linux" class="md-nav__link">
+    Verificando a que grupos pertenece un usuario en GNU/Linux
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agregando-usuarios-al-servidor-samba" title="Agregando usuarios al servidor SAMBA" class="md-nav__link">
+    Agregando usuarios al servidor SAMBA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-usuario-en-windows-7" title="Creación de usuario en Windows 7" class="md-nav__link">
+    Creación de usuario en Windows 7
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-0" title="Paso 0" class="md-nav__link">
+    Paso 0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-1" title="Paso 1" class="md-nav__link">
+    Paso 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2" title="Paso 2" class="md-nav__link">
+    Paso 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3" title="Paso 3" class="md-nav__link">
+    Paso 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4" title="Paso 4" class="md-nav__link">
+    Paso 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5" title="Paso 5" class="md-nav__link">
+    Paso 5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6" title="Paso 6" class="md-nav__link">
+    Paso 6
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="gestion-de-usuarios">Gestión de usuarios<a class="headerlink" href="#gestion-de-usuarios" title="Permanent link">&para;</a></h1>
+<p>Para compartir carpetas entre equipos con <strong>Windows</strong> y <strong>GNU/Linux</strong>, tendremos que configurar usuarios en ambos sistemas.  </p>
+<div class="admonition done">
+<p class="admonition-title">Sobre los usuarios<p>Es recomendable, aunque no excluyendete,  disponer de <strong>los mismos usuarios</strong> tanto en el servidor <strong>SAMBA</strong>, como en <strong>Windows</strong> para un correcto funcionamiento del servicio.</p>
+</p>
+</div>
+<h2 id="creacion-de-usuarios-en-gnulinux">Creación de usuarios en GNU/Linux<a class="headerlink" href="#creacion-de-usuarios-en-gnulinux" title="Permanent link">&para;</a></h2>
+<p>A continuación, repasaremos el modo de creación de usuarios en GNU/Linux:</p>
+<div class="codehilite"><pre><span></span>sudo adduser usuario
+</pre></div>
+
+
+<p>Donde <code>usuario</code> es el nombre de usuario que deseamos crear. El mismo nombre de usuario debe existir en Windows. Recordar que en GNU/Linux, los nombres de usuario son sensibles a letras mayúsculas y minúsculas. </p>
+<h2 id="creacion-de-grupos-en-gnulinux">Creación de grupos en GNU/Linux<a class="headerlink" href="#creacion-de-grupos-en-gnulinux" title="Permanent link">&para;</a></h2>
+<p>Cuando creamos un usuario en GNU/Linux, automáticamente <strong>el sistema crea un grupo con el mismo nombre que el usuario</strong>. Sin embargo, podemos agregar los grupos que querramos de la siguiente manera: </p>
+<div class="codehilite"><pre><span></span>sudo addgroup nuevoGrupo
+</pre></div>
+
+
+<p>Donde <code>nuevoGrupo</code> es el nombre de grupo que deseamos crear. </p>
+<h2 id="agregando-usuarios-a-un-grupo-en-gnulinux">Agregando usuarios a un grupo en GNU/Linux<a class="headerlink" href="#agregando-usuarios-a-un-grupo-en-gnulinux" title="Permanent link">&para;</a></h2>
+<p>Podemos modificar o agregar los grupos a los que pertenece el usuario de la siguiente manera: </p>
+<div class="codehilite"><pre><span></span>sudo usermod -G grupo1,grupo2 usuario
+</pre></div>
+
+
+<p>Donde <code>usermod</code> es el comando para agregar al usuario llamado <code>usuario</code> a los grupos <code>grupo1</code> y <code>grupo2</code>  </p>
+<div class="admonition tip">
+<p class="admonition-title">Gestionando usuarios y grupos de manera simultánea<p>Es posible crear un <strong>usuario</strong> y <strong>agregarlo a un grupo</strong> determinado por nosotros, <strong>de manera simultánea</strong>:</p>
+<p><code>sudo useradd usuario -m -G users</code></p>
+<p>Pero si usamos este método, deberemos configurar la contraseña del usuario en un segundo paso: </p>
+<p><code>sudo passwd usuario</code></p>
+</p>
+</div>
+<h2 id="verificando-a-que-grupos-pertenece-un-usuario-en-gnulinux">Verificando a que grupos pertenece un usuario en GNU/Linux<a class="headerlink" href="#verificando-a-que-grupos-pertenece-un-usuario-en-gnulinux" title="Permanent link">&para;</a></h2>
+<p>Para verificar el/los grupo/s a los que pertenece el usuario, ejecutamos: </p>
+<div class="codehilite"><pre><span></span><span class="nb">sudo</span> id usuario
+</pre></div>
+
+
+<p>Donde <code>usuario</code>, es el usuario que deseamos investigar. </p>
+<h2 id="agregando-usuarios-al-servidor-samba">Agregando usuarios al servidor SAMBA<a class="headerlink" href="#agregando-usuarios-al-servidor-samba" title="Permanent link">&para;</a></h2>
+<p>Los usuarios ya fueron creados en GNU/Linux. Sólo resta agregarlos al servidor SAMBA de la siguiente manera: </p>
+<div class="codehilite"><pre><span></span><span class="nb">sudo</span> smbpasswd -a usuario
+</pre></div>
+
+
+<p>Donde <code>usuario</code> es el usuario al que deseamos agregar a SAMBA. El sistema nos solicitará la contraseña del usuario en SAMBA que deberá ser la misma que en Windows.</p>
+<h2 id="creacion-de-usuario-en-windows-7">Creación de usuario en Windows 7<a class="headerlink" href="#creacion-de-usuario-en-windows-7" title="Permanent link">&para;</a></h2>
+<p>Para el correcto funcionamiento de SAMBA es recomendable que existan en Windows los mismos usuarios que en el servidor de compartición. En otro tutorial se explica como crear y gestionar los usuarios en GNU/Linux. A continuación, se detallan los pasos para la creación de usuarios en Windows 7. </p>
+<h3 id="paso-0">Paso 0<a class="headerlink" href="#paso-0" title="Permanent link">&para;</a></h3>
+<p><img alt="Samba Windows - Paso 0" src="../imgSamba/usuariowin0.png" /></p>
+<h3 id="paso-1">Paso 1<a class="headerlink" href="#paso-1" title="Permanent link">&para;</a></h3>
+<p><img alt="Samba Windows - Paso 1" src="../imgSamba/usuariowin1.png" /></p>
+<h3 id="paso-2">Paso 2<a class="headerlink" href="#paso-2" title="Permanent link">&para;</a></h3>
+<p><img alt="Samba Windows - Paso 2" src="../imgSamba/usuariowin2.png" /></p>
+<h3 id="paso-3">Paso 3<a class="headerlink" href="#paso-3" title="Permanent link">&para;</a></h3>
+<p><img alt="Samba Windows - Paso 3" src="../imgSamba/usuariowin3.png" /></p>
+<h3 id="paso-4">Paso 4<a class="headerlink" href="#paso-4" title="Permanent link">&para;</a></h3>
+<p><img alt="Samba Windows - Paso 4" src="../imgSamba/usuariowin4.png" /></p>
+<h3 id="paso-5">Paso 5<a class="headerlink" href="#paso-5" title="Permanent link">&para;</a></h3>
+<p><img alt="Samba Windows - Paso 5" src="../imgSamba/usuariowin5.png" /></p>
+<h3 id="paso-6">Paso 6<a class="headerlink" href="#paso-6" title="Permanent link">&para;</a></h3>
+<p><img alt="Samba Windows - Paso 6" src="../imgSamba/usuariowin6.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Sobre la creación de usuarios en Windows</p>
+<p>GNU/Linux es un sistema <em>case sensitive</em>, es decir, discrimina las mayúsculas de las minúsculas. Por ejemplo, <code>juan</code> y <code>Juan</code> son vistos por el sistema como dos usuarios diferentes. Hay que tener en cuenta este punto al crear los usuarios en Windows, ya que deberán llamarse de igual manera que en el servidor GNU/Linux. </p>
+</div>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../configuracionGeneral/" title="Configuración general" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                Configuración general
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../comparticionUsuario/" title="Carpeta de usuario" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Siguiente
+                </span>
+                Carpeta de usuario
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Hecho con &#9829; usando
+        <a href="http://www.mkdocs.org" target="_blank" title="MkDocs">MkDocs</a>
+        y
+        <a href="https://github.com/squidfunk/mkdocs-material" target="_blank" title="Material for MkDocs">Material</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://twitter.com/la9una" class="md-footer-social__link fa fa-twitter"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application-683e1b679e.js"></script>
+      
+      
+        
+        <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+        
+          
+            
+            <script src="../../assets/javascripts/lunr/lunr.es.js"></script>
+          
+        
+        
+      
+      <script>app.initialize({url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
