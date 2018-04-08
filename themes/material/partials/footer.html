@@ -1,4 +1,4 @@
-{% import "partials/language.html" as lang %}
+{% import "partials/language.html" as lang with context %}
 <footer class="md-footer">
   {% if page.previous_page or page.next_page %}
     <div class="md-footer-nav">
@@ -44,10 +44,11 @@
             {{ config.copyright }}
           </div>
         {% endif %}
-        Hecho con &#9829; usando
-        <a href="http://www.mkdocs.org" target="_blank" title="MkDocs">MkDocs</a>
-        y
-        <a href="https://github.com/squidfunk/mkdocs-material" target="_blank" title="Material for MkDocs">Material</a>
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
       </div>
       {% block social %}
         {% include "partials/social.html" %}
