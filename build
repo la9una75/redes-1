@@ -1,17 +1,22 @@
 #!/bin/bash
 # Script para guardar el sitio estático generado en la rama gh-pages
+echo "Guardando cambios en la rama master"
+sleep 1
 git checkout master
 mkdocs serve &
 git add .
 git commit -m "`date`"
 git push origin master
+echo "Guardando cambios en la rama gh-pages"
+sleep 1
 git checkout gh-pages
 git checkout master -- site
 git add site
 cp -a site/* .
 git add .
 git commit -m "`date`"
-echo "Guardando cambios en la rama gh-pages"
 git push origin gh-pages
- 
+git checkout master
+echo "Tareas realizadas exitosamente!"
+sleep 1 
 
