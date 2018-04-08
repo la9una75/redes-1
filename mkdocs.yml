@@ -2,7 +2,7 @@
 site_name: 'Redes con software libre'
 site_description: 'Redes de datos con software libre'
 site_author: 'Raul Jesus Lopez'
-site_url: http://www.redes.rauljesus.com
+site_url: http://www.rauljesus.xyz/redes
 
 # Repositorio
 repo_name: 'Ver en GitHub'
@@ -20,9 +20,9 @@ extra:
   palette:
     primary: 'indigo'
     accent: 'indigo'
-#  font:
-#    text: 'Roboto'
-#    code: 'Roboto Mono'
+font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
   social:
 #    - type: 'github'
 #      link: 'https://github.com/la9una'
