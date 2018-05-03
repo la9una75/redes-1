@@ -1044,6 +1044,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../etiquetas/" title="Etiquetado" class="md-nav__link">
+      Etiquetado
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../otrosComandosGit/" title="Otros comandos" class="md-nav__link">
       Otros comandos
     </a>
@@ -1509,8 +1521,8 @@
 
 <p>Al ejecutar <code>git pull</code>, por lo general se recupera la información del servidor remoto que clonamos, y automáticamente se intenta unir con el código con el que estamos trabajando actualmente.</p>
 <div class="admonition error">
-<p class="admonition-title">Error al intentar fusionar repositorios<p>Si creamos un repositorio local y agregamos un origen externo, al intentar fusionar datos entre ambos obtendremos el siguiente error: </p>
-<p><code>fatal: refusing to merge unrelated histories</code>. </p>
+<p class="admonition-title">Error al intentar fusionar repositorios<p>Si creamos un repositorio local y agregamos un origen (repositorio) externo, al intentar fusionar datos entre ambos obtendremos el siguiente error: </p>
+<p><code>fatal: refusing to merge unrelated histories</code> </p>
 <p>Esto es así porque de forma predeterminada, los comandos de fusión de git, como <code>merge</code> y <code>pull</code> se niegan a fusionar historias que no comparten un antecesor común (es decir, se niegan a fusionar historias de dos proyectos que comenzaron sus vidas de forma independiente). Sin embargo, existe una opción para anular esta medida de seguridad: <code>--allow-unrelated-histories</code>. Entonces, si queremos ejecutar el comando <code>pull</code> lo haremos de la siguiente manera:</p>
 <p><code>git pull [nombreRemoto] [rama] --allow-unrelated-histories</code></p>
 </p>
@@ -1523,13 +1535,13 @@
 </pre></div>
 
 
-<p>Por ejemplo, si queremos enviar nuestra rama maestra (master) a nuestro servidor remoto (origin), ejecutaríamos el siguiente comando:</p>
+<p>Por ejemplo, si queremos enviar nuestra rama (master) a nuestro servidor remoto (origin), ejecutaríamos el siguiente comando:</p>
 <div class="codehilite"><pre><span></span>$ git push origin master
 </pre></div>
 
 
 <div class="admonition warning">
-<p class="admonition-title">Uso del comando <code>pull</code><p>Este comando funciona únicamente si hemos clonado desde un servidor remoto o agregado un origen remoto en el que tengamos permiso de escritura, y nadie ha enviado información mientras tanto. Si nosotros y otra persona clonamos un repositorio a la vez, y otro envía su información y luego enviamos la nuestra, nuestro envío será rechazado. Tendremos que bajarnos primero el trabajo de la otra persona e incorporarlo en el nuestro para que se nos permita hacer un envío. </p>
+<p class="admonition-title">Uso del comando <code>pull</code><p>Este comando funciona únicamente si hemos clonado desde un servidor remoto o agregado un origen remoto en el que tengamos permiso de escritura, y nadie ha enviado información mientras tanto. Si nosotros y otra persona clonamos un repositorio a la vez, y otro envía su información y luego enviamos la nuestra, nuestro envío será rechazado. En primer lugar, tendremos que "bajarnos" (<code>pull</code>) el trabajo de la otra persona e incorporarlo en el nuestro para que se nos permita hacer un envío (<code>push</code>). </p>
 </p>
 </div>
                 

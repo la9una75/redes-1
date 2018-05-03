@@ -242,6 +242,12 @@
     </url>
         
     <url>
+     <loc>http://www.rauljesus.xyz/redes/git/etiquetas/</loc>
+     <lastmod>2018-05-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://www.rauljesus.xyz/redes/git/otrosComandosGit/</loc>
      <lastmod>2018-05-03</lastmod>
      <changefreq>daily</changefreq>
