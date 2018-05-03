@@ -14,7 +14,7 @@ Si quisieramos **sincronizar nuestro repositorio local con un repositorio remoto
 La sintaxis general para realizar esta acción es: 
 
 ```bash
-git remote add [nombre] [url]
+git remote add [nombreRepositorioRemoto] [urlRepositorioRemoto]
 ```
 Donde:
 
@@ -27,6 +27,7 @@ git remote add origin usuario@192.168.0.200:/home/usuario/miRepositorio.git
 ```
 Donde:
 
+* `origin` es el nombre que le asignamos al repositorio remoto
 * `usuario` es el nombre de usuario en el servidor remoto.
 * `192.168.0.200` es la dirección IP (o nombre de dominio) del servidor remoto. 
 * `/home/usuario/miRepositorio.git` es la ruta donde se ubica el repositorio en el servidor remoto.
@@ -37,6 +38,7 @@ git remote add origin https://github.com/usuario/repositorio.git
 ```
 Donde:
 
+* `origin` es el nombre que le asignamos al repositorio remoto
 * `https://github.com` el el nombre de dominio del servidor remoto.
 * `usuario` es el nombre de usuario en el servidor remoto.
 * `repositorio.git` es el nombre repositorio en el servidor remoto.
@@ -74,14 +76,15 @@ Podemos modificar tanto el nombre de un remoto (es decir, su alias) así como la
 Si queremos cambiar el nombre de un remoto (alias) tendremos que recurrir al siguiente comando: 
 
 ```bash
-git remote rename [nombreRemotoViejo] [nombreRemotoNuevo]
+git remote rename [nombreRepositorioRemotoViejo] [nombreRepositorioRemotoNuevo]
 ```
-Por ejemplo, si quisiésemos cambiar el nombre de pb a paul, lo haremos de la siguiente manera: 
+
+Por ejemplo, si quisiésemos cambiar el nombre de un repositorio remoto llamado "origin" a "juan", lo haremos de la siguiente manera: 
 
 ```bash
-git remote rename pb paul
+git remote rename origin juan
 ```
-Es importante destacar que al hacer esto también cambiamos el nombre de las ramas remotas. Por lo tanto, lo que antes estaba referenciado como pb/master ahora lo está como paul/master.
+Es importante destacar que al hacer esto también cambiamos el nombre de las ramas remotas. Por lo tanto, lo que antes estaba referenciado como origin/master ahora lo está como juan/master.
 
 !!!done "El nombre _origin_"
 		Por defecto, Git emplea el nombre _origin_ para referirse al origen remoto cada vez que clonamos un repositorio. Esto constituye una conveción y, por lo tanto, podemos cambiarlo por otro nombre si así lo deseamos.
@@ -95,7 +98,7 @@ git remote add origin git@github.com:usuario/repositorio.git
 Podemos modificar el nombre del remoto por otro: 
 
 ```bash
-git remote add otroOrigen git@github.com:usuario/repositorio.git  
+git remote add [otroOrigen] git@github.com:usuario/repositorio.git  
 ```
 
 ### 3.3. Modificando la URL de un remoto
@@ -103,7 +106,7 @@ git remote add otroOrigen git@github.com:usuario/repositorio.git
 Otra opción posible es modificar la URL del repositorio remoto según: 
 
 ```bash
-git remote set-url [nombreRemoto] [nuevaURL]
+git remote set-url [nombreRepositorioRemoto] [nuevaURL]
 ```
 Por ejemplo: 
 
@@ -115,19 +118,19 @@ git remote set-url origin https://github.com/usuario/repositorio.git
 Si por alguna razón queremos eliminar eliminar un remoto -ya sea que hemos cambiado de servidor o no queremos seguir utilizando un mirror, o quizás un colaborador a dejado de trabajar en el proyecto- podemos eliminar el origen remoto ateniéndonos a la siguiente sintaxis del comando:
 
 ```bash
-git remote rm [nombreRemoto] 
+git remote rm [nombreRepositorioRemoto] 
 ```
 Por ejemplo: 
 
 ```bash
-git remote rm paul
+git remote rm miapp
 ```
 
 ## 5. Recibiendo desde nuestros repositorios remotos
 Para recuperar datos de tus repositorios remotos podemos ejecutar:
 
 ```bash
-$ git fetch [nombreRemoto]
+$ git fetch [nombreRepositorioRemoto] [rama]
 ```
 
 Este comando recupera todos los datos del proyecto remoto que no tengamos todavía.
@@ -135,7 +138,7 @@ Este comando recupera todos los datos del proyecto remoto que no tengamos todav�
 Si clonamos un repositorio, el comando añade automáticamente ese repositorio remoto con el nombre de "origin". Por tanto, el comando: 
 
 ```bash
-git fetch origin
+git fetch origin master
 ```
 Recupera toda la información enviada a ese servidor desde que lo clonamos (o desde la última vez que ejecutamos `fetch`). 
 
@@ -151,10 +154,10 @@ git merge origin/master
 Existe otra comando que combina, de una vez, las acciones de los comandos `fetch` y `merge`: el comando `pull`: 
 
 ```bash
-git pull
+git pull [nombreRepositorioRemoto] [rama]
 ```
 
-Al ejecutar git pull, por lo general se recupera la información del servidor remoto que clonamos, y automáticamente se intenta unir con el código con el que estamos trabajando actualmente.
+Al ejecutar `git pull`, por lo general se recupera la información del servidor remoto que clonamos, y automáticamente se intenta unir con el código con el que estamos trabajando actualmente.
 
 
 ![Diferencia entre fetch-merge y pull](imgGit/fetchMergePull2.png)
@@ -166,10 +169,10 @@ _Diferencia entre fetch-merge y pull_
 Cuando tu proyecto se encuentra en un estado que deseamos compartir, tenemos que enviarlo a un repositorio remoto. El comando que nos permite hacer esto es sencillo: 
 
 ```bash
-git push [nombre-remoto][nombre-rama]
+git push [nombreRepositorioRemoto][rama]
 ```
 
-Por ejmplo, si queremos enviar nuestra rama maestra (master) a nuestro servidor origen (origin), ejecutaríamos el siguiente comando:
+Por ejemplo, si queremos enviar nuestra rama maestra (master) a nuestro servidor remoto (origin), ejecutaríamos el siguiente comando:
 
 ```bash
 $ git push origin master
