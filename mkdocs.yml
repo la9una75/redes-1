@@ -110,6 +110,7 @@ pages:
     - Trabajando con remotos: 'git/trabajandoConRemotos.md'
     - Ramas: 'git/ramas.md'
     - Deshaciendo cambios: 'git/deshaciendoCambios.md'
+    - Etiquetado: 'git/etiquetas.md'
     - Otros comandos: 'git/otrosComandosGit.md'
     - Ejemplo de uso de git: 'git/ejemploGit.md'
 - Nagios:

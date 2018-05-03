@@ -160,9 +160,9 @@ git pull [nombreRepositorioRemoto] [rama]
 Al ejecutar `git pull`, por lo general se recupera la información del servidor remoto que clonamos, y automáticamente se intenta unir con el código con el que estamos trabajando actualmente.
 
 !!! error "Error al intentar fusionar repositorios"
-		Si creamos un repositorio local y agregamos un origen externo, al intentar fusionar datos entre ambos obtendremos el siguiente error: 
+		Si creamos un repositorio local y agregamos un origen (repositorio) externo, al intentar fusionar datos entre ambos obtendremos el siguiente error: 
 
-		`fatal: refusing to merge unrelated histories`. 
+		`fatal: refusing to merge unrelated histories` 
 
 		Esto es así porque de forma predeterminada, los comandos de fusión de git, como `merge` y `pull` se niegan a fusionar historias que no comparten un antecesor común (es decir, se niegan a fusionar historias de dos proyectos que comenzaron sus vidas de forma independiente). Sin embargo, existe una opción para anular esta medida de seguridad: `--allow-unrelated-histories`. Entonces, si queremos ejecutar el comando `pull` lo haremos de la siguiente manera:
 
@@ -181,11 +181,12 @@ Cuando tu proyecto se encuentra en un estado que deseamos compartir, tenemos que
 git push [nombreRepositorioRemoto][rama]
 ```
 
-Por ejemplo, si queremos enviar nuestra rama maestra (master) a nuestro servidor remoto (origin), ejecutaríamos el siguiente comando:
+Por ejemplo, si queremos enviar nuestra rama (master) a nuestro servidor remoto (origin), ejecutaríamos el siguiente comando:
 
 ```bash
 $ git push origin master
 ```
+
 !!!warning "Uso del comando `pull`"
-		Este comando funciona únicamente si hemos clonado desde un servidor remoto o agregado un origen remoto en el que tengamos permiso de escritura, y nadie ha enviado información mientras tanto. Si nosotros y otra persona clonamos un repositorio a la vez, y otro envía su información y luego enviamos la nuestra, nuestro envío será rechazado. Tendremos que bajarnos primero el trabajo de la otra persona e incorporarlo en el nuestro para que se nos permita hacer un envío. 
+		Este comando funciona únicamente si hemos clonado desde un servidor remoto o agregado un origen remoto en el que tengamos permiso de escritura, y nadie ha enviado información mientras tanto. Si nosotros y otra persona clonamos un repositorio a la vez, y otro envía su información y luego enviamos la nuestra, nuestro envío será rechazado. En primer lugar, tendremos que "bajarnos" (`pull`) el trabajo de la otra persona e incorporarlo en el nuestro para que se nos permita hacer un envío (`push`). 
 		
