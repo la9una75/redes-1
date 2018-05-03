@@ -18,8 +18,8 @@ git remote add [nombreRepositorioRemoto] [urlRepositorioRemoto]
 ```
 Donde:
 
-* `[nombre]` Es el nombre del origen remoto (comunmente _origin_ aunque puede ser cualquier otro)
-* `[url]` Es la dirección URL o ruta hacia el repositorio remoto que deseamos vincular
+* `[nombreRepositorioRemoto]` Es el nombre del origen remoto (comunmente _origin_ aunque puede ser cualquier otro)
+* `[urlRepositorioRemoto]` Es la dirección URL o ruta hacia el repositorio remoto que deseamos vincular
 
 ### 1.1. Agregando repositorio remoto [SSH]
 ```bash
@@ -98,7 +98,7 @@ git remote add origin git@github.com:usuario/repositorio.git
 Podemos modificar el nombre del remoto por otro: 
 
 ```bash
-git remote add [otroOrigen] git@github.com:usuario/repositorio.git  
+git remote add [nuevoNombreRepositorioRemoto] git@github.com:usuario/repositorio.git  
 ```
 
 ### 3.3. Modificando la URL de un remoto
@@ -158,6 +158,15 @@ git pull [nombreRepositorioRemoto] [rama]
 ```
 
 Al ejecutar `git pull`, por lo general se recupera la información del servidor remoto que clonamos, y automáticamente se intenta unir con el código con el que estamos trabajando actualmente.
+
+!!! error "Error al intentar fusionar repositorios"
+		Si creamos un repositorio local y agregamos un origen externo, al intentar fusionar datos entre ambos obtendremos el siguiente error: 
+
+		`fatal: refusing to merge unrelated histories`. 
+
+		Esto es así porque de forma predeterminada, los comandos de fusión de git, como `merge` y `pull` se niegan a fusionar historias que no comparten un antecesor común (es decir, se niegan a fusionar historias de dos proyectos que comenzaron sus vidas de forma independiente). Sin embargo, existe una opción para anular esta medida de seguridad: `--allow-unrelated-histories`. Entonces, si queremos ejecutar el comando `pull` lo haremos de la siguiente manera:
+
+		`git pull [nombreRemoto] [rama] --allow-unrelated-histories`
 
 
 ![Diferencia entre fetch-merge y pull](imgGit/fetchMergePull2.png)

@@ -1380,8 +1380,8 @@
 
 <p>Donde:</p>
 <ul>
-<li><code>[nombre]</code> Es el nombre del origen remoto (comunmente <em>origin</em> aunque puede ser cualquier otro)</li>
-<li><code>[url]</code> Es la dirección URL o ruta hacia el repositorio remoto que deseamos vincular</li>
+<li><code>[nombreRepositorioRemoto]</code> Es el nombre del origen remoto (comunmente <em>origin</em> aunque puede ser cualquier otro)</li>
+<li><code>[urlRepositorioRemoto]</code> Es la dirección URL o ruta hacia el repositorio remoto que deseamos vincular</li>
 </ul>
 <h3 id="11-agregando-repositorio-remoto-ssh">1.1. Agregando repositorio remoto [SSH]<a class="headerlink" href="#11-agregando-repositorio-remoto-ssh" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span>git remote add origin usuario@192.168.0.200:/home/usuario/miRepositorio.git
@@ -1454,7 +1454,7 @@
 
 
 <p>Podemos modificar el nombre del remoto por otro: </p>
-<div class="codehilite"><pre><span></span>git remote add <span class="o">[</span>otroOrigen<span class="o">]</span> git@github.com:usuario/repositorio.git  
+<div class="codehilite"><pre><span></span>git remote add <span class="o">[</span>nuevoNombreRepositorioRemoto<span class="o">]</span> git@github.com:usuario/repositorio.git  
 </pre></div>
 
 
@@ -1508,6 +1508,13 @@
 
 
 <p>Al ejecutar <code>git pull</code>, por lo general se recupera la información del servidor remoto que clonamos, y automáticamente se intenta unir con el código con el que estamos trabajando actualmente.</p>
+<div class="admonition error">
+<p class="admonition-title">Error al intentar fusionar repositorios<p>Si creamos un repositorio local y agregamos un origen externo, al intentar fusionar datos entre ambos obtendremos el siguiente error: </p>
+<p><code>fatal: refusing to merge unrelated histories</code>. </p>
+<p>Esto es así porque de forma predeterminada, los comandos de fusión de git, como <code>merge</code> y <code>pull</code> se niegan a fusionar historias que no comparten un antecesor común (es decir, se niegan a fusionar historias de dos proyectos que comenzaron sus vidas de forma independiente). Sin embargo, existe una opción para anular esta medida de seguridad: <code>--allow-unrelated-histories</code>. Entonces, si queremos ejecutar el comando <code>pull</code> lo haremos de la siguiente manera:</p>
+<p><code>git pull [nombreRemoto] [rama] --allow-unrelated-histories</code></p>
+</p>
+</div>
 <p><img alt="Diferencia entre fetch-merge y pull" src="../imgGit/fetchMergePull2.png" /></p>
 <p><em>Diferencia entre fetch-merge y pull</em></p>
 <h2 id="6-enviando-hacia-nuestros-repositorios-remotos">6. Enviando hacia nuestros repositorios remotos<a class="headerlink" href="#6-enviando-hacia-nuestros-repositorios-remotos" title="Permanent link">&para;</a></h2>
